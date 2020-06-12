@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Sampler from './Sampler';
 import $ from 'jquery';
 
 const Wrapper = styled.div`
@@ -12,9 +11,27 @@ const Wrapper = styled.div`
 	background: #f7f7f7;
 `;
 
+const SongBox = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
 class Home extends React.Component {
 	render() {
-		return <Wrapper className="outside-video-area">Hiii</Wrapper>;
+		return (
+			<Wrapper className="outside-video-area">
+				<SongBox>
+					<p>Hii</p>
+					<br />
+					<br />
+					<br />
+					<p>Take your time girl</p>
+					<audio controls>
+						<source src="/assets/take_your_time_girl.m4a" type="audio/ogg" />
+					</audio>
+				</SongBox>
+			</Wrapper>
+		);
 	}
 }
 
