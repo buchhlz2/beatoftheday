@@ -116,7 +116,7 @@ const tracks = [
 	},
 	{
 		link: 'dontstop.mp3',
-		name: 'Dont stop'
+		name: "Don't stop"
 	},
 	{
 		link: 'feeldarydam.mp3',
