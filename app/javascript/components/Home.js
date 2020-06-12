@@ -27,7 +27,10 @@ class Home extends React.Component {
 					<br />
 					<p>Take your time girl</p>
 					<audio controls>
-						<source src="/assets/take_your_time_girl.m4a" type="audio/ogg" />
+						<source
+							src="https://beatoftheday.s3-us-west-1.amazonaws.com/take_your_time_girl.m4a"
+							type="audio/ogg"
+						/>
 					</audio>
 				</SongBox>
 			</Wrapper>
