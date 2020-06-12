@@ -4,6 +4,46 @@ import $ from 'jquery';
 
 const tracks = [
 	{
+		link: 'bakery_house_band/BHB_Baby_Can_Wait_Mix_v3.mp3',
+		name: 'Baby can wait'
+	},
+	{
+		link: 'bakery_house_band/BHB_Baby_I_Do_Mix_v2.mp3',
+		name: 'Baby I do'
+	},
+	{
+		link: 'bakery_house_band/BHB_I_Know_Mix_v1.mp3',
+		name: 'I know'
+	},
+	{
+		link: 'bakery_house_band/BHB_Lonely_With_You_Mix_v2.mp3',
+		name: 'Lonely with you'
+	},
+	{
+		link: 'bakery_house_band/BHB_My_Heart_Will_Go_On_Mix_v2.mp3',
+		name: 'My heart will go on'
+	},
+	{
+		link: 'bakery_house_band/BHB_Siren_Song_Mix_v2.mp3',
+		name: 'Siren song'
+	},
+	{
+		link: 'bakery_house_band/BHB_Stranger_Dont_Mind_MIX_v2.mp3',
+		name: "Stranger don't mind"
+	},
+	{
+		link: 'bakery_house_band/BHB_All_I_Ever_Wanted_From_You_Mix_v1.mp3',
+		name: 'All I ever wanted from you'
+	},
+	{
+		link: 'bakery_house_band/BHB_Summer_Ecstasy_Mix_v3.mp3',
+		name: 'Summer ecstasy'
+	},
+	{
+		link: 'bakery_house_band/BHB_Talk_To_Me_Mix_v1.mp3',
+		name: 'Talk to me'
+	},
+	{
 		link: 'take_your_time_girl.m4a',
 		name: 'Take your time girl'
 	},
