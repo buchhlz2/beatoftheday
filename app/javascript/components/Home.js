@@ -188,6 +188,7 @@ const SongBox = styled.div`
 const SongName = styled.span`
 	cursor: pointer;
 	font-size: 14px;
+	padding: 5px;
 `;
 
 class Home extends React.Component {
