@@ -174,12 +174,18 @@ const InnerHeader = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 20px;
+	font-size: 16px;
 `;
 
 const SongBox = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 30px;
+`;
+
+const SongName = styled.span`
+	cursor: pointer;
+	font-size: 14px;
 `;
 
 class Home extends React.Component {
@@ -211,7 +217,7 @@ class Home extends React.Component {
 					{tracks.map((obj, i) => {
 						return (
 							<SongBox key={obj.link}>
-								<p onClick={() => this.showControls(i)}>{obj.name}</p>
+								<SongName onClick={() => this.showControls(i)}>{obj.name}</SongName>
 								{this.showControlsFor(i) && (
 									<audio controls>
 										<source
