@@ -175,6 +175,8 @@ const InnerHeader = styled.div`
 	justify-content: center;
 	margin-bottom: 20px;
 	font-size: 16px;
+	margin-top: 10px;
+	margin-bottom: 30px;
 `;
 
 const SongBox = styled.div`
@@ -210,9 +212,7 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<InnerHeader>
-					<p>Welcome back</p>
-				</InnerHeader>
+				<InnerHeader>💐 Welcome back!</InnerHeader>
 				<Wrapper className="outside-video-area">
 					{tracks.map((obj, i) => {
 						return (
