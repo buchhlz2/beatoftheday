@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The page you were looking for doesn't exist (404)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  </head>
+
+  <style>
+    /*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+    html,
+    body,
+    .outer-wrapper {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+    }
+
+    .header {
+      height: 50px;
+      background: #f7f7f7;
+      top: 0;
+      position: absolute;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-right: 25px;
+      padding-left: 25px;
+    }
+
+    .footer {
+      margin-top: 100px;
+      height: 50px;
+      background: #f7f7f7;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-right: 25px;
+      padding-left: 25px;
+    }
+
+    .inner-wrapper {
+      margin-top: 50px;
+      width: 100%;
+      min-height: calc(100% - 200px);
+    }
+
+    .inner-wrapper > div {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .field {
+      display: flex;
+    }
+
+    label {
+      margin-right: 10px;
+      min-width: 80px;
+    }
+
+    input:not([type="checkbox"]) {
+      outline: none;
+      min-width: 250px;
+      padding: 5px;
+      margin-top: -4px;
+      margin-bottom: 15px;
+      margin-left: 10px;
+    }
+
+    .sign-up {
+      margin-left: 20px;
+      padding: 5px 10px;
+      border: 1px solid #666;
+      border-radius: 3px;
+    }
+  </style>
+
+  <body class="rails-default-error-page">
+    <div class="outer-wrapper">
+      <div class="header">
+        <a href="/">Beat of the day</a>
+      </div>
+      <div class="inner-wrapper" style="padding: 100px 0 0 100px;">
+        500
+      </div>
+      <div class="footer">
+        <span>Beat of the day</span>
+      </div>
+    </div>
+  </body>
+</html>

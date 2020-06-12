@@ -1,0 +1,34 @@
+<div class="outer-wrapper">
+  <div class="header">
+    <a href="/" style="display: flex; align-items: center; padding-right: 10px;"><img width="26" style="margin-right: 10px;" src="https://BeatOfTheDay.s3-us-west-1.amazonaws.com/logo.png"/> Beat of the day</a>
+    <p id="notice"><%= notice %></p>
+    <div style="">
+      <% if user_signed_in? %>
+        <span><%= current_user.email.split('@').first %></span>
+        |
+        <span>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+        </span>
+      <% else %>
+        <span>
+          <%= link_to('Login', new_user_session_path) %>  
+        </span>
+        <span class="sign-up">
+          <%= link_to  "Sign Up", new_user_registration_path %>
+        </span>
+    <% end %> 
+    </div>
+  </div>
+  <div class="inner-wrapper">
+    <%= yield %>
+  </div>
+  
+  <div class="footer">
+    <div style="justify-self: flex-end">
+      <span>How to change your background:<span>
+      <a target="_blank" href="https://support.zoom.us/hc/en-us/articles/210707503-Virtual-Background">Zoom</a>
+      <a target="_blank" href="https://www.howtogeek.com/669542/how-to-change-your-skype-video-call-background/">Skype</a>
+    </div>
+    <span style="">🏝Beat of the day</span>
+  </div>
+</div>
