@@ -58,7 +58,22 @@ const tracks = [
 		name: 'Take your time girl'
 	},
 	{
-		link: 'beat',
+		link: 'audio/Pipers+va%CC%88g+107',
+		type: 'm4a',
+		name: 'Pipers väg 7'
+	},
+	{
+		link: 'audio/Pipers+va%CC%88g+108',
+		type: 'm4a',
+		name: 'Pipers väg 8'
+	},
+	{
+		link: 'audio/Pipers+va%CC%88g+110',
+		type: 'm4a',
+		name: 'Pipers väg 10'
+	},
+	{
+		link: '10beat',
 		type: 'mp3',
 		name: 'Beat 10'
 	},
@@ -260,7 +275,6 @@ class Home extends React.Component {
 									<audio controls>
 										<source
 											src={`https://beatoftheday.s3-us-west-1.amazonaws.com/${obj.link}.${obj.type}`}
-											type="audio/mp3"
 										/>
 									</audio>
 								)}
