@@ -49,30 +49,6 @@ const AddATrackLink = styled.a`
 class AddATrack extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      tracks: []
-    };
-  }
-
-  enableTrack(i) {
-    const newTrack = this.state.tracks[i];
-    this.props.enableTrack({
-      name: newTrack.name,
-      link: newTrack.link,
-      type: newTrack.type,
-    });
-  }
-
-  componentDidMount() {
-    $.get('/tracks').done( (res) => {
-      console.log(res);
-      this.setState({
-        tracks: res.tracks
-      }, () => {
-        this.enableTrack(0)
-      });
-    })
   }
 
   render() {
@@ -80,10 +56,10 @@ class AddATrack extends React.Component {
       <div>
         <InnerHeader>💐 Welcome back!</InnerHeader>
         <Wrapper>
-          {this.state.tracks.map((obj, i) => {
+          {this.props.tracks.map((obj, i) => {
             return (
               <SongBox key={obj.link}>
-                <SongName onClick={() => this.enableTrack(i)}>
+                <SongName onClick={() => this.props.enableTrack(i)}>
                   {obj.name}
                 </SongName>
               </SongBox>

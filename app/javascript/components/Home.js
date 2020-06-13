@@ -3,20 +3,46 @@ import styled from "styled-components";
 import Player from "./Player";
 import AddATrack from "./AddATrack";
 import HomePage from "./HomePage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import $ from "jquery";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentlyPlaying: {}
-    }
+      currentlyPlaying: {},
+      tracks: []
+    };
 
     this.enableTrack = this.enableTrack.bind(this);
   }
 
-  enableTrack(newTrack) {
+  componentDidMount() {
+    if (location.pathname == "/") {
+      $.get("/tracks").done((res) => {
+        console.log(res);
+        this.setState(
+          {
+            tracks: res.tracks,
+          },
+          () => {
+            this.enableTrack(0);
+          }
+        );
+      });
+    }
+  }
+
+  enableTrack(i) {
+    const newTrack = this.state.tracks[i];
     this.setState({
       currentlyPlaying: {
         name: newTrack.name,
@@ -27,12 +53,13 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log(location.pathname);
     return (
       <div className="inner-wrapper">
         <Router>
           <Switch>
             <Route exact path="/">
-              <HomePage enableTrack={this.enableTrack} />
+              <HomePage tracks={this.state.tracks} enableTrack={this.enableTrack} />
             </Route>
             <Route path="/add-a-track">
               <AddATrack />
@@ -41,13 +68,13 @@ class Home extends React.Component {
         </Router>
 
         <div className="footer">
-          {this.state.currentlyPlaying.name &&
+          {this.state.currentlyPlaying.name && (
             <Player
               name={this.state.currentlyPlaying.name}
               link={this.state.currentlyPlaying.link}
               type={this.state.currentlyPlaying.type}
             />
-          }
+          )}
         </div>
       </div>
     );
