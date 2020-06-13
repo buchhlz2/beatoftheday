@@ -4,7 +4,7 @@ class TracksController < ApplicationController
 
   def index
     render json: {
-      tracks: Track.all.order(:created_at).reverse.to_a
+      tracks: Track.all.order(:created_at).reverse.first(30)
     }
   end
 
