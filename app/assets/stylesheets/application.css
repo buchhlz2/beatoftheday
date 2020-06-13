@@ -74,6 +74,10 @@ a:hover {
   box-sizing: border-box;
 }
 
+h2 {
+  margin-top: 50px;
+}
+
 .field {
   display: flex;
 }
