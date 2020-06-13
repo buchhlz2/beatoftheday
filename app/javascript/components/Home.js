@@ -8,6 +8,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 class Home extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentlyPlaying: {}
+    }
+
+    this.enableTrack = this.enableTrack.bind(this);
   }
 
   enableTrack(newTrack) {
@@ -35,11 +41,13 @@ class Home extends React.Component {
         </Router>
 
         <div className="footer">
-          <Player
-            name={this.state.currentlyPlaying.name}
-            link={this.state.currentlyPlaying.link}
-            type={this.state.currentlyPlaying.type}
-          />
+          {this.state.currentlyPlaying.name &&
+            <Player
+              name={this.state.currentlyPlaying.name}
+              link={this.state.currentlyPlaying.link}
+              type={this.state.currentlyPlaying.type}
+            />
+          }
         </div>
       </div>
     );

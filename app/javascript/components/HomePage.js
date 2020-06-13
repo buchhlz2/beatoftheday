@@ -268,9 +268,11 @@ class AddATrack extends React.Component {
     });
   }
 
-  render() {
-    this.enableTrack(tracks[0]);
+  componentDidMount() {
+    this.enableTrack(0);
+  }
 
+  render() {
     return (
       <div>
         <InnerHeader>💐 Welcome back!</InnerHeader>
