@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
-  def employee_logged_in?
-    current_user.present? && ['desmond17@protonmail.com', 'jgsharpless@gmail.com'].include?(current_user.email)
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:artist_name, :password, :email])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:artist_name, :password, :email])
   end
 end

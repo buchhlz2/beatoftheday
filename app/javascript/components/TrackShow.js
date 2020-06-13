@@ -4,6 +4,7 @@ import styled from "styled-components";
 import $ from "jquery";
 
 const Wrapper = styled.div`
+  margin-top: 100px;
   padding: 20px;
   display: flex;
   align-items: center;
