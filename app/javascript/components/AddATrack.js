@@ -3,11 +3,15 @@ import styled from "styled-components";
 import $ from "jquery";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import upload from "./util/upload"
 
 const Upload = styled.button`
   width: 100%;
-  height: 30px;
+  height: 40px;
   margin-top: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
 `;
 
 const Wrapper = styled.div`
@@ -23,90 +27,66 @@ const Wrapper = styled.div`
   input {
     padding-left: 0;
     margin-left: 0;
+    font-size: 16px;
+
+    &[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+    }
   }
 `;
 
 const Heading = styled.h3`
   margin-bottom: 30px;
+  width: 100%;
 `
-
-const FormItem = styled.div`
-  display: flex;
-  label {
-    width: 50px;
-  }
-`
+const PleaseComplete = styled.p`
+  font-size: 16px;
+`;
 
 class AddATrack extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedFile: false, doneUploading: false };
+    this.state = {
+      selectedFile: false,
+      selectedImage: false,
+      doneUploading: false,
+      trackName: "",
+    };
   }
 
   componentWillUnmount() {
-    this.setState({doneUploading: false});
+    this.setState({ doneUploading: false });
   }
 
-  fileChangeHandler = (event) => {
+  audioFileChangeHandler = (event) => {
     this.setState({
       selectedFile: event.target.files[0],
     });
-  }
+  };
+
+  imageFileChangeHandler = (event) => {
+    this.setState({
+      selectedImage: event.target.files[0],
+    });
+  };
+
+  nameChangeHandler = (event) => {
+    this.setState({
+      trackName: event.target.value,
+    });
+  };
 
   onClickUpload = () => {
-    this.setState({uploading: true});
-    this.upload(this.state.selectedFile);
-  }
-
-  upload = (blob) => {
-    this.setState({ uploading: true });
-
-    const requestObj = {
-      method: 'GET',
-      url: '/tracks/s3_direct_post',
-    };
-
-    $.ajax(requestObj).then(data => {
-      console.log(data);
-      let fd = new FormData();
-      _.each(data.fields, (value, key) => {
-        fd.append(key, value);
-      });
-
-      fd.append("file", blob);
-
-      const requestObj2 = {
-        method: 'POST',
-        url: data.url,
-        data: fd,
-        processData: false,
-        contentType: false
-      };
-
-      $.ajax(requestObj2).then(data2 => {
-        console.log(data2);
-        const data2$ = $(data2);
-        const location = data2$.find('PostResponse').find('Location').text()
-
-        const requestObj3 = {
-          method: 'POST',
-          url: '/tracks/s3_blob_location',
-          data: {
-            location: location,
-            name: $('#name').val(),
-          }
-        };
-
-        $.ajax(requestObj3).then(data3 => {
-          this.setState({
-            doneUploading: true,
-            uploading: false
-          });
-        });
-      });
+    upload(this.state.selectedFile, this.state.selectedImage, { name: this.state.trackName }, () => {
+      this.setState({ doneUploading: true });
     });
-  }
+  };
+
+  formValidation = () => {
+    return this.state.trackName && this.state.selectedFile && this.state.selectedImage;
+  };
 
   render() {
     return (
@@ -123,20 +103,30 @@ class AddATrack extends React.Component {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Heading>Choose an mp3 or m4a file to upload:</Heading>
+            <Heading>1. Name your track:</Heading>
+            <input id="name" type="text" onChange={this.nameChangeHandler} />
+            <Heading>2. Choose an mp3 or m4a file to upload:</Heading>
             <input
               type="file"
-              onChange={this.fileChangeHandler}
+              onChange={this.audioFileChangeHandler}
               accept="audio/mp3,audio/m4a"
             />
-            <FormItem>
-              <label htmlFor="name">Name:</label>
-              <input id="name" type="text" />
-            </FormItem>
-            {this.state.uploading ? (
-              <Upload>Uploading...</Upload>
+            <Heading>3. Choose an image to go with your track:</Heading>
+            <input
+              type="file"
+              onChange={this.imageFileChangeHandler}
+              accept="image/*"
+            />
+            {this.formValidation() ? (
+              this.state.uploading ? (
+                <Upload>Uploading...</Upload>
+              ) : (
+                <Upload onClick={this.onClickUpload}>Upload!</Upload>
+              )
             ) : (
-              <Upload onClick={this.onClickUpload}>Upload!</Upload>
+              <PleaseComplete>
+                Please complete all the fields to upload your track.
+              </PleaseComplete>
             )}
           </React.Fragment>
         )}

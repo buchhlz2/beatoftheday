@@ -25,10 +25,12 @@ class TracksController < ApplicationController
 
   def s3_blob_location
     aws_url = params[:location]
+    aws_photo_url = params[:image_location]
 
     newTrack =  Track.create!(
       user: current_user,
       link: aws_url,
+      photo: aws_photo_url,
       name: params[:name],
       audio_type: aws_url.split('.').last
     )
