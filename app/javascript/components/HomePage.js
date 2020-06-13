@@ -223,13 +223,11 @@ const Wrapper = styled.div`
 
 const InnerHeader = styled.div`
   width: 100%;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 30px;
+  font-size: 14px;
 `;
 
 const SongBox = styled.div`
@@ -248,8 +246,12 @@ const AddATrackLink = styled(Link)`
   cursor: pointer;
   font-size: 14px;
   padding: 5px;
-  margin-top: 30px;
-  margin-bottom: 130px;
+  padding-bottom: 100px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 class AddATrack extends React.Component {

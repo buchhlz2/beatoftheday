@@ -54,7 +54,6 @@ body,
 }
 
 .inner-wrapper {
-  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -64,6 +63,11 @@ body,
 
 a {
   text-decoration: none;
+  color: #333;
+}
+
+a:hover {
+  background: #333;
 }
 
 * {
