@@ -3,7 +3,38 @@ import styled from "styled-components";
 import $ from "jquery";
 import _ from "lodash";
 
-const Upload = styled.button``
+const Upload = styled.button`
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
+`;
+
+const Wrapper = styled.div`
+  margin-top: 100px;
+  padding: 20px;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 1080px;
+  background: #f7f7f7;
+
+  input {
+    padding-left: 0;
+    margin-left: 0;
+  }
+`;
+
+const Heading = styled.h3`
+  margin-bottom: 30px;
+`
+
+const FormItem = styled.div`
+  display: flex;
+  label {
+    width: 50px;
+  }
+`
 
 class AddATrack extends React.Component {
   constructor(props) {
@@ -48,6 +79,7 @@ class AddATrack extends React.Component {
       };
 
       $.ajax(requestObj2).then(data2 => {
+        console.log(data2);
         const data2$ = $(data2);
         const location = data2$.find('PostResponse').find('Location').text()
 
@@ -56,7 +88,7 @@ class AddATrack extends React.Component {
           url: '/tracks/s3_blob_location',
           data: {
             location: location,
-            assignment_id: this.props.assignment.id,
+            name: $('#name').val(),
           }
         };
 
@@ -68,15 +100,21 @@ class AddATrack extends React.Component {
   }
 
   render() {
-    return <div>
-      Yooooo
-      <input
-        type="file"
-        onChange={this.fileChangeHandler}
-        accept="audio/mp3,audio/m4a"
-      />
-      <Upload onClick={this.onClickUpload}>Upload!</Upload>
-    </div>;
+    return (
+      <Wrapper>
+        <Heading>Choose an mp3 or m4a file to upload:</Heading>
+        <input
+          type="file"
+          onChange={this.fileChangeHandler}
+          accept="audio/mp3,audio/m4a"
+        />
+        <FormItem>
+          <label htmlFor="name">Name:</label>
+          <input id="name" type="text" />
+        </FormItem>
+        <Upload onClick={this.onClickUpload}>Upload!</Upload>
+      </Wrapper>
+    );
   }
 }
 

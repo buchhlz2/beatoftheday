@@ -32,7 +32,7 @@ class Player extends React.Component {
         <Name>📻 {this.props.name}</Name>
         <Audio controls key={this.props.link}>
           <source
-            src={`https://beatoftheday.s3-us-west-1.amazonaws.com/${this.props.link}.${this.props.type}`}
+            src={this.props.link}
           />
         </Audio>
       </Wrapper>

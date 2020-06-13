@@ -1,10 +1,17 @@
 class TracksController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
+
+  def index
+    render json: {
+      tracks: Track.all.to_a
+    }
+  end
 
   def s3_direct_post
-    s3_bucket = s3_resource.bucket('backgroundsland')
+    s3_bucket = s3_resource.bucket('beatoftheday')
     s3_direct_post = s3_bucket.presigned_post(
-      key: "uploads/#{SecureRandom.uuid}/${filename}",
+      key: "audio/#{SecureRandom.uuid}/${filename}",
       success_action_status: '201',
       acl: 'public-read',
       content_length_range: 0..100000000, # 100 MB
@@ -17,30 +24,16 @@ class TracksController < ApplicationController
   end
 
   def s3_blob_location
-    location = params[:location]
-    is_file = params[:is_file] == 'true'
-    assignment = Assignment.find(params[:assignment_id])
-    is_video = params[:is_video] == 'true'
+    aws_url = params[:location]
 
-    access = assignment.workspace.students.include?(current_user) || assignment.workspace.creator == current_user
-    unless access
-      return render json: { message: "You don't have access to this assignment" }, status: 404
-    end
-
-    assignment_recording = AssignmentRecording.create(
-      user_id: current_user.id,
-      assignment_id: assignment.id,
-      video:  is_video
+    newTrack =  Track.create!(
+      user: current_user,
+      link: aws_url,
+      name: params[:name],
+      audio_type: aws_url.split('.').last
     )
 
-    if is_file
-      recording_url = location
-      assignment_recording.update!(recording_url: recording_url)
-    else
-      Delayed::Job.enqueue Mp4Converter.new(location, assignment_recording.id)
-    end
-
-    render json: {}
+    render json: newTrack.attributes
   end
 
   def s3_resource
