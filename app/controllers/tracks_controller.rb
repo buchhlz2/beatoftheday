@@ -8,13 +8,18 @@ class TracksController < ApplicationController
     }
   end
 
+  def show
+    @track = Track.find(params[:id])
+    render 'pages/home'
+  end
+
   def s3_direct_post
     s3_bucket = s3_resource.bucket('beatoftheday')
     s3_direct_post = s3_bucket.presigned_post(
       key: "audio/#{SecureRandom.uuid}/${filename}",
       success_action_status: '201',
       acl: 'public-read',
-      content_length_range: 0..100000000, # 100 MB
+      content_length_range: 0..20000000, # 20 MB
     )
 
     url = s3_direct_post.url

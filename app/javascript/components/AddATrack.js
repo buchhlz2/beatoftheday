@@ -79,8 +79,8 @@ class AddATrack extends React.Component {
   };
 
   onClickUpload = () => {
-    upload(this.state.selectedFile, this.state.selectedImage, { name: this.state.trackName }, () => {
-      this.setState({ doneUploading: true });
+    upload(this.state.selectedFile, this.state.selectedImage, { name: this.state.trackName }, (res) => {
+      window.location = `/tracks/${res.id}`
     });
   };
 
@@ -91,45 +91,33 @@ class AddATrack extends React.Component {
   render() {
     return (
       <Wrapper>
-        {this.state.doneUploading ? (
-          <React.Fragment>
-            <Heading>
-              Congrats!
-              <br />
-              <br />
-              <br />
-              <Link to="/">Go back to the homepage to view your upload.</Link>
-            </Heading>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Heading>1. Name your track:</Heading>
-            <input id="name" type="text" onChange={this.nameChangeHandler} />
-            <Heading>2. Choose an mp3 or m4a file to upload:</Heading>
-            <input
-              type="file"
-              onChange={this.audioFileChangeHandler}
-              accept="audio/mp3,audio/m4a"
-            />
-            <Heading>3. Choose an image to go with your track:</Heading>
-            <input
-              type="file"
-              onChange={this.imageFileChangeHandler}
-              accept="image/*"
-            />
-            {this.formValidation() ? (
-              this.state.uploading ? (
-                <Upload>Uploading...</Upload>
-              ) : (
-                <Upload onClick={this.onClickUpload}>Upload!</Upload>
-              )
+        <React.Fragment>
+          <Heading>1. Name your track:</Heading>
+          <input id="name" type="text" onChange={this.nameChangeHandler} />
+          <Heading>2. Choose an mp3 or m4a file to upload:</Heading>
+          <input
+            type="file"
+            onChange={this.audioFileChangeHandler}
+            accept="audio/mp3,audio/m4a"
+          />
+          <Heading>3. Choose an image to go with your track:</Heading>
+          <input
+            type="file"
+            onChange={this.imageFileChangeHandler}
+            accept="image/*"
+          />
+          {this.formValidation() ? (
+            this.state.uploading ? (
+              <Upload>Uploading...</Upload>
             ) : (
-              <PleaseComplete>
-                Please complete all the fields to upload your track.
-              </PleaseComplete>
-            )}
-          </React.Fragment>
-        )}
+              <Upload onClick={this.onClickUpload}>Upload!</Upload>
+            )
+          ) : (
+            <PleaseComplete>
+              Please complete all the fields to upload your track.
+            </PleaseComplete>
+          )}
+        </React.Fragment>
       </Wrapper>
     );
   }

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Player from "./Player";
 import AddATrack from "./AddATrack";
+import TrackShow from "./TrackShow";
 import HomePage from "./HomePage";
 import $ from "jquery";
 
@@ -19,10 +20,8 @@ class Home extends React.Component {
 
     this.state = {
       currentlyPlaying: {},
-      tracks: []
+      tracks: [],
     };
-
-    this.enableTrack = this.enableTrack.bind(this);
   }
 
   componentDidMount() {
@@ -41,8 +40,12 @@ class Home extends React.Component {
     }
   }
 
-  enableTrack(i) {
+  enableTrack = (i) => {
     const newTrack = this.state.tracks[i];
+    this.showTrack(newTrack);
+  }
+
+  showTrack = (newTrack) => {
     this.setState({
       currentlyPlaying: {
         name: newTrack.name,
@@ -59,10 +62,16 @@ class Home extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/">
-              <HomePage tracks={this.state.tracks} enableTrack={this.enableTrack} />
+              <HomePage
+                tracks={this.state.tracks}
+                enableTrack={this.enableTrack}
+              />
             </Route>
             <Route path="/add-a-track">
               <AddATrack />
+            </Route>
+            <Route path="/tracks/:id">
+              <TrackShow showTrack={this.showTrack} {...this.props} />
             </Route>
           </Switch>
         </Router>

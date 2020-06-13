@@ -8,7 +8,7 @@ const saveUploads = (attributes, callback) => {
   ) {
     const requestObj3 = {
       method: "POST",
-      url: "/tracks/s3_blob_location",
+      url: "s3_blob_location",
       data: attributes,
     };
 
@@ -19,7 +19,7 @@ const saveUploads = (attributes, callback) => {
 const upload = (file, image, attributes, callback) => {
   const requestObj = {
     method: "GET",
-    url: "/tracks/s3_direct_post",
+    url: "s3_direct_post",
   };
 
   // file upload
