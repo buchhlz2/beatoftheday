@@ -198,7 +198,8 @@ class AddTracks < ActiveRecord::Migration[6.0]
         user: User.find(1),
         link: "https://beatoftheday.s3-us-west-1.amazonaws.com/#{track[:link]}.#{track[:type]}",
         name: track[:name],
-        audio_type: track[:type]
+        audio_type: track[:type],
+        photo: "https://beatoftheday.s3-us-west-1.amazonaws.com/aBF9zzMQ.jpeg"
       })
     end
   end
