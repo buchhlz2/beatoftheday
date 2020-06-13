@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get '/pages/admin'
   end
 
-  get '/add-a-track', to: 'pages#home'
+  get '/add-a-track', to: 'pages#add_a_track'
 
   resources :tracks, only: [:index]
   get 'tracks/s3_direct_post' => 'tracks#s3_direct_post'

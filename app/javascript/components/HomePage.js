@@ -34,7 +34,7 @@ const SongName = styled.span`
   padding: 5px;
 `;
 
-const AddATrackLink = styled(Link)`
+const AddATrackLink = styled.a`
   cursor: pointer;
   font-size: 14px;
   padding: 5px;
@@ -90,7 +90,7 @@ class AddATrack extends React.Component {
             );
           })}
         </Wrapper>
-        <AddATrackLink to="/add-a-track">Add a track!</AddATrackLink>
+        <AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
       </div>
     );
   }
