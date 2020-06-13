@@ -28,7 +28,16 @@ const SongBox = styled.div`
   padding: 30px;
 `;
 
-const SongName = styled.span`
+const SongImg = styled.img`
+  height: 100px;
+  width: 0;
+`;
+
+const NameText = styled.div`
+
+`;
+
+const SongName = styled.div`
   cursor: pointer;
   font-size: 14px;
   padding: 5px;
@@ -51,6 +60,13 @@ class AddATrack extends React.Component {
     super(props);
   }
 
+  componentDidUpdate() {
+    $("[id^='name']").each((i, el) => {
+      width = $(el).width() < 150 ? 150 : $(el).width();
+      $(el).parent().parent().find("img").width(width);
+    })
+  }
+
   render() {
     return (
       <div>
@@ -59,8 +75,9 @@ class AddATrack extends React.Component {
           {this.props.tracks.map((obj, i) => {
             return (
               <SongBox key={obj.link}>
+                <SongImg className={`name-${i}`} src={obj.photo} />
                 <SongName onClick={() => this.props.enableTrack(i)}>
-                  {obj.name}
+                  <NameText id={`name-${i}`}>{obj.name}</NameText>
                 </SongName>
               </SongBox>
             );
