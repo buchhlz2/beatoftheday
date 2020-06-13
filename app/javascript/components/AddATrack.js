@@ -16,6 +16,7 @@ const Upload = styled.button`
 
 const Wrapper = styled.div`
   margin-top: 100px;
+  margin-bottom: 200px;
   padding: 20px;
   display: flex;
   align-items: start;

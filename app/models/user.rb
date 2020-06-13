@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :artist_name, presence: true
+  validates :artist_name, presence: true, uniqueness: true
   has_many :tracks
 end
