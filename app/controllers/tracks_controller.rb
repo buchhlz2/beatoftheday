@@ -2,7 +2,7 @@ class TracksController < ApplicationController
   before_action :authenticate_user!
 
   def s3_direct_post
-    s3_bucket = s3_resource.bucket('tunelark-audio')
+    s3_bucket = s3_resource.bucket('backgroundsland')
     s3_direct_post = s3_bucket.presigned_post(
       key: "uploads/#{SecureRandom.uuid}/${filename}",
       success_action_status: '201',
