@@ -31,7 +31,7 @@ class Home extends React.Component {
       <div className="inner-wrapper">
         <Router>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <HomePage enableTrack={this.enableTrack} />
             </Route>
             <Route path="/add-a-track">
