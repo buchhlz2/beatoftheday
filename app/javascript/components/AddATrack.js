@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import $ from "jquery";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 const Upload = styled.button`
   width: 100%;
@@ -40,7 +41,11 @@ class AddATrack extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedFile: false };
+    this.state = { selectedFile: false, doneUploading: false };
+  }
+
+  componentWillUnmount() {
+    this.setState({doneUploading: false});
   }
 
   fileChangeHandler = (event) => {
@@ -50,7 +55,8 @@ class AddATrack extends React.Component {
   }
 
   onClickUpload = () => {
-    this.upload(this.state.selectedFile)
+    this.setState({uploading: true});
+    this.upload(this.state.selectedFile);
   }
 
   upload = (blob) => {
@@ -93,7 +99,10 @@ class AddATrack extends React.Component {
         };
 
         $.ajax(requestObj3).then(data3 => {
-          window.location.reload();
+          this.setState({
+            doneUploading: true,
+            uploading: false
+          });
         });
       });
     });
@@ -102,17 +111,35 @@ class AddATrack extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Heading>Choose an mp3 or m4a file to upload:</Heading>
-        <input
-          type="file"
-          onChange={this.fileChangeHandler}
-          accept="audio/mp3,audio/m4a"
-        />
-        <FormItem>
-          <label htmlFor="name">Name:</label>
-          <input id="name" type="text" />
-        </FormItem>
-        <Upload onClick={this.onClickUpload}>Upload!</Upload>
+        {this.state.doneUploading ? (
+          <React.Fragment>
+            <Heading>
+              Congrats!
+              <br />
+              <br />
+              <br />
+              <Link to="/">Go back to the homepage to view your upload.</Link>
+            </Heading>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Heading>Choose an mp3 or m4a file to upload:</Heading>
+            <input
+              type="file"
+              onChange={this.fileChangeHandler}
+              accept="audio/mp3,audio/m4a"
+            />
+            <FormItem>
+              <label htmlFor="name">Name:</label>
+              <input id="name" type="text" />
+            </FormItem>
+            {this.state.uploading ? (
+              <Upload>Uploading...</Upload>
+            ) : (
+              <Upload onClick={this.onClickUpload}>Upload!</Upload>
+            )}
+          </React.Fragment>
+        )}
       </Wrapper>
     );
   }

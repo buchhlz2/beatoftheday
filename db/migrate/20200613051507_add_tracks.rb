@@ -193,7 +193,7 @@ class AddTracks < ActiveRecord::Migration[6.0]
       },
     ];
 
-    tracks.each do |track|
+    tracks.reverse.each do |track|
       Track.create!({
         user: User.find(1),
         link: "https://beatoftheday.s3-us-west-1.amazonaws.com/#{track[:link]}.#{track[:type]}",
