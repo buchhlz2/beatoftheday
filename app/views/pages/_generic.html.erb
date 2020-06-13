@@ -1,24 +1,26 @@
 <div class="outer-wrapper">
   <div class="header">
-    <a href="/" style="display: flex; align-items: center; padding-right: 10px;">🎵 Beat of the day</a>
-    <p id="notice"><%= notice %></p>
-    <div style="">
-      <% if user_signed_in? %>
-        <span><%= current_user.email.split('@').first %></span>
-        |
-        <span>
-        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-        </span>
-      <% else %>
-        <span>
-          <%= link_to('Login', new_user_session_path) %>  
-        </span>
-        <span class="sign-up">
-          <%= link_to  "Sign Up", new_user_registration_path %>
-        </span>
-    <% end %> 
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <a href="/" style="display: flex; align-items: center; padding-right: 10px;">🎵 Beat of the day</a>
+      <div style="">
+        <% if user_signed_in? %>
+          <span><%= current_user.email.split('@').first %></span>
+          |
+          <span>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+          </span>
+        <% else %>
+          <span>
+            <%= link_to('Login', new_user_session_path) %>
+          </span>
+          <span class="sign-up">
+            <%= link_to  "Sign Up", new_user_registration_path %>
+          </span>
+        <% end %>
+      </div>
     </div>
   </div>
   <img alt="logo cool" style="width: 100%;" src="https://beatoftheday.s3-us-west-1.amazonaws.com/beatofthedaylogo.jpg"/>
   <%= yield %>
 </div>
+
