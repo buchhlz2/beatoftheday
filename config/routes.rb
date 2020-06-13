@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  resources :likes
   devise_for :users
   devise_scope :user do
     root 'pages#home'
     get '/pages/admin'
   end
+  
+  get '/add-a-track', to: 'pages#home'
 
-  resources :backgrounds
+  resources :tracks
+  resources :likes
 end
