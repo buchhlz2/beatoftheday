@@ -31,11 +31,12 @@ const NameText = styled(Link)`
 	opacity: 0.5;
 	color: white;
 	margin-bottom: 5px;
-  width: fit-content;
+	width: fit-content;
+	text-decoration: none !important;
   
   &:visited {
-    color: white;
-  }
+    color: white !important;
+	}
 `;
 
 const SongName = styled.div`
@@ -46,6 +47,11 @@ const SongName = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;
+	text-decoration: none !important;
+
+	&:visited {
+		color: white !important;
+	}
 `;
 
 const PlayButton = styled.div`
