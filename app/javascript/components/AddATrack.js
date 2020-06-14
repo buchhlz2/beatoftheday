@@ -23,7 +23,6 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	flex-wrap: wrap;
 	max-width: 1080px;
-	background: #f7f7f7;
 
 	input {
 		padding-left: 0;

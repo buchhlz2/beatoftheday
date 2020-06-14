@@ -11,7 +11,6 @@ const Wrapper = styled.div`
 	justify-content: center;
 	flex-wrap: wrap;
 	max-width: 1080px;
-	background: #f7f7f7;
 `;
 
 var track = {};
