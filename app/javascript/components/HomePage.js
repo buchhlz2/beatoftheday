@@ -21,6 +21,7 @@ const InnerHeader = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 24px;
+  color: #61646d;
 `;
 
 const AddATrackLink = styled.a`
