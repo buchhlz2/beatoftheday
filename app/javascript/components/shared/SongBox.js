@@ -233,7 +233,10 @@ class SongBox extends React.Component {
             content="Mark this track as baked"
             placement="bottom"
           >
-            <BakedButton onClick={this.likeTrack}>
+            <BakedButton
+              onClick={this.likeTrack}
+              baked={this.props.trackInfo.baked}
+            >
               🧁
               <NumBakes data-tip="">{this.state.numBakes}</NumBakes>
             </BakedButton>

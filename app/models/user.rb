@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :artist_name, presence: true, uniqueness: true
+  
   has_many :tracks
+  has_many :likes
 end

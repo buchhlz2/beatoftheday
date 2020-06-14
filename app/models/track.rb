@@ -5,4 +5,14 @@ class Track < ApplicationRecord
 
   belongs_to :user
   has_many :likes
+
+  def baked?
+    likes.find_by(baked: true).present?
+  end
+
+  def baked_for_user?(user)
+    return baked? unless user.present?
+    @user_likes ||= user.likes
+    @user_likes.find_by(baked: true, track_id: id).present?
+  end
 end
