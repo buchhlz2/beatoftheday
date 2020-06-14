@@ -49,9 +49,7 @@ class HomePage extends React.Component {
 						return (
 							<SongBox
 								key={obj.link}
-								photo={obj.photo}
-								link={obj.link}
-								name={obj.name}
+								trackInfo={obj}
 								enableTrack={() => {
 									this.props.enableTrack(i);
 								}}

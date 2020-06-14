@@ -1,93 +1,85 @@
-import React from "react";
-import styled from "styled-components";
-import Player from "./Player";
-import AddATrack from "./AddATrack";
-import TrackShow from "./TrackShow";
-import HomePage from "./HomePage";
-import $ from "jquery";
+import React from 'react';
+import styled from 'styled-components';
+import Player from './Player';
+import AddATrack from './AddATrack';
+import TrackShow from './TrackShow';
+import HomePage from './HomePage';
+import $ from 'jquery';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
+
+window.masterShowTrack = () => {};
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      currentlyPlaying: {},
-      tracks: [],
-    };
-  }
+		this.state = {
+			currentlyPlaying: {},
+			tracks: []
+		};
 
-  componentDidMount() {
-    if (location.pathname == "/") {
-      $.get("/tracks").done((res) => {
-        console.log(res);
-        this.setState(
-          {
-            tracks: res.tracks,
-          },
-          () => {
-            this.enableTrack(0);
-          }
-        );
-      });
-    }
-  }
+		window.masterShowTrack = this.showTrack;
+	}
 
-  enableTrack = (i) => {
-    const newTrack = this.state.tracks[i];
-    this.showTrack(newTrack);
-  }
+	componentDidMount() {
+		if (location.pathname == '/') {
+			$.get('/tracks').done((res) => {
+				this.setState(
+					{
+						tracks: res.tracks
+					},
+					() => {
+						this.enableTrack(0);
+					}
+				);
+			});
+		}
+	}
 
-  showTrack = (newTrack) => {
-    this.setState({
-      currentlyPlaying: {
-        name: newTrack.name,
-        link: newTrack.link,
-        type: newTrack.type,
-      },
-    });
-  }
+	enableTrack = (i) => {
+		const newTrack = this.state.tracks[i];
+		this.showTrack(newTrack);
+	};
 
-  render() {
-    console.log(location.pathname);
-    return (
-      <div className="inner-wrapper">
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <HomePage
-                tracks={this.state.tracks}
-                enableTrack={this.enableTrack}
-              />
-            </Route>
-            <Route path="/add-a-track">
-              <AddATrack />
-            </Route>
-            <Route path="/tracks/:id">
-              <TrackShow showTrack={this.showTrack} {...this.props} />
-            </Route>
-          </Switch>
-        </Router>
+	showTrack = (newTrack) => {
+		this.setState({
+			currentlyPlaying: {
+				name: newTrack.name,
+				link: newTrack.link,
+				type: newTrack.type
+			}
+		});
+	};
 
-        <div className="footer">
-          {this.state.currentlyPlaying.name && (
-            <Player
-              name={this.state.currentlyPlaying.name}
-              link={this.state.currentlyPlaying.link}
-              type={this.state.currentlyPlaying.type}
-            />
-          )}
-        </div>
-      </div>
-    );
-  }
+	render() {
+		console.log(location.pathname);
+		return (
+			<div className="inner-wrapper">
+				<Router>
+					<Switch>
+						<Route exact path="/">
+							<HomePage tracks={this.state.tracks} enableTrack={this.enableTrack} />
+						</Route>
+						<Route path="/add-a-track">
+							<AddATrack />
+						</Route>
+						<Route path="/tracks/:id" component={TrackShow} />
+					</Switch>
+				</Router>
+
+				<div className="footer">
+					{this.state.currentlyPlaying.name && (
+						<Player
+							name={this.state.currentlyPlaying.name}
+							link={this.state.currentlyPlaying.link}
+							type={this.state.currentlyPlaying.type}
+						/>
+					)}
+				</div>
+			</div>
+		);
+	}
 }
 
 export default Home;

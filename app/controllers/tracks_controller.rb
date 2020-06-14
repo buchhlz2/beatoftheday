@@ -4,13 +4,21 @@ class TracksController < ApplicationController
 
   def index
     render json: {
-      tracks: Track.all.order(:created_at).reverse.first(30)
+      tracks: Track.all.order("created_at DESC").preload(:user).map do |track|
+        track.attributes.merge(artist_name: track.user.artist_name)
+      end
     }
   end
 
   def show
-    @track = Track.find(params[:id])
+    # track = Track.find(params[:id])
+    # @options = { track: track, params: { id: track.id } }
     render 'pages/home'
+  end
+
+  def show_track
+    @track = Track.find(params[:id])
+    render json: @track
   end
 
   def s3_direct_post

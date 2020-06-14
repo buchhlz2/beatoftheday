@@ -9,15 +9,35 @@ const SongBoxWrapper = styled.div`
 	margin: 30px;
 	position: relative;
 	cursor: pointer;
+	border-radius: 3px;
+	overflow: hidden;
+	box-shadow: 0 8px 6px -6px black;
+	transform: scale(1, 1);
+	transition: transform 0.5s ease;
+
+	&:hover {
+		transform: scale(1.05, 1.05);
+	}
 `;
 
 const SongImg = styled.img`
 	height: 100px;
 	width: 180px;
-	transition: width 1s ease;
+	transition: width 1.2s ease;
 `;
 
-const NameText = styled.div``;
+const NameText = styled(Link)`
+  display: block;
+	background: black;
+	opacity: 0.5;
+	color: white;
+	margin-bottom: 5px;
+  width: fit-content;
+  
+  &:visited {
+    color: white;
+  }
+`;
 
 const SongName = styled.div`
 	cursor: pointer;
@@ -25,11 +45,8 @@ const SongName = styled.div`
 	padding: 5px;
 	margin-right: 5px;
 	position: absolute;
-	top: 5px;
-	left: 5px;
-	background: black;
-	opacity: 0.5;
-	color: white;
+	top: 0;
+	left: 0;
 `;
 
 class SongBox extends React.Component {
@@ -53,10 +70,13 @@ class SongBox extends React.Component {
 	render() {
 		return (
 			<SongBoxWrapper onClick={this.props.enableTrack}>
-				<SongImg className={`name-${this.state.elName}`} src={this.props.photo} />
 				<SongName>
-					<NameText id={`name-${this.state.elName}`}>{this.props.name}</NameText>
+					<NameText id={`name-${this.state.elName}`} to={`/tracks/${this.props.trackInfo.id}`}>
+						{this.props.trackInfo.name}
+					</NameText>
+					<NameText to={`/tracks/${this.props.trackInfo.id}`}>{this.props.trackInfo.artist_name}</NameText>
 				</SongName>
+				<SongImg className={`name-${this.state.elName}`} src={this.props.trackInfo.photo} />
 			</SongBoxWrapper>
 		);
 	}
