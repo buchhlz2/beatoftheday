@@ -38,10 +38,12 @@ const AddATrackLink = styled.a`
   transition: all 1s ease;
   position: relative;
   bottom: 0;
+  border-radius: 3px;
 
   &:hover {
-    box-shadow: 0 0px 15px 6px #464646;
+    box-shadow: 0 0px 15px 6px #aa32a1;
     bottom: 5px;
+    background: #aa32a1;
   }
 `;
 
