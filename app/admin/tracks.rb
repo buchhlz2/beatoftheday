@@ -1,5 +1,5 @@
 ActiveAdmin.register Track do
-  permit_params :name, :link, :photo, :user
+  permit_params :name, :link, :photo, :user_id
 
   form do |f|
     f.semantic_errors
