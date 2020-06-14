@@ -41,7 +41,10 @@ const Heading = styled.h3`
 	margin-bottom: 30px;
 	width: 100%;
 `;
-const PleaseComplete = styled.p`font-size: 16px;`;
+const PleaseComplete = styled.p`
+	font-size: 16px;
+	margin-top: 20px;
+`;
 
 class AddATrack extends React.Component {
 	constructor(props) {
