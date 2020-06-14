@@ -20,7 +20,7 @@ const SongBoxWrapper = styled.div`
 `;
 
 const SongImg = styled.img`
-  height: 100px;
+  height: 120px;
   width: 180px;
   transition: width 1.2s ease;
 `;
@@ -136,8 +136,8 @@ class SongBox extends React.Component {
       const nameEl = $(`#name-${this.state.elName}`);
       const elWidth = $(nameEl).width();
       const goodWidth =
-        elWidth < 250 ? elWidth + elWidth * Math.random() : elWidth;
-      const width = goodWidth < 150 ? 150 : goodWidth > 250 ? 250 : goodWidth;
+        elWidth < 290 ? elWidth + elWidth * Math.random() * 1.9 : elWidth;
+      const width = goodWidth < 160 ? 160 : goodWidth > 290 ? 290 : goodWidth;
       const img = $(`.name-${this.state.elName}`);
       img.width(width);
     }
