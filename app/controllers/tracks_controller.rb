@@ -6,7 +6,7 @@ class TracksController < ApplicationController
     render json: {
       tracks: Track.all.order("created_at DESC").preload(:user).map do |track|
         track.attributes.merge(artist_name: track.user.artist_name)
-      end
+      end.first(10)
     }
   end
 

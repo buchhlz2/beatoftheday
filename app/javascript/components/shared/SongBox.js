@@ -29,7 +29,7 @@ const NameText = styled(Link)`
   display: block;
 	background: black;
 	opacity: 0.5;
-	color: white;
+	color: white !important;
 	margin-bottom: 5px;
 	width: fit-content;
 	text-decoration: none !important;
@@ -48,6 +48,7 @@ const SongName = styled.div`
 	top: 0;
 	left: 0;
 	text-decoration: none !important;
+	color: white !important;
 
 	&:visited {
 		color: white !important;
