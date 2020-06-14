@@ -193,6 +193,8 @@ class AddTracks < ActiveRecord::Migration[6.0]
       },
     ];
 
+    User.create(email: 'desmond17@protonmail.com', password: 'password', artist_name: 'THe Bakery House Band')
+    
     tracks.reverse.each do |track|
       Track.create!({
         user: User.find(1),

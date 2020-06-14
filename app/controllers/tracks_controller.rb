@@ -4,8 +4,8 @@ class TracksController < ApplicationController
 
   def index
     render json: {
-      tracks: Track.all.order("created_at DESC").preload(:user).map do |track|
-        track.attributes.merge(artist_name: track.user.artist_name)
+      tracks: Track.all.order("created_at DESC").preload(:user, :likes).map do |track|
+        track.attributes.merge(artist_name: track.user.artist_name, num_likes: track.likes.length)
       end.first(10)
     }
   end
@@ -18,7 +18,7 @@ class TracksController < ApplicationController
 
   def show_track
     @track = Track.find(params[:id])
-    render json: @track.attributes.merge(artist_name: @track.user.artist_name)
+    render json: @track.attributes.merge(artist_name: @track.user.artist_name, num_likes: @track.likes.length)
   end
 
   def s3_direct_post

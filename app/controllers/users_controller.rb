@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     render json: {
       artist: artist.attributes,
       tracks: artist.tracks.map do |track|
-        track.attributes.merge(artist_name: artist.artist_name)
+        track.attributes.merge(artist_name: artist.artist_name, num_likes: track.likes.length)
       end
     }
   end
