@@ -121,3 +121,17 @@ input[type="submit"] {
   border: 1px solid #666;
   border-radius: 3px;
 }
+
+.tippy-box {
+  background: #666;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 0;
+  color: white;
+  font-size: 10px;
+}
+
+.tippy-content {
+  margin: 0;
+  padding: 0;
+}

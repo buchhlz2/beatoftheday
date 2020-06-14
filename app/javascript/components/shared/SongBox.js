@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import $ from "jquery";
-import ReactTooltip from "react-tooltip";
+import Tippy from "@tippyjs/react";
 
 const SongBoxWrapper = styled.div`
   display: flex;
@@ -219,18 +219,25 @@ class SongBox extends React.Component {
           </NameText>
         </SongName>
         <BottomLeft>
-          <LikeButton onClick={this.likeTrack}>
-            ♡
-            <NumLikes data-tip="Like this track">
-              {this.state.numLikes}
-            </NumLikes>
-          </LikeButton>
-          <BakedButton onClick={this.likeTrack}>
-            🧁
-            <NumBakes data-tip="Mark this track as baked">
-              {this.state.numBakes}
-            </NumBakes>
-          </BakedButton>
+          <Tippy
+            theme="translucent"
+            content="Like this track"
+            placement="bottom"
+          >
+            <LikeButton onClick={this.likeTrack}>
+              ♡<NumLikes data-tip="">{this.state.numLikes}</NumLikes>
+            </LikeButton>
+          </Tippy>
+          <Tippy
+            theme="translucent"
+            content="Mark this track as baked"
+            placement="bottom"
+          >
+            <BakedButton onClick={this.likeTrack}>
+              🧁
+              <NumBakes data-tip="">{this.state.numBakes}</NumBakes>
+            </BakedButton>
+          </Tippy>
         </BottomLeft>
         <PlayButton onClick={this.props.enableTrack}>▶</PlayButton>
         <SongImg
@@ -242,7 +249,6 @@ class SongBox extends React.Component {
               : {}
           }
         />
-        <ReactTooltip />
       </SongBoxWrapper>
     );
   }
