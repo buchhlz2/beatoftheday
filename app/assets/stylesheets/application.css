@@ -51,6 +51,7 @@ body,
   display: flex;
   position: fixed;
   bottom: 0;
+  box-shadow: 0 -6px 6px -4px #b9b9b9;
 }
 
 .inner-wrapper {

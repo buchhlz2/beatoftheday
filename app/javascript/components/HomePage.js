@@ -28,14 +28,21 @@ const AddATrackLink = styled.a`
   cursor: pointer;
   font-size: 24px;
   padding: 5px;
-  padding-bottom: 50px;
   width: 100%;
-  height: 200px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
-  margin-top: -30px;
+  margin-bottom: 130px;
+  margin-top: 0px;
+  transition: all 1s ease;
+  position: relative;
+  bottom: 0;
+
+  &:hover {
+    box-shadow: 0 0px 15px 6px #464646;
+    bottom: 5px;
+  }
 `;
 
 class HomePage extends React.Component {
