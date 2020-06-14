@@ -16,7 +16,8 @@ const Wrapper = styled.div`
 
 const InnerHeader = styled.div`
 	width: 100%;
-	height: 120px;
+	margin-top: 30px;
+	height: 50px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

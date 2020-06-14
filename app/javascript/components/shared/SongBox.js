@@ -95,12 +95,14 @@ class SongBox extends React.Component {
 	}
 
 	componentDidMount() {
-		const nameEl = $(`#name-${this.state.elName}`);
-		const elWidth = $(nameEl).width();
-		const goodWidth = elWidth < 250 ? elWidth + elWidth * Math.random() : elWidth;
-		const width = goodWidth < 150 ? 150 : goodWidth > 250 ? 250 : goodWidth;
-		const img = $(`.name-${this.state.elName}`);
-		img.width(width);
+		if (!this.props.width || !this.props.height) {
+			const nameEl = $(`#name-${this.state.elName}`);
+			const elWidth = $(nameEl).width();
+			const goodWidth = elWidth < 250 ? elWidth + elWidth * Math.random() : elWidth;
+			const width = goodWidth < 150 ? 150 : goodWidth > 250 ? 250 : goodWidth;
+			const img = $(`.name-${this.state.elName}`);
+			img.width(width);
+		}
 	}
 
 	render() {
@@ -115,7 +117,17 @@ class SongBox extends React.Component {
 					</NameText>
 				</SongName>
 				<PlayButton onClick={this.props.enableTrack}>▶</PlayButton>
-				<SongImg className={`name-${this.state.elName}`} src={this.props.trackInfo.photo} />
+				<SongImg
+					className={`name-${this.state.elName}`}
+					src={this.props.trackInfo.photo}
+					style={
+						this.props.width && this.props.height ? (
+							{ height: this.props.height, width: this.props.width }
+						) : (
+							{}
+						)
+					}
+				/>
 			</SongBoxWrapper>
 		);
 	}
