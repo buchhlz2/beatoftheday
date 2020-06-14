@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import $ from "jquery";
+import ReactTooltip from "react-tooltip";
 
 const SongBoxWrapper = styled.div`
   display: flex;
@@ -25,7 +26,19 @@ const SongImg = styled.img`
   transition: width 1.2s ease;
 `;
 
+const BottomLeft = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+`;
+
 const NumLikes = styled.p`
+  margin-left: 5px;
+  margin-bottom: 0;
+`;
+
+const NumBakes = styled.p`
   margin-left: 5px;
   margin-bottom: 0;
 `;
@@ -35,9 +48,34 @@ const LikeButton = styled.div`
   font-size: 24px;
   padding: 10px;
   margin-left: 5px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  background: black;
+  opacity: 0.5;
+  color: white;
+  margin-bottom: 5px;
+  transform: scale(1, 1);
+  transition: transform 0.2s linear;
+  transition: background-color 0.2s linear;
+  transition: color 0.2s linear;
+  display: flex;
+
+  &:hover {
+    color: #e0e0e0;
+    background: #666;
+    transform: scale(1.05, 1.05);
+  }
+
+  &:active {
+    color: #ffffff;
+    background: ##9e9e9e;
+    transform: scale(0.95, 0.95);
+  }
+`;
+
+const BakedButton = styled.div`
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  margin-left: 5px;
   background: black;
   opacity: 0.5;
   color: white;
@@ -128,6 +166,7 @@ class SongBox extends React.Component {
     this.state = {
       elName: Math.random().toString(36).substring(10),
       numLikes: props.trackInfo.num_likes,
+      numBakes: props.trackInfo.num_bakes,
     };
   }
 
@@ -154,6 +193,17 @@ class SongBox extends React.Component {
     });
   };
 
+  bakeTrack = () => {
+    this.setState({
+      numBakes: this.state.numBakes + 1,
+    });
+    $.ajax({
+      type: "POST",
+      url: "/likes",
+      data: { track_id: this.props.trackInfo.id, baked: true },
+    });
+  };
+
   render() {
     return (
       <SongBoxWrapper>
@@ -168,9 +218,20 @@ class SongBox extends React.Component {
             {this.props.trackInfo.artist_name}
           </NameText>
         </SongName>
-        <LikeButton onClick={this.likeTrack}>
-          ♡<NumLikes>{this.state.numLikes}</NumLikes>
-        </LikeButton>
+        <BottomLeft>
+          <LikeButton onClick={this.likeTrack}>
+            ♡
+            <NumLikes data-tip="Like this track">
+              {this.state.numLikes}
+            </NumLikes>
+          </LikeButton>
+          <BakedButton onClick={this.likeTrack}>
+            🧁
+            <NumBakes data-tip="Mark this track as baked">
+              {this.state.numBakes}
+            </NumBakes>
+          </BakedButton>
+        </BottomLeft>
         <PlayButton onClick={this.props.enableTrack}>▶</PlayButton>
         <SongImg
           className={`name-${this.state.elName}`}
@@ -181,6 +242,7 @@ class SongBox extends React.Component {
               : {}
           }
         />
+        <ReactTooltip />
       </SongBoxWrapper>
     );
   }
