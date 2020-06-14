@@ -34,7 +34,7 @@ const AddATrackLink = styled.a`
   align-items: center;
   justify-content: center;
   margin-bottom: 130px;
-  margin-top: 0px;
+  margin-top: -5px;
   transition: all 1s ease;
   position: relative;
   bottom: 0;
