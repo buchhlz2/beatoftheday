@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import $ from 'jquery';
-import { exportShowTrack } from './Home';
 
 const Wrapper = styled.div`
 	margin-top: 100px;
@@ -24,7 +23,7 @@ class TrackShow extends React.Component {
 
 	componentDidMount() {
 		$.get(`/tracks/show_track/${this.props.match.params.id}`).done((res) => {
-			window.masterShowTrack(res);
+			if (masterAudioTag.paused) window.masterShowTrack(res);
 			track = res;
 			this.forceUpdate();
 		});

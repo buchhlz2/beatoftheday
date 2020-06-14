@@ -38,20 +38,52 @@ const AddATrackLink = styled.a`
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			tracks: []
+		};
 	}
+
+	componentDidUpdate() {
+		this.getTracks();
+	}
+
+	componentDidMount() {
+		this.getTracks();
+	}
+
+	getTracks = () => {
+		if (this.state.tracks.length == 0) {
+			$.get('/tracks').done((res) => {
+				this.setState(
+					{
+						tracks: res.tracks
+					},
+					() => {
+						if (masterAudioTag.paused) this.enableTrack(0, false);
+					}
+				);
+			});
+		}
+	};
+
+	enableTrack = (i, play = true) => {
+		const newTrack = this.state.tracks[i];
+		window.masterShowTrack(newTrack, play);
+	};
 
 	render() {
 		return (
 			<div>
 				<InnerHeader>💐 Welcome back!</InnerHeader>
 				<Wrapper>
-					{this.props.tracks.map((obj, i) => {
+					{this.state.tracks.map((obj, i) => {
 						return (
 							<SongBox
 								key={obj.link}
 								trackInfo={obj}
 								enableTrack={() => {
-									this.props.enableTrack(i);
+									this.enableTrack(i);
 								}}
 							/>
 						);

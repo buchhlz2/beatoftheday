@@ -1,7 +1,6 @@
 <div class="outer-wrapper">
   <div class="header">
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <a href="/" style="display: flex; align-items: center; padding-right: 10px;">🎵 Beat of the day</a>
+    <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
       <div style="">
         <% if user_signed_in? %>
           <span><%= current_user.email.split('@').first %></span>

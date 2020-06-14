@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show_track, :show]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -18,7 +18,7 @@ class TracksController < ApplicationController
 
   def show_track
     @track = Track.find(params[:id])
-    render json: @track
+    render json: @track.attributes.merge(artist_name: @track.user.artist_name)
   end
 
   def s3_direct_post
