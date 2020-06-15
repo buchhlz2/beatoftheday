@@ -85,7 +85,7 @@ class AddATrack extends React.Component {
         <input
           type="file"
           onChange={this.audioFileChangeHandler}
-          accept="audio/mp3,audio/m4a"
+          accept="audio/*"
         />
         <Heading>3. Choose an image to go with your track:</Heading>
         <input
