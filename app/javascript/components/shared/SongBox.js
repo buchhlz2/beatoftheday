@@ -16,7 +16,7 @@ const SongBoxWrapper = styled.div`
   transition: transform 0.5s ease;
 
   &:hover {
-    transform: scale(1.05, 1.05);
+    transform: scale(1.03, 1.03);
   }
 `;
 
@@ -107,6 +107,7 @@ const NameText = styled(Link)`
   margin-bottom: 5px;
   width: fit-content;
   text-decoration: none !important;
+  line-height: initial;
 
   &:visited {
     color: white !important;
@@ -209,12 +210,16 @@ class SongBox extends React.Component {
       <SongBoxWrapper>
         <SongName>
           <NameText
+            style={{ fontSize: this.props.fontSize || 14 }}
             id={`name-${this.state.elName}`}
             to={`/tracks/${this.props.trackInfo.id}`}
           >
             {this.props.trackInfo.name}
           </NameText>
-          <NameText to={`/artist/${this.props.trackInfo.artist_name}`}>
+          <NameText
+            style={{ fontSize: this.props.fontSize || 14 }}
+            to={`/artist/${this.props.trackInfo.artist_name}`}
+          >
             {this.props.trackInfo.artist_name}
           </NameText>
         </SongName>

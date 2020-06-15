@@ -80,6 +80,8 @@ body,
 a {
   text-decoration: none;
   color: #333;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 a:hover {
