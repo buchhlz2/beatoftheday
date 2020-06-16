@@ -7,10 +7,24 @@ const Wrapper = styled.div`
   background: purple;
   height: 100%;
   flex-direction: column;
+  border-radius: 3px;
+  padding: 5px;
+  position: relative;
+  box-shadow: 0 8px 6px -6px black;
+  transform: scale(1, 1);
+  transition: transform 0.5s ease;
+
+  &:hover {
+    transform: scale(1.03, 1.03);
+  }
 `;
 
 const Heading = styled.div`
   font-size: 40px;
+  width: 100%;
+`;
+
+const ThreadBox = styled.div`
   width: 100%;
 `;
 
@@ -27,11 +41,38 @@ const CommentText = styled.div`
 
 const InputWrapper = styled.div`
   width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  input {
+    margin: 0 5px 5px 5px;
+    border-radius: 3px;
+    border: 0;
+  }
+
+  div {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const StyledInput = styled.input`
+  flex-grow: 3;
 `;
 
 const SubmitButton = styled.div`
   cursor: pointer;
   padding: 10px;
+  border-radius: 3px;
+  flex-grow: 1;
+  background: white;
+  color: #7d7d7d;
+  margin-right: 5px;
+  border: 0px;
   border-radius: 3px;
 `;
 
@@ -82,17 +123,19 @@ class CommentBox extends React.Component {
     return (
       <Wrapper>
         <Heading></Heading>
-        {this.state.thread.map((comment, i) => {
-          return (
-            <Comment key={i}>
-              <CommentText>{comment.text}</CommentText>
-            </Comment>
-          );
-        })}
+        <ThreadBox>
+          {this.state.thread.map((comment, i) => {
+            return (
+              <Comment key={i}>
+                <CommentText>{comment.text}</CommentText>
+              </Comment>
+            );
+          })}
+        </ThreadBox>
         {window.OPTIONS.current_user && (
           <React.Fragment>
             <InputWrapper>
-              <input
+              <StyledInput
                 type="text"
                 maxLength="766"
                 onKeyDown={this._handleKeyDown}
@@ -103,14 +146,14 @@ class CommentBox extends React.Component {
                   });
                 }}
               />
+              <SubmitButton
+                onClick={() => {
+                  if (!this.state.loading) this.createComment();
+                }}
+              >
+                Send
+              </SubmitButton>
             </InputWrapper>
-            <SubmitButton
-              onClick={() => {
-                if (!this.state.loading) this.createComment();
-              }}
-            >
-              Send
-            </SubmitButton>
           </React.Fragment>
         )}
       </Wrapper>
