@@ -74,6 +74,21 @@ const SubmitButton = styled.div`
   margin-right: 5px;
   border: 0px;
   border-radius: 3px;
+  user-select: none;
+  transition: all 0.2s ease;
+  transform: scale(1, 1);
+
+  &:hover {
+    background: #79e84b;
+    color: white;
+    transform: scale(1.03, 1.03);
+  }
+
+  &:active {
+    background: #40da00;
+    color: white;
+    transform: scale(0.95, 0.95);
+  }
 `;
 
 class CommentBox extends React.Component {

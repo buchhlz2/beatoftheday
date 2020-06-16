@@ -61,7 +61,7 @@ const LikeButton = styled.div`
   &:hover {
     color: #e0e0e0;
     background: #666;
-    transform: scale(1.05, 1.05);
+    transform: scale(1.03, 1.03);
   }
 
   &:active {
@@ -89,7 +89,7 @@ const BakedButton = styled.div`
   &:hover {
     color: #e0e0e0;
     background: #666;
-    transform: scale(1.05, 1.05);
+    transform: scale(1.03, 1.03);
   }
 
   &:active {
@@ -150,7 +150,7 @@ const PlayButton = styled.div`
   &:hover {
     color: #e0e0e0;
     background: #666;
-    transform: scale(1.05, 1.05);
+    transform: scale(1.03, 1.03);
   }
 
   &:active {
