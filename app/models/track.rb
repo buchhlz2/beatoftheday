@@ -5,6 +5,7 @@ class Track < ApplicationRecord
 
   belongs_to :user
   has_many :likes
+  has_many :comments
 
   def baked?
     likes.find_by(baked: true).present?

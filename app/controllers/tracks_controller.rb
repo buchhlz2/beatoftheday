@@ -15,8 +15,6 @@ class TracksController < ApplicationController
   end
 
   def show
-    # track = Track.find(params[:id])
-    # @options = { track: track, params: { id: track.id } }
     render 'pages/home'
   end
 

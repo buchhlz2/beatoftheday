@@ -16,5 +16,8 @@ Rails.application.routes.draw do
   get 's3_direct_post' => 'tracks#s3_direct_post'
   post 's3_blob_location' => 'tracks#s3_blob_location'
 
+  post 'create_track_comment/:track_id' => 'comments#create_track_comment'
+  get 'track_comments/:track_id' => 'comments#track_comments'
+
   resources :likes
 end

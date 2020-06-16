@@ -28,6 +28,7 @@ const NavLink = styled(Link)`
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    window.OPTIONS = this.props || {};
   }
 
   render() {
