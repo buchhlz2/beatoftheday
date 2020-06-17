@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     artist = User.find_by(artist_name: params[:id])
     render json: {
       artist: artist.attributes,
-      tracks: artist.tracks.map do |track|
+      tracks: artist.tracks.order("created_at DESC").map do |track|
         track.attributes.merge(
           artist_name: artist.artist_name, 
           num_likes: track.likes.length,

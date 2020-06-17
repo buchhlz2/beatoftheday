@@ -14,14 +14,18 @@ class CommentsController < ApplicationController
       text: text_content
     )
 
-    render json: { comment: comment }
+    render json: { 
+      comment: comment.attributes.merge({
+        artist_name: comment.user.artist_name
+      }) 
+    }
   end
 
   def track_comments
     track = Track.find_by(id: params[:track_id])
     return head(404) unless track.present?
 
-    comments = track.comments.order("created_at DESC LIMIT 10000")
+    comments = track.comments.order("created_at ASC LIMIT 10000")
 
     render json: { 
       thread: comments.preload(:user).map do |comment| 
