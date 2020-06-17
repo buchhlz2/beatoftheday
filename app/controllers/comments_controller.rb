@@ -23,7 +23,13 @@ class CommentsController < ApplicationController
 
     comments = track.comments.order("created_at DESC LIMIT 10000")
 
-    render json: { thread: comments.map(&:attributes) }
+    render json: { 
+      thread: comments.preload(:user).map do |comment| 
+        comment.attributes.merge({
+          artist_name: comment.user.artist_name
+        })
+      end
+    }
   end
 
   private

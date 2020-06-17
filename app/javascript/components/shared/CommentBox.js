@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import $ from 'jquery';
+import moment from 'moment';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -34,6 +35,25 @@ const ThreadBox = styled.div`
 const Comment = styled.div`
 	font-size: 14px;
 	width: 100%;
+	margin-bottom: 10px;
+`;
+
+const CommentInfoWrapper = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	align-items: flex-end;
+`;
+
+const CommentAuthor = styled.div`
+	font-size: 10px;
+	color: white;
+	margin-right: 5px;
+`;
+
+const CommentTime = styled.div`
+	font-size: 8px;
+	color: darkgrey;
 `;
 
 const CommentText = styled.div`
@@ -143,6 +163,10 @@ class CommentBox extends React.Component {
 					{this.state.thread.map((comment, i) => {
 						return (
 							<Comment key={i}>
+								<CommentInfoWrapper>
+									<CommentAuthor>{comment.artist_name}</CommentAuthor>
+									<CommentTime> {moment(comment.created_at).from(new Date())}</CommentTime>
+								</CommentInfoWrapper>
 								<CommentText>{comment.text}</CommentText>
 							</Comment>
 						);
