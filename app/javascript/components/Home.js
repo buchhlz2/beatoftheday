@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Player from './Player';
+import Player from './shared/Player';
 import AddATrack from './AddATrack';
 import TrackShow from './TrackShow';
 import ArtistShow from './ArtistShow';
