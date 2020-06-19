@@ -189,12 +189,21 @@ class TrackShow extends React.Component {
 					})}
 				</ReboundsBox>
 
-				<CreateARebound>
-					<ReboundHeader>Create a rebound:</ReboundHeader>
-					<AddATrackBox>
-						<AddATrack reboundTrackId={track.id} />
-					</AddATrackBox>
-				</CreateARebound>
+				{!!window.OPTIONS.current_user ? (
+					<CreateARebound>
+						<ReboundHeader>Create a rebound:</ReboundHeader>
+						<AddATrackBox>
+							<AddATrack reboundTrackId={track.id} />
+						</AddATrackBox>
+					</CreateARebound>
+				) : (
+					<CreateARebound>
+						<ReboundHeader>
+							<a href="/users/sign_in">Login</a> or <a href="/users/sign_up">sign up</a> to create a
+							rebound.
+						</ReboundHeader>
+					</CreateARebound>
+				)}
 			</Wrapper>
 		) : (
 			<div />
