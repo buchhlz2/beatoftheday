@@ -45,58 +45,45 @@ const NumBakes = styled.p`
 	opacity: 0.5;
 `;
 
-const LikeButton = styled.div`
+const DankButton = styled.div`
 	cursor: pointer;
 	font-size: 24px;
 	padding: 10px;
-	margin-left: 5px;
-	background: rgba(0, 0, 0, 0.5);
 	color: white;
 	margin-bottom: 5px;
 	transform: scale(1, 1);
 	transition: transform 0.2s linear;
 	transition: background-color 0.2s linear;
 	transition: color 0.2s linear;
+	background: rgba(0, 0, 0, 0.5);
 	display: flex;
 
 	&:hover {
 		color: #e0e0e0;
-		background: #666;
+		background: rgba(102, 102, 102, 0.5);
 		transform: scale(1.03, 1.03);
 	}
 
 	&:active {
 		color: #ffffff;
-		background: ##9e9e9e;
+		background: rgba(158, 158, 158, 0.5);
 		transform: scale(0.95, 0.95);
 	}
 `;
 
-const BakedButton = styled.div`
-	cursor: pointer;
-	font-size: 24px;
-	padding: 10px;
+const LikeButton = styled(DankButton)`
 	margin-left: 5px;
-	background: rgba(0, 0, 0, 0.5);
-	color: white;
-	margin-bottom: 5px;
-	transform: scale(1, 1);
-	transition: transform 0.2s linear;
-	transition: background-color 0.2s linear;
-	transition: color 0.2s linear;
-	display: flex;
+`;
 
-	&:hover {
-		color: #e0e0e0;
-		background: #666;
-		transform: scale(1.03, 1.03);
-	}
+const BakedButton = styled(DankButton)`
+	margin-left: 5px;
+`;
 
-	&:active {
-		color: #ffffff;
-		background: ##9e9e9e;
-		transform: scale(0.95, 0.95);
-	}
+const PlayButton = styled(DankButton)`
+	margin-right: 5px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 `;
 
 const IconContainer = styled.div`opacity: ${(props) => (props.solid ? 1 : 0.5)};`;
@@ -132,35 +119,6 @@ const SongName = styled.div`
 	}
 `;
 
-const PlayButton = styled.div`
-	cursor: pointer;
-	font-size: 24px;
-	padding: 10px;
-	margin-right: 5px;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	color: white;
-	margin-bottom: 5px;
-	transform: scale(1, 1);
-	transition: transform 0.2s linear;
-	transition: background-color 0.2s linear;
-	transition: color 0.2s linear;
-	background: rgba(0, 0, 0, 0.5);
-
-	&:hover {
-		color: #e0e0e0;
-		background: #666;
-		transform: scale(1.03, 1.03);
-	}
-
-	&:active {
-		color: #ffffff;
-		background: ##9e9e9e;
-		transform: scale(0.95, 0.95);
-	}
-`;
-
 class SongBox extends React.Component {
 	constructor(props) {
 		super(props);
@@ -168,7 +126,9 @@ class SongBox extends React.Component {
 		this.state = {
 			elName: Math.random().toString(36).substring(10),
 			numLikes: props.trackInfo.num_likes,
-			numBakes: props.trackInfo.num_bakes
+			numBakes: props.trackInfo.num_bakes,
+			liked: false,
+			baked: false
 		};
 
 		this.bakeTrack = this.bakeTrack.bind(this);
@@ -187,7 +147,8 @@ class SongBox extends React.Component {
 
 	likeTrack = () => {
 		this.setState({
-			numLikes: this.state.numLikes + 1
+			numLikes: this.state.numLikes + 1,
+			liked: true
 		});
 		$.ajax({
 			type: 'POST',
@@ -198,7 +159,8 @@ class SongBox extends React.Component {
 
 	bakeTrack = () => {
 		this.setState({
-			numBakes: this.state.numBakes + 1
+			numBakes: this.state.numBakes + 1,
+			baked: true
 		});
 		$.ajax({
 			type: 'POST',
