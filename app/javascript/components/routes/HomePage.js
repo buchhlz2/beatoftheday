@@ -102,7 +102,7 @@ class HomePage extends React.Component {
 	render() {
 		return (
 			<div>
-				<InnerHeader>Newest tracks:</InnerHeader>
+				<InnerHeader>🎵 Newest tracks:</InnerHeader>
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (

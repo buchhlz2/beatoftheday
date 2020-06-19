@@ -34,8 +34,8 @@ class Home extends React.Component {
 				<Router>
 					<HomeLinks>
 						<NavLink to="/">🎵 Fresh</NavLink>
-						<NavLink to="/baked">Baked</NavLink>
-						<NavLink to="/artists">Artists</NavLink>
+						<NavLink to="/baked">🧁 Baked</NavLink>
+						<NavLink to="/artists">🧞 Artists</NavLink>
 					</HomeLinks>
 					<Switch>
 						<Route exact path="/" component={HomePage} />

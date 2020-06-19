@@ -92,7 +92,7 @@ class Baked extends React.Component {
 	render() {
 		return (
 			<div>
-				<InnerHeader>Baked tracks:</InnerHeader>
+				<InnerHeader>🧁 Baked tracks:</InnerHeader>
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
