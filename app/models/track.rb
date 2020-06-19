@@ -9,6 +9,10 @@ class Track < ApplicationRecord
   has_many :rebounds, class_name: 'Track', foreign_key: 'rebound_track_id'
   belongs_to :rebound_from, class_name: 'Track', foreign_key: 'rebound_track_id', optional: true
 
+  def bakes
+    likes.where(baked: true)
+  end
+
   def og_track
     last_track = rebound_from
     last_track.present? ? last_track.og_track : self
@@ -36,8 +40,20 @@ class Track < ApplicationRecord
     attributes.merge({
       artist_name: user.artist_name, 
       num_likes: likes.length,
+      num_bakes: bakes.length,
       baked: baked_for_user?(current_user),
+      liked: liked_for_user?(current_user)
     })
+  end
+
+  def liked?
+    likes.find_by(baked: true).present?
+  end
+
+  def liked_for_user?(current_user)
+    return liked? unless user.present?
+    @user_likes ||= user.likes
+    @user_likes.find_by(track_id: id).present?
   end
 
   def baked?

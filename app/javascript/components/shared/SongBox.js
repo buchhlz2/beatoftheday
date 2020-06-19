@@ -36,11 +36,13 @@ const BottomLeft = styled.div`
 const NumLikes = styled.p`
 	margin-left: 5px;
 	margin-bottom: 0;
+	opacity: 0.5;
 `;
 
 const NumBakes = styled.p`
 	margin-left: 5px;
 	margin-bottom: 0;
+	opacity: 0.5;
 `;
 
 const LikeButton = styled.div`
@@ -48,8 +50,7 @@ const LikeButton = styled.div`
 	font-size: 24px;
 	padding: 10px;
 	margin-left: 5px;
-	background: black;
-	opacity: 0.5;
+	background: rgba(0, 0, 0, 0.5);
 	color: white;
 	margin-bottom: 5px;
 	transform: scale(1, 1);
@@ -76,8 +77,7 @@ const BakedButton = styled.div`
 	font-size: 24px;
 	padding: 10px;
 	margin-left: 5px;
-	background: black;
-	opacity: 0.5;
+	background: rgba(0, 0, 0, 0.5);
 	color: white;
 	margin-bottom: 5px;
 	transform: scale(1, 1);
@@ -98,6 +98,8 @@ const BakedButton = styled.div`
 		transform: scale(0.95, 0.95);
 	}
 `;
+
+const IconContainer = styled.div`opacity: ${(props) => (props.solid ? 1 : 0.5)};`;
 
 const NameText = styled(Link)`
   display: block;
@@ -138,14 +140,13 @@ const PlayButton = styled.div`
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	background: black;
-	opacity: 0.5;
 	color: white;
 	margin-bottom: 5px;
 	transform: scale(1, 1);
 	transition: transform 0.2s linear;
 	transition: background-color 0.2s linear;
 	transition: color 0.2s linear;
+	background: rgba(0, 0, 0, 0.5);
 
 	&:hover {
 		color: #e0e0e0;
@@ -169,6 +170,8 @@ class SongBox extends React.Component {
 			numLikes: props.trackInfo.num_likes,
 			numBakes: props.trackInfo.num_bakes
 		};
+
+		this.bakeTrack = this.bakeTrack.bind(this);
 	}
 
 	componentDidMount() {
@@ -225,17 +228,20 @@ class SongBox extends React.Component {
 				<BottomLeft>
 					<Tippy theme="translucent" content="Like this track" placement="bottom">
 						<LikeButton onClick={this.likeTrack}>
-							♡<NumLikes data-tip="">{this.state.numLikes}</NumLikes>
+							<IconContainer solid={this.props.trackInfo.liked}>♡</IconContainer>
+							<NumLikes>{this.state.numLikes}</NumLikes>
 						</LikeButton>
 					</Tippy>
 					<Tippy theme="translucent" content="Mark this track as baked" placement="bottom">
-						<BakedButton onClick={this.likeTrack} baked={this.props.trackInfo.baked}>
-							🧁
-							<NumBakes data-tip="">{this.state.numBakes}</NumBakes>
+						<BakedButton onClick={this.bakeTrack}>
+							<IconContainer solid={this.props.trackInfo.baked}>🧁</IconContainer>
+							<NumBakes>{this.state.numBakes}</NumBakes>
 						</BakedButton>
 					</Tippy>
 				</BottomLeft>
-				<PlayButton onClick={this.props.enableTrack}>▶</PlayButton>
+				<PlayButton onClick={this.props.enableTrack}>
+					<IconContainer>▶</IconContainer>
+				</PlayButton>
 				<SongImg
 					onLoad={this.props.onLoadImage}
 					className={`name-${this.state.elName} songbox`}

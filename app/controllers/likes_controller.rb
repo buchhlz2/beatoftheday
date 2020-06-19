@@ -4,8 +4,15 @@ class LikesController < ApplicationController
   # POST /likes
   # POST /likes.json
   def create
-    @like = Like.create!(track_id: params["track_id"], user_id: current_user.present? ? current_user.id : nil)
+    track = Track.find_by(id: params[:track_id])
+    return head(404) unless track.present?
 
+    @like = Like.create!(
+      track_id: track.id, 
+      user_id: current_user.present? ? current_user.id : nil,
+      baked: params[:baked] == 'true'
+    )
+    
     head(200)
   end
 
