@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+  def index 
+    render json: {
+      artists: User.joins(:tracks).group("(users.id) having count(tracks.id) > 0").map do |user|
+        user.attributes
+      end
+    }
+  end
+
   def show
     render 'pages/home'
   end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  
   devise_for :users
   devise_scope :user do
     root 'pages#home'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   get '/add-a-track', to: 'pages#add_a_track'
+  resources :users, only: [:index]
   get '/artist/:id', to: 'users#show'
   get '/show_artist/:id', to: 'users#show_artist'
   get '/baked', to: 'pages#home'

@@ -4,6 +4,8 @@ import Player from './shared/Player';
 import AddATrack from './routes/AddATrack';
 import TrackShow from './routes/TrackShow';
 import ArtistShow from './routes/ArtistShow';
+import Baked from './routes/Baked';
+import Artists from './routes/Artists';
 import HomePage from './routes/HomePage';
 import $ from 'jquery';
 
@@ -43,6 +45,8 @@ class Home extends React.Component {
 						</Route>
 						<Route path="/tracks/:id" component={TrackShow} />
 						<Route path="/artist/:id" component={ArtistShow} />
+						<Route path="/baked" component={Baked} />
+						<Route path="/artists" component={Artists} />
 					</Switch>
 					<div className="footer">
 						<Player />
