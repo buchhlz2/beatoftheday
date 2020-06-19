@@ -14,6 +14,18 @@ class TracksController < ApplicationController
     render 'pages/home'
   end
 
+  def baked
+    baked_tracks = Track.baked.uniq.sort_by do |track|
+      track.check_the_oven
+    end.first(20).reverse
+
+    render json: {
+      baked_tracks: baked_tracks.map do |track|
+        track.show_attributes(current_user)
+      end
+    }
+  end
+
   def show_track
     @track = Track.find(params[:id])
 

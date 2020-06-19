@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :tracks, only: [:index, :show]
   get '/tracks/show_track/:id' => 'tracks#show_track'
+  get '/baked_tracks' => 'tracks#baked'
   get 's3_direct_post' => 'tracks#s3_direct_post'
   post 's3_blob_location' => 'tracks#s3_blob_location'
 

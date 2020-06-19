@@ -4,19 +4,107 @@ import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 
-const Header = styled.h3`font-size: 40px;`;
+const Wrapper = styled.div`
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 0px;
+	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+`;
+
+const SongBoxWrapper = styled.div`width: 60%;`;
+
+const Rank = styled.div`font-size: 30px;`;
+
+const InnerHeader = styled.div`
+	width: 100%;
+	margin-top: 50px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	color: #61646d;
+`;
+
+const AddATrackLink = styled.a`
+	cursor: pointer;
+	font-size: 24px;
+	padding: 5px;
+	width: 100%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 130px;
+	margin-top: -5px;
+	transition: all 1s ease;
+	position: relative;
+	bottom: 0;
+	border-radius: 3px;
+
+	&:hover {
+		box-shadow: 0 0px 15px 6px #aa32a1;
+		bottom: 5px;
+		background: #aa32a1;
+	}
+`;
 
 class Baked extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {};
+		this.state = {
+			tracks: []
+		};
 	}
+
+	componentDidMount() {
+		this.getTracks();
+	}
+
+	getTracks = () => {
+		$.get('/baked_tracks').done((res) => {
+			this.setState(
+				{
+					tracks: res.baked_tracks
+				},
+				() => {
+					if (masterAudioTag.paused) this.enableTrack(0, false);
+				}
+			);
+		});
+	};
+
+	enableTrack = (i, play = true) => {
+		const newTrack = this.state.tracks[i];
+		window.masterShowTrack(newTrack, play);
+	};
 
 	render() {
 		return (
 			<div>
-				<Header>Baked Tracks:</Header>
+				<InnerHeader>Baked tracks:</InnerHeader>
+				<Wrapper>
+					{this.state.tracks.map((obj, i) => {
+						return (
+							<SongBoxWrapper key={obj.id}>
+								<Rank>{i + 1}.</Rank>
+								<SongBox
+									width={'100%'}
+									height={'auto'}
+									trackInfo={obj}
+									enableTrack={() => {
+										this.enableTrack(i);
+									}}
+								/>
+							</SongBoxWrapper>
+						);
+					})}
+				</Wrapper>
+				<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
 			</div>
 		);
 	}

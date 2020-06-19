@@ -9,6 +9,8 @@ class Track < ApplicationRecord
   has_many :rebounds, class_name: 'Track', foreign_key: 'rebound_track_id'
   belongs_to :rebound_from, class_name: 'Track', foreign_key: 'rebound_track_id', optional: true
 
+  scope :baked, -> { joins(:likes).where("likes.baked = true") }
+
   def bakes
     likes.where(baked: true)
   end
@@ -64,5 +66,14 @@ class Track < ApplicationRecord
     return baked? unless user.present?
     @user_likes ||= user.likes
     @user_likes.find_by(baked: true, track_id: id).present?
+  end
+
+  def check_the_oven
+    score = [100 - hours_old, 1].max
+    bakes.length * score
+  end
+
+  def hours_old
+    ((Time.now - created_at) / 3600).round
   end
 end
