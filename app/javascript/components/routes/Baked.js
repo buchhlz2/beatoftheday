@@ -4,6 +4,13 @@ import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 
+const FlexContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+`;
+
 const Wrapper = styled.div`
 	padding: 20px;
 	display: flex;
@@ -33,6 +40,13 @@ const InnerHeader = styled.div`
 	justify-content: center;
 	font-size: 24px;
 	color: #61646d;
+`;
+
+const SmallerHeader = styled.div`
+	margin-top: 30px;
+	line-height: 22px;
+	font-size: 16px;
+	width: 70%;
 `;
 
 const AddATrackLink = styled.a`
@@ -91,8 +105,12 @@ class Baked extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<FlexContainer>
 				<InnerHeader>🧁 Baked tracks:</InnerHeader>
+				<SmallerHeader>
+					Tracks are ranked based on a combination of how new they are, and how many 'bakes' they have. The
+					forumla is (100 hours - how old the track is in hours) * number of bakes.
+				</SmallerHeader>
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
@@ -111,7 +129,7 @@ class Baked extends React.Component {
 					})}
 				</Wrapper>
 				<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
-			</div>
+			</FlexContainer>
 		);
 	}
 }

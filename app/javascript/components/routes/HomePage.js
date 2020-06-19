@@ -4,6 +4,13 @@ import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 
+const FlexContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+`;
+
 const Wrapper = styled.div`
 	padding: 20px;
 	display: flex;
@@ -37,6 +44,13 @@ const InnerHeader = styled.div`
 	justify-content: center;
 	font-size: 24px;
 	color: #61646d;
+`;
+
+const SmallerHeader = styled.div`
+	margin-top: 30px;
+	line-height: 22px;
+	font-size: 16px;
+	width: 70%;
 `;
 
 const AddATrackLink = styled.a`
@@ -101,8 +115,18 @@ class HomePage extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<FlexContainer>
+				<SmallerHeader>
+					Beat of the day is a community of people to play music with. It's as close as you can get to
+					'jamming' on the internet. Simply upload any track you're working on, and anyone else on the site
+					can download your track and create a 'rebound' of it: a new track based on the original with
+					additional layers, say a new drum part, or singing on top. Full creative freedom is encouraged. Do
+					whatever you want. Anything you upload to this site is available for others to modify. All rights
+					and privileges and sundry consequenses associated with the creation of art belong to the artists who
+					create it.
+				</SmallerHeader>
 				<InnerHeader>🎵 Newest tracks:</InnerHeader>
+
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
@@ -122,7 +146,7 @@ class HomePage extends React.Component {
 					})}
 				</Wrapper>
 				<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
-			</div>
+			</FlexContainer>
 		);
 	}
 }
