@@ -119,19 +119,30 @@ class CommentBox extends React.Component {
 		this.state = {
 			thread: [],
 			newCommentText: '',
-			loading: false
+			loading: false,
+			trackId: this.props.trackId
 		};
 	}
 
+	componentDidUpdate() {
+		if (this.state.trackId != this.props.trackId) {
+			this.setState({ trackId: this.props.trackId, thread: [] }, this.loadData);
+		}
+	}
+
 	componentDidMount() {
-		$.get(`/track_comments/${this.props.trackId}`).done((res) => {
+		this.loadData();
+	}
+
+	loadData = () => {
+		$.get(`/track_comments/${this.state.trackId}`).done((res) => {
 			if (res.thread) {
 				this.setState({
 					thread: res.thread
 				});
 			}
 		});
-	}
+	};
 
 	createComment = () => {
 		if (this.state.newCommentText.length === 0) return;
