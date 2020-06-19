@@ -14,6 +14,20 @@ const Wrapper = styled.div`
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 `;
 
+const SongBoxWrapper = styled.div`
+	height: 200px;
+	margin-bottom: 50px;
+	margin-right: 20px;
+`;
+
+const Rank = styled.div`
+	font-size: 16px;
+	position: relative;
+	top: 52px;
+	right: 0px;
+	width: 50px;
+`;
+
 const InnerHeader = styled.div`
 	width: 100%;
 	margin-top: 50px;
@@ -88,17 +102,22 @@ class HomePage extends React.Component {
 	render() {
 		return (
 			<div>
-				<InnerHeader>💐 Welcome back!</InnerHeader>
+				<InnerHeader>Newest tracks:</InnerHeader>
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
-							<SongBox
-								key={obj.link}
-								trackInfo={obj}
-								enableTrack={() => {
-									this.enableTrack(i);
-								}}
-							/>
+							<SongBoxWrapper key={obj.id}>
+								<Rank>{i + 1}.</Rank>
+								<SongBox
+									width={'auto'}
+									height={'200px'}
+									key={obj.link}
+									trackInfo={obj}
+									enableTrack={() => {
+										this.enableTrack(i);
+									}}
+								/>
+							</SongBoxWrapper>
 						);
 					})}
 				</Wrapper>

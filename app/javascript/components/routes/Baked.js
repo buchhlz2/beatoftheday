@@ -16,7 +16,13 @@ const Wrapper = styled.div`
 
 const SongBoxWrapper = styled.div`width: 60%;`;
 
-const Rank = styled.div`font-size: 30px;`;
+const Rank = styled.div`
+	font-size: 16px;
+	position: relative;
+	top: 52px;
+	right: 0px;
+	width: 50px;
+`;
 
 const InnerHeader = styled.div`
 	width: 100%;
