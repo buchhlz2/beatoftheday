@@ -45,6 +45,12 @@ const CreateARebound = styled.div`
 	flex-direction: column;
 	padding: 20px;
 	border-radius: 3px;
+	transform: scale(1, 1);
+	transition: transform 0.5s ease;
+
+	&:hover {
+		transform: scale(1.03, 1.03);
+	}
 `;
 
 const AddATrackBox = styled.div`width: 66%;`;
@@ -153,7 +159,7 @@ class TrackShow extends React.Component {
 				<CommentBoxWrapper style={{ height: this.state.imgHeight }}>
 					<CommentBox trackId={track.id} />
 				</CommentBoxWrapper>
-				<ReboundHeader>Rebounds:</ReboundHeader>
+				<ReboundHeader>{track.rebounds.length > 0 ? 'Rebounds:' : ''}</ReboundHeader>
 				<ReboundsBox>
 					{track.rebounds.map((rebound) => {
 						return (
