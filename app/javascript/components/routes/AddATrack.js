@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import $ from 'jquery';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import AddATrack from './shared/AddATrack';
-import upload from './util/upload';
+import AddATrack from '../shared/AddATrack';
+import upload from '../util/upload';
 
 const Wrapper = styled.div`
 	margin-top: 100px;

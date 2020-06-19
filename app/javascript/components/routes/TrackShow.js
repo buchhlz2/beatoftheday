@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import $ from 'jquery';
-import SongBox from './shared/SongBox';
-import CommentBox from './shared/CommentBox';
+import SongBox from '../shared/SongBox';
+import CommentBox from '../shared/CommentBox';
 import moment from 'moment';
-import AddATrack from './shared/AddATrack';
+import AddATrack from '../shared/AddATrack';
 
 var track = {};
 

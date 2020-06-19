@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/add-a-track', to: 'pages#add_a_track'
   get '/artist/:id', to: 'users#show'
   get '/show_artist/:id', to: 'users#show_artist'
+  get '/baked', to: 'pages#home'
+  get '/artists', to: 'pages#home'
 
   resources :tracks, only: [:index, :show]
   get '/tracks/show_track/:id' => 'tracks#show_track'

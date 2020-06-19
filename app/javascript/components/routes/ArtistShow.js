@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import $ from 'jquery';
-import SongBox from './shared/SongBox';
+import SongBox from '../shared/SongBox';
 
 const Wrapper = styled.div`
 	padding: 20px;

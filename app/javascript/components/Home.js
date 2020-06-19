@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Player from './shared/Player';
-import AddATrack from './AddATrack';
-import TrackShow from './TrackShow';
-import ArtistShow from './ArtistShow';
-import HomePage from './HomePage';
+import AddATrack from './routes/AddATrack';
+import TrackShow from './routes/TrackShow';
+import ArtistShow from './routes/ArtistShow';
+import HomePage from './routes/HomePage';
 import $ from 'jquery';
 
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
