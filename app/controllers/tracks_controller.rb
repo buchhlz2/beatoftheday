@@ -5,11 +5,7 @@ class TracksController < ApplicationController
   def index
     render json: {
       tracks: Track.all.order("created_at DESC LIMIT 10").preload(:user, :likes).map do |track|
-        track.attributes.merge(
-          artist_name: track.user.artist_name, 
-          num_likes: track.likes.length,
-          baked: track.baked_for_user?(current_user)
-        )
+        track.show_attributes(current_user)
       end
     }
   end
@@ -21,11 +17,9 @@ class TracksController < ApplicationController
   def show_track
     @track = Track.find(params[:id])
 
-    render json: @track.attributes.merge(
-      artist_name: @track.user.artist_name, 
-      num_likes: @track.likes.length, 
-      baked: @track.baked_for_user?(current_user)
-    )
+    render json: @track.show_attributes(current_user).merge({
+      rebounds: @track.all_rebounds_attributes(current_user)
+    })
   end
 
   def s3_direct_post
@@ -47,13 +41,28 @@ class TracksController < ApplicationController
     aws_url = params[:location]
     aws_photo_url = params[:image_location]
 
-    newTrack =  Track.create!(
-      user: current_user,
-      link: aws_url,
-      photo: aws_photo_url,
-      name: params[:name],
-      audio_type: aws_url.split('.').last
-    )
+    newTrack =  if (params[:reboundTrackId].present?)
+      rebound_from_track = Track.find_by(id: params[:reboundTrackId])
+      return head(404) unless rebound_from_track.present?
+
+      Track.create!(
+        user: current_user,
+        link: aws_url,
+        photo: aws_photo_url,
+        name: "#{rebound_from_track.og_track.name} #{rebound_from_track.og_track.all_rebounds.count + 1}",
+        audio_type: aws_url.split('.').last,
+        rebound_track_id: rebound_from_track.id
+      )
+    else
+      Track.create!(
+        user: current_user,
+        link: aws_url,
+        photo: aws_photo_url,
+        name: params[:name],
+        audio_type: aws_url.split('.').last
+      )
+    end
+
 
     render json: newTrack.attributes
   end

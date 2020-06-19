@@ -5,8 +5,9 @@ import $ from 'jquery';
 import SongBox from './shared/SongBox';
 import CommentBox from './shared/CommentBox';
 import moment from 'moment';
+import AddATrack from './shared/AddATrack';
 
-console.log(window.B_R_E_A_K_P_O_I_N_T);
+var track = {};
 
 const Wrapper = styled.div`
 	margin-top: 20px;
@@ -19,12 +20,29 @@ const Wrapper = styled.div`
 	margin-bottom: 200px;
 `;
 
+const ReboundsBox = styled.div`
+	width: 100%;
+	// background: blue;
+	border-radius: 3px;
+	display: flex;
+`;
+
+const ReboundHeader = styled.h3``;
+
 const CreateARebound = styled.div`
 	background: pink;
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 20px;
+	border-radius: 3px;
 `;
+
+const AddATrackBox = styled.div`width: 66%;`;
 
 const InfoBox = styled.div`
 	margin-top: 30px;
@@ -62,8 +80,6 @@ const CreatedAt = styled.p`
 	margin-bottom: 0;
 `;
 
-var track = {};
-
 const SongBoxWrapper = styled.div`
 	width: 66.666%;
 	margin-left: -30px;
@@ -80,19 +96,35 @@ class TrackShow extends React.Component {
 		super(props);
 
 		this.state = {
-			imgHeight: 0
+			imgHeight: 0,
+			params_id: this.props.match.params.id
 		};
 	}
 
 	componentDidMount() {
-		$.get(`/tracks/show_track/${this.props.match.params.id}`).done((res) => {
-			if (masterAudioTag.paused) window.masterShowTrack(res);
-			track = res;
-			this.forceUpdate();
-		});
-
-		setTimeout(() => {});
+		this._ismounted = true;
+		this.loadData();
 	}
+
+	componentDidUpdate() {
+		if (this.state.params_id != this.props.match.params.id) {
+			this.loadData();
+		}
+	}
+
+	componentWillUnmount() {
+		this._ismounted = false;
+	}
+
+	loadData = () => {
+		if (this._ismounted) {
+			$.get(`/tracks/show_track/${this.props.match.params.id}`).done((res) => {
+				if (masterAudioTag.paused) window.masterShowTrack(res);
+				track = res;
+				this.forceUpdate();
+			});
+		}
+	};
 
 	render() {
 		return track.name ? (
@@ -111,19 +143,45 @@ class TrackShow extends React.Component {
 						}}
 					/>
 				</SongBoxWrapper>
-				{/* <InfoBox>
-          <H2 to={`/tracks/${track.id}`}>{track.name}</H2>
-          <ArtistName to={`/artist/${track.artist_name}`}>
-            {track.artist_name}
-          </ArtistName>
-          <CreatedAt>
-            Created {moment(track.created_at).from(new Date())}
-          </CreatedAt>
-        </InfoBox> */}
 				<CommentBoxWrapper style={{ height: this.state.imgHeight }}>
 					<CommentBox trackId={track.id} />
 				</CommentBoxWrapper>
-				{/* <CreateARebound>asdfasdfasd</CreateARebound> */}
+				<ReboundHeader>Rebounds:</ReboundHeader>
+				<ReboundsBox>
+					{track.rebounds.map((rebound) => {
+						return (
+							<React.Fragment key={rebound.id}>
+								<SongBoxWrapper>
+									<SongBox
+										fontSize={40}
+										width={'100%'}
+										height={'100%'}
+										trackInfo={rebound}
+										enableTrack={() => {
+											window.masterShowTrack(rebound, true);
+										}}
+										onLoadImage={(e) => {
+											let newState = {};
+											newState[`imgHeight-${rebound.id}`] = e.target.height;
+											this.setState(newState);
+										}}
+									/>
+								</SongBoxWrapper>
+
+								<CommentBoxWrapper style={{ height: this.state[`imgHeight-${rebound.id}`] }}>
+									<CommentBox trackId={rebound.id} />
+								</CommentBoxWrapper>
+							</React.Fragment>
+						);
+					})}
+				</ReboundsBox>
+
+				<CreateARebound>
+					<ReboundHeader>Create a rebound:</ReboundHeader>
+					<AddATrackBox>
+						<AddATrack reboundTrackId={track.id} />
+					</AddATrackBox>
+				</CreateARebound>
 			</Wrapper>
 		) : (
 			<div />

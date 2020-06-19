@@ -1,10 +1,10 @@
 import $ from 'jquery';
 
 const saveUploads = (attributes, callback) => {
-	if (attributes.location && attributes.image_location && attributes.name) {
+	if (attributes.location && attributes.image_location && (attributes.reboundTrackId ? true : attributes.name)) {
 		const requestObj3 = {
 			method: 'POST',
-			url: 's3_blob_location',
+			url: '/s3_blob_location',
 			data: attributes
 		};
 
@@ -15,7 +15,7 @@ const saveUploads = (attributes, callback) => {
 const upload = (file, image, attributes, callback) => {
 	const requestObj = {
 		method: 'GET',
-		url: 's3_direct_post'
+		url: '/s3_direct_post'
 	};
 
 	// file upload
