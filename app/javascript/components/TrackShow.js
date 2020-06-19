@@ -6,6 +6,8 @@ import SongBox from './shared/SongBox';
 import CommentBox from './shared/CommentBox';
 import moment from 'moment';
 
+console.log(window.B_R_E_A_K_P_O_I_N_T);
+
 const Wrapper = styled.div`
 	margin-top: 20px;
 	padding: 0;
@@ -13,7 +15,8 @@ const Wrapper = styled.div`
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	width: 100%;
-	max-width: 1080px;
+	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	margin-bottom: 200px;
 `;
 
 const CreateARebound = styled.div`
