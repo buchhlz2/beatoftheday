@@ -131,8 +131,8 @@ class TrackShow extends React.Component {
 	loadData = () => {
 		if (this._ismounted) {
 			$.get(`/tracks/show_track/${this.props.match.params.id}`).done((res) => {
-				if (masterAudioTag.paused) window.masterShowTrack(res);
 				track = res.shift();
+				if (masterAudioTag.paused) window.masterShowTrack(track);
 				track.rebounds = res;
 				this.forceUpdate();
 			});
