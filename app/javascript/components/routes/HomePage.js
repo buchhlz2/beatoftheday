@@ -51,6 +51,7 @@ const SmallerHeader = styled.div`
 	line-height: 22px;
 	font-size: 16px;
 	width: 70%;
+	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 `;
 
 const AddATrackLink = styled.a`
