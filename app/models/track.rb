@@ -23,7 +23,7 @@ class Track < ApplicationRecord
       end
     end
 
-    all.flatten
+    all.flatten.uniq
   end
 
   def all_rebounds_attributes(current_user)

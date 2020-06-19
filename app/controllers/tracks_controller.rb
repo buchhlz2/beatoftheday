@@ -17,9 +17,7 @@ class TracksController < ApplicationController
   def show_track
     @track = Track.find(params[:id])
 
-    render json: @track.show_attributes(current_user).merge({
-      rebounds: @track.all_rebounds_attributes(current_user)
-    })
+    render json: @track.all_rebounds_attributes(current_user)
   end
 
   def s3_direct_post

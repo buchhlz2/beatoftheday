@@ -22,15 +22,20 @@ const Wrapper = styled.div`
 
 const ReboundsBox = styled.div`
 	width: 100%;
-	// background: blue;
 	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+`;
+
+const ReboundRow = styled.div`
+	width: 100%;
 	display: flex;
 `;
 
-const ReboundHeader = styled.h3``;
+const ReboundHeader = styled.h3`font-size: 40px;`;
 
 const CreateARebound = styled.div`
-	background: pink;
+	background: #b1f0ff;
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 150px;
@@ -97,7 +102,7 @@ class TrackShow extends React.Component {
 
 		this.state = {
 			imgHeight: 0,
-			params_id: this.props.match.params.id
+			paramsId: this.props.match.params.id
 		};
 	}
 
@@ -107,7 +112,8 @@ class TrackShow extends React.Component {
 	}
 
 	componentDidUpdate() {
-		if (this.state.params_id != this.props.match.params.id) {
+		if (this.state.paramsId != this.props.match.params.id) {
+			this.setState({ paramsId: this.props.match.params.id });
 			this.loadData();
 		}
 	}
@@ -120,7 +126,8 @@ class TrackShow extends React.Component {
 		if (this._ismounted) {
 			$.get(`/tracks/show_track/${this.props.match.params.id}`).done((res) => {
 				if (masterAudioTag.paused) window.masterShowTrack(res);
-				track = res;
+				track = res.shift();
+				track.rebounds = res;
 				this.forceUpdate();
 			});
 		}
@@ -150,7 +157,7 @@ class TrackShow extends React.Component {
 				<ReboundsBox>
 					{track.rebounds.map((rebound) => {
 						return (
-							<React.Fragment key={rebound.id}>
+							<ReboundRow key={rebound.id}>
 								<SongBoxWrapper>
 									<SongBox
 										fontSize={40}
@@ -171,7 +178,7 @@ class TrackShow extends React.Component {
 								<CommentBoxWrapper style={{ height: this.state[`imgHeight-${rebound.id}`] }}>
 									<CommentBox trackId={rebound.id} />
 								</CommentBoxWrapper>
-							</React.Fragment>
+							</ReboundRow>
 						);
 					})}
 				</ReboundsBox>
