@@ -218,7 +218,7 @@ class TrackShow extends React.Component {
 					<CreateARebound>
 						<ReboundHeader>Create a rebound:</ReboundHeader>
 						<AddATrackBox>
-							<AddATrack reboundTrackId={track.id} />
+							<AddATrack reboundTrack={track} />
 						</AddATrackBox>
 					</CreateARebound>
 				) : (

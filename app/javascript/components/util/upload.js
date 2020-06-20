@@ -15,7 +15,8 @@ const saveUploads = (attributes, callback) => {
 const upload = (file, image, attributes, callback) => {
 	const requestObj = {
 		method: 'GET',
-		url: '/s3_direct_post'
+		url: '/s3_direct_post',
+		data: attributes
 	};
 
 	// file upload
