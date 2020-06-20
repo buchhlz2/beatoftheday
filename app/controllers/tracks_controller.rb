@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show_track, :show]
+  before_action :authenticate_user!, except: [:index, :show_track, :show, :baked]
   skip_before_action :verify_authenticity_token
 
   def index
