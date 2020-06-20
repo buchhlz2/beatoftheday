@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	width: 100%;
+	width: 95%;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 	margin-bottom: 200px;
 	position: relative;
