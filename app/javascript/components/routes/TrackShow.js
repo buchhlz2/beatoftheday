@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 	width: 100%;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 	margin-bottom: 200px;
+	position: relative;
 `;
 
 const ReboundsBox = styled.div`
@@ -102,6 +103,17 @@ const CommentBoxWrapper = styled.div`
 	margin-top: 30px;
 `;
 
+const ReboundInfo = styled(Link)`
+	position: absolute; 
+	top: -2px;
+`;
+
+const OGInfo = styled(Link)`
+	position: absolute;     
+	right: 0;
+	top: -2px;
+`;
+
 class TrackShow extends React.Component {
 	constructor(props) {
 		super(props);
@@ -142,6 +154,19 @@ class TrackShow extends React.Component {
 	render() {
 		return track.name ? (
 			<Wrapper>
+				{!!track.rebound_from &&
+					(track.rebound_from.id !== track.og_track.id ? (
+						<React.Fragment>
+							<ReboundInfo to={`/tracks/${track.rebound_from.id}`}>
+								Rebounded from: {track.rebound_from.name}
+							</ReboundInfo>
+							<OGInfo to={`/tracks/${track.og_track.id}`}>Original track: {track.og_track.name}</OGInfo>
+						</React.Fragment>
+					) : (
+						<ReboundInfo to={`/tracks/${track.og_track.id}`}>
+							Rebounded from original track: {track.og_track.name}
+						</ReboundInfo>
+					))}
 				<SongBoxWrapper>
 					<SongBox
 						fontSize={40}

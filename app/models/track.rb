@@ -44,7 +44,9 @@ class Track < ApplicationRecord
       num_likes: likes.length,
       num_bakes: bakes.length,
       baked: baked_for_user?(current_user),
-      liked: liked_for_user?(current_user)
+      liked: liked_for_user?(current_user),
+      og_track: og_track.try(:attributes),
+      rebound_from: rebound_from.try(:attributes)
     })
   end
 
