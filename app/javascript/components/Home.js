@@ -15,16 +15,45 @@ const HomeLinks = styled.div`
 	position: absolute;
 	top: 16px;
 	left: 22px;
+	display: block;
+
+	@media all and (max-width: 600px) {
+		display: none;
+		flex-direction: column;
+		top: 50px;
+		left: 0px;
+		background: white;
+	}
 `;
 
 const NavLink = styled(Link)`
-  margin-right: 20px;
+	margin-right: 20px;
+	
+	@media all and (max-width: 600px) {
+		margin-right: 0px;
+		padding: 10px 20px 10px 20px;
+	}
+`;
+
+const MenuX = styled.div`
+	cursor: pointer;
+	display: none;
+	position: absolute;
+	top: 18px;
+	left: 22px;
+
+	@media all and (max-width: 600px) {
+		display: block;
+	}
 `;
 
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		window.OPTIONS = this.props || {};
+		this.state = {
+			menuVisible: window.innerWidth <= 600 ? false : true
+		};
 	}
 
 	render() {
@@ -32,7 +61,14 @@ class Home extends React.Component {
 		return (
 			<div className="inner-wrapper">
 				<Router>
-					<HomeLinks>
+					<MenuX
+						onClick={() => {
+							this.setState({ menuVisible: !this.state.menuVisible });
+						}}
+					>
+						{this.state.menuVisible ? '✖️' : '🍔'}
+					</MenuX>
+					<HomeLinks style={{ display: this.state.menuVisible ? 'flex' : 'none' }}>
 						<NavLink to="/">🎵 Fresh</NavLink>
 						<NavLink to="/baked">🧁 Baked</NavLink>
 						<NavLink to="/artists">🧞 Artists</NavLink>
