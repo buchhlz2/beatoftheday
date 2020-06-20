@@ -122,9 +122,8 @@ class HomePage extends React.Component {
 					'jamming' on the internet. Simply upload any track you're working on, and anyone else on the site
 					can download your track and create a 'rebound' of it: a new track based on the original with
 					additional layers, say a new drum part, or singing on top. Full creative freedom is encouraged. Do
-					whatever you want. Anything you upload to this site is available for others to modify. All rights
-					and privileges and sundry consequenses associated with the creation of art belong to the artists who
-					create it.
+					whatever you want. Anything you upload to this site is available for others to modify. Worried about
+					copyrights and ownership? So are we, click here to learn more.
 				</SmallerHeader>
 				<InnerHeader>🎵 Newest tracks:</InnerHeader>
 
