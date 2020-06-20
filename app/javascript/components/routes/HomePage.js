@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin-bottom: 0px;
+	margin-bottom: 50px;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 `;
 
@@ -63,7 +63,7 @@ const AddATrackLink = styled.a`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 130px;
+	margin-bottom: 180px;
 	margin-top: -5px;
 	transition: all 1s ease;
 	position: relative;
