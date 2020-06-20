@@ -14,6 +14,12 @@ const Wrapper = styled.div`
 	margin-bottom: 200px;
 `;
 
+const SongBoxWrapper = styled.div`
+	height: 200px;
+	margin-bottom: 50px;
+	margin-right: 20px;
+`;
+
 const InnerHeader = styled.p`
 	width: 100%;
 	margin-top: 60px;
@@ -58,13 +64,16 @@ class ArtistShow extends React.Component {
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
-							<SongBox
-								key={obj.link}
-								trackInfo={obj}
-								enableTrack={() => {
-									window.masterShowTrack(this.state.tracks[i], true);
-								}}
-							/>
+							<SongBoxWrapper key={obj.id}>
+								<SongBox
+									width={'auto'}
+									height={'200px'}
+									trackInfo={obj}
+									enableTrack={() => {
+										window.masterShowTrack(this.state.tracks[i], true);
+									}}
+								/>
+							</SongBoxWrapper>
 						);
 					})}
 				</Wrapper>
