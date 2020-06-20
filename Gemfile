@@ -31,6 +31,7 @@ gem 'sendgrid-ruby'
 gem 'autoprefixer-rails'
 gem 'activeadmin'
 gem 'activeadmin_addons'
+gem 'newrelic_rpm'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
