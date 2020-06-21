@@ -98,8 +98,9 @@ class TrackShow extends React.Component {
 					any track that makes money, the proceeds will be split equally among everyone upstream of the
 					published track. Since there are no rules to rebounds, this means the published track may sound
 					nothing like the original, but the original artist will get paid in this unlikely event. This means
-					it is up to you as the artist to choose wheather your work is original or a rebound. My lawyer is
-					working on a better version of this paragraph.
+					it is up to you as the artist to choose wheather your work is original or a rebound. Anyone may also
+					record a more polished, releasable version of any track at any time and give credit to the original
+					artists. My lawyer is working on a better version of this paragraph.
 				</SmallerHeader>
 				<SmallerHeader>Hope you have a good time, thanks for contributing.</SmallerHeader>
 				<SmallerHeader />
