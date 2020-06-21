@@ -51,7 +51,7 @@ const ReboundHeader = styled.h3`
 const CreateARebound = styled.div`
 	background: #b1f0ff;
 	width: 100%;
-	margin-top: 20px;
+	margin-top: 50px;
 	margin-bottom: 150px;
 	display: flex;
 	justify-content: center;
@@ -109,6 +109,7 @@ const SongBoxWrapper = styled.div`
 	width: 66.666%;
 	margin-left: -30px;
 	margin-right: 20px;
+	margin-top: 30px;
 `;
 
 const CommentBoxWrapper = styled.div`
