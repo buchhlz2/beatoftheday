@@ -89,7 +89,7 @@ class TrackShow extends React.Component {
 					working on a better version of this paragraph.
 				</SmallerHeader>
 				<SmallerHeader>
-					There is a fun element of surprise here, someone may think they have uploaded a boring lame track,
+					There is a fun element of surprise here, someone may think they have uploaded a boring, lame track,
 					but it could easily get picked up by someone else who does something very interesting with it. Feel
 					free to upload tracks such as "2 minutes of frying bacon", or "the sound of the wind at sunset". Who
 					knows where it could take us.
