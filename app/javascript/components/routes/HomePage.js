@@ -124,7 +124,7 @@ class HomePage extends React.Component {
 					create a 'rebound' of it: a new track based on the original with additional layers, say a new drum
 					part, or singing on top. Full creative freedom is encouraged. Do whatever you want. Anything you
 					upload to this site is available for others to modify. Worried about copyrights and ownership? So
-					are we, click here to learn more.
+					are we, <Link to="/about-us">click here</Link> to learn more.
 				</SmallerHeader>
 				<InnerHeader>🎵 Newest tracks:</InnerHeader>
 

@@ -7,6 +7,7 @@ import ArtistShow from './routes/ArtistShow';
 import Baked from './routes/Baked';
 import Artists from './routes/Artists';
 import HomePage from './routes/HomePage';
+import AboutUs from './routes/AboutUs';
 import $ from 'jquery';
 
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
@@ -83,6 +84,7 @@ class Home extends React.Component {
 						<Route path="/artist/:id" component={ArtistShow} />
 						<Route path="/baked" component={Baked} />
 						<Route path="/artists" component={Artists} />
+						<Route path="/about-us" component={AboutUs} />
 					</Switch>
 					<div className="footer">
 						<Player />
