@@ -10,7 +10,6 @@ const FlexContainer = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
-	overflow: hidden;
 `;
 
 const Wrapper = styled.div`
@@ -85,6 +84,7 @@ const AddATrackLink = styled.a`
 	position: relative;
 	bottom: 0;
 	border-radius: 3px;
+	opacity: 0.8;
 
 	&:hover {
 		box-shadow: 0 0px 15px 6px #aa32a1;
