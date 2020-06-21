@@ -79,16 +79,6 @@ class TrackShow extends React.Component {
 					Another way to think about it is a re-mix.
 				</SmallerHeader>
 				<SmallerHeader>
-					In the unlikely event that someone actually makes money from music that was created on this site, I
-					will do my damndest to make sure the people involved get paid fairly for their creations. For now
-					the system is as follows: I have a record of all the different chains of rebounds on the site. For
-					any track that makes money, the proceeds will be split equally among everyone upstream of the
-					published track. Since there are no rules to rebounds, this means the published track may sound
-					nothing like the original, but the original artist will get paid in this unlikely event. This means
-					it is up to you as the artist to choose wheather your work is original or a rebound. My lawyer is
-					working on a better version of this paragraph.
-				</SmallerHeader>
-				<SmallerHeader>
 					There is a fun element of surprise here, someone may think they have uploaded a boring, lame track,
 					but it could easily get picked up by someone else who does something very interesting with it. Feel
 					free to upload tracks such as "2 minutes of frying bacon", or "the sound of the wind at sunset". Who
@@ -98,6 +88,16 @@ class TrackShow extends React.Component {
 					Each track has a comments section. You can use it to request other people to add certain instruments
 					you'd like to see in your track. Use it to express the vibe of your track. Use it to give the BPM
 					and key signiture of your track so its easier for other people to play along with.
+				</SmallerHeader>
+				<SmallerHeader>
+					In the unlikely event that someone actually makes money from music that was created on this site, I
+					will do my damndest to make sure the people involved get paid fairly for their creations. For now
+					the system is as follows: I have a record of all the different chains of rebounds on the site. For
+					any track that makes money, the proceeds will be split equally among everyone upstream of the
+					published track. Since there are no rules to rebounds, this means the published track may sound
+					nothing like the original, but the original artist will get paid in this unlikely event. This means
+					it is up to you as the artist to choose wheather your work is original or a rebound. My lawyer is
+					working on a better version of this paragraph.
 				</SmallerHeader>
 				<SmallerHeader>Hope you have a good time, thanks for contributing.</SmallerHeader>
 				<Wrapper />
