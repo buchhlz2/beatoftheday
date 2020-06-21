@@ -97,7 +97,7 @@ class TrackShow extends React.Component {
 				<SmallerHeader>
 					Each track has a comments section. You can use it to request other people to add certain instruments
 					you'd like to see in your track. Use it to express the vibe of your track. Use it to give the BPM
-					and key signiture of your track so its easier for other people to play along with. Laugh at things.
+					and key signiture of your track so its easier for other people to play along with.
 				</SmallerHeader>
 				<Wrapper />
 			</FlexContainer>
