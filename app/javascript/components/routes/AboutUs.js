@@ -99,6 +99,7 @@ class TrackShow extends React.Component {
 					you'd like to see in your track. Use it to express the vibe of your track. Use it to give the BPM
 					and key signiture of your track so its easier for other people to play along with.
 				</SmallerHeader>
+				<SmallerHeader>Hope you have a good time, thanks for contributing.</SmallerHeader>
 				<Wrapper />
 			</FlexContainer>
 		);
