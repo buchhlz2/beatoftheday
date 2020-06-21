@@ -100,6 +100,14 @@ class TrackShow extends React.Component {
 					working on a better version of this paragraph.
 				</SmallerHeader>
 				<SmallerHeader>Hope you have a good time, thanks for contributing.</SmallerHeader>
+				<SmallerHeader />
+				<SmallerHeader />
+				<SmallerHeader />
+				<SmallerHeader>
+					<a href="https://blog.viktorbezic.com/post/154553724265/special-wrongness">
+						https://blog.viktorbezic.com/post/154553724265/special-wrongness
+					</a>
+				</SmallerHeader>
 				<Wrapper />
 			</FlexContainer>
 		);
