@@ -10,10 +10,15 @@ const FlexContainer = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+
+	@media all and (max-width: 800px) {
+		align-items: flex-start;
+		padding-left: 5px;
+	}
 `;
 
 const Wrapper = styled.div`
-	padding: 20px;
+	padding: 20px 0 20px 0;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -31,6 +36,7 @@ const SongBoxWrapper = styled.div`
 	margin-bottom: 50px;
 	margin-right: 10px;
 	margin-left: 10px;
+	position: relative;
 
 	@media all and (max-width: 800px) {
 		margin: 0 0 50px 0;
@@ -39,20 +45,19 @@ const SongBoxWrapper = styled.div`
 
 const Rank = styled.div`
 	font-size: 16px;
-	position: relative;
-	top: 52px;
-	right: 0px;
-	width: 50px;
+	position: absolute;
+	top: 0px;
+	left: 8px;
 
 	@media all and (max-width: 800px) {
-		top: 18px;
-		left: -26px;
+		left: 8px;
 	}
 `;
 
 const InnerHeader = styled.div`
 	width: 100%;
-	margin-top: 50px;
+	margin-top: 30px;
+	margin-bottom: 10px;
 	height: 50px;
 	display: flex;
 	align-items: center;
@@ -67,6 +72,9 @@ const SmallerHeader = styled.div`
 	font-size: 16px;
 	width: 90%;
 	max-width: 95vw;
+	@media all and (max-width: 800px) {
+		padding-left: 10px;
+	}
 `;
 
 const AddATrackLink = styled.a`

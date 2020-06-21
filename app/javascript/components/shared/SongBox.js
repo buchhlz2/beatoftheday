@@ -9,7 +9,8 @@ const SongBoxWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	margin: 30px;
+	margin: 0px;
+	margin-left: 30px;
 	position: relative;
 	border-radius: 3px;
 	overflow: hidden;
@@ -22,12 +23,8 @@ const SongBoxWrapper = styled.div`
 	}
 
 	@media all and (max-width: 800px) {
-		margin: 0 0 20px 0;
+		margin: 0 0 20px 30px;
 	}
-
-	// @media all and (max-width: 400px) {
-	// 	margin-right: 0;
-	// }
 `;
 
 const SongImg = styled.img`
@@ -280,7 +277,7 @@ class SongBox extends React.Component {
 					src={this.props.trackInfo.photo}
 					style={
 						this.props.width && this.props.height ? (
-							{ height: this.props.height, width: this.props.width, maxWidth: '95vw' }
+							{ height: this.props.height, width: this.props.width, maxWidth: '80vw' }
 						) : (
 							{}
 						)
