@@ -21,6 +21,16 @@ const Wrapper = styled.div`
 	position: relative;
 `;
 
+const SmallerHeader = styled.div`
+	margin-top: 30px;
+	line-height: 22px;
+	font-size: 16px;
+	width: 70%;
+	display: flex;
+	color: #5e6469 !important;
+	justify-content: center;
+`;
+
 const ReboundsBox = styled.div`
 	width: 100%;
 	border-radius: 3px;
@@ -33,7 +43,10 @@ const ReboundRow = styled.div`
 	display: flex;
 `;
 
-const ReboundHeader = styled.h3`font-size: 40px;`;
+const ReboundHeader = styled.h3`
+	font-size: 40px;
+	margin-bottom: 10px !important;
+`;
 
 const CreateARebound = styled.div`
 	background: #b1f0ff;
@@ -216,7 +229,10 @@ class TrackShow extends React.Component {
 
 				{!!window.OPTIONS.current_user ? (
 					<CreateARebound>
-						<ReboundHeader>Create a rebound:</ReboundHeader>
+						<ReboundHeader>Create a rebound of {track.name}:</ReboundHeader>
+						<SmallerHeader>
+							(you can click into any of the previous rebounds if you want to rebound off any of those).
+						</SmallerHeader>
 						<AddATrackBox>
 							<AddATrack reboundTrack={track} />
 						</AddATrackBox>

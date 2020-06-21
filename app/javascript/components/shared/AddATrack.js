@@ -122,9 +122,8 @@ class AddATrack extends React.Component {
 								href={this.props.reboundTrack.link}
 								download={`${this.props.reboundTrack.name}.${this.props.reboundTrack.audio_type}`}
 							>
-								Download this track
+								Download the track
 							</DownloadButton>
-							(you can click into any of the previous rebounds if you want to rebound off any of those).
 						</Heading>
 						<Heading>
 							2. Import the track into your favorite music app and add a new layer to the track.
