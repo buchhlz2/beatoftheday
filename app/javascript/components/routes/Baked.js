@@ -48,6 +48,7 @@ const Rank = styled.div`
 	position: absolute;
 	top: 0px;
 	left: 8px;
+	color: #666;
 
 	@media all and (max-width: 800px) {
 		left: 8px;
