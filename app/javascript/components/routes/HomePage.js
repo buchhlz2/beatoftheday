@@ -118,13 +118,12 @@ class HomePage extends React.Component {
 		return (
 			<FlexContainer>
 				<SmallerHeader>
-					Beat of the Day is a community of people to play music with. Have you ever wanted to jam with people
-					all around the world in different places? Share your music and see what other people create with it.
-					Simply upload any track you're working on, and anyone else on the site can download your track and
-					create a 'rebound' of it: a new track based on the original with additional layers, say a new drum
-					part, or singing on top. Full creative freedom is encouraged. Do whatever you want. Anything you
-					upload to this site is available for others to modify. Worried about copyrights and ownership? So
-					are we, <Link to="/about-us">click here</Link> to learn more.
+					Beat of the Day is a community for musicians. Have you ever wanted to jam with people all around the
+					world in different places? Simply upload any track you're working on, and anyone else on the site
+					can download your track and create a 'rebound' of it: a new track based on the original with
+					additional layers, say a new drum part, or singing on top. Full creative freedom is encouraged.
+					Anything you upload to this site is available for others to modify. Worried about copyrights and
+					ownership? So are we, <Link to="/about-us">click here</Link> to learn more.
 				</SmallerHeader>
 				<InnerHeader>🎵 Newest tracks:</InnerHeader>
 
