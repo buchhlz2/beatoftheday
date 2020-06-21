@@ -67,9 +67,10 @@ class TrackShow extends React.Component {
 				<SmallerHeader>
 					The "Fresh" tab shows music that has been uploaded most recently. The "Baked" tab is inteded to
 					express completeness, as in, it's not half-baked. Users of the site can click the "baked" button on
-					any track to vote on wheather or not they believe the track to be "baked", or done. The "Artists"
-					tab simply lists all the artists (users who have uploaded tracks) on the site. Each artist page
-					contains all of the tracks they have uploaded to the site.
+					any track to vote on wheather or not they believe the track to be "baked", or done. It's essentialy
+					an upvote button for a track to make it to the "Baked" tab. The "Artists" tab simply lists all the
+					artists (users who have uploaded tracks) on the site. Each artist page contains all of the tracks
+					they have uploaded to the site.
 				</SmallerHeader>
 				<SmallerHeader>
 					A "Rebound" is an artistic reaction to a track, in the form of another track. Any track on Beat of
