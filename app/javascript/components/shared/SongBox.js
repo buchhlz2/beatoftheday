@@ -6,6 +6,8 @@ import Tippy from '@tippyjs/react';
 
 const SongBoxWrapper = styled.div`
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 	margin: 30px;
 	position: relative;
@@ -18,6 +20,14 @@ const SongBoxWrapper = styled.div`
 	&:hover {
 		transform: scale(1.03, 1.03);
 	}
+
+	@media all and (max-width: 800px) {
+		margin: 0 0 20px 0;
+	}
+
+	// @media all and (max-width: 400px) {
+	// 	margin-right: 0;
+	// }
 `;
 
 const SongImg = styled.img`
@@ -270,7 +280,7 @@ class SongBox extends React.Component {
 					src={this.props.trackInfo.photo}
 					style={
 						this.props.width && this.props.height ? (
-							{ height: this.props.height, width: this.props.width }
+							{ height: this.props.height, width: this.props.width, maxWidth: '95vw' }
 						) : (
 							{}
 						)

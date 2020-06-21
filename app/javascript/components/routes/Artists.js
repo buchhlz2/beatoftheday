@@ -4,20 +4,31 @@ import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 
-const Header = styled.h3`
-	font-size: 40px;
+const InnerHeader = styled.div`
 	width: 100%;
+	margin-top: 30px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	color: #61646d;
 `;
 
 const Wrapper = styled.div`
 	margin-top: 20px;
 	padding: 0;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	flex-wrap: wrap;
 	width: 100%;
-	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 	margin-bottom: 200px;
+	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	overflow: hidden;
+
+	@media all and (max-width: ${window.B_R_E_A_K_P_O_I_N_T}px) {
+		max-width: 90%;
+	}
 `;
 
 const ArtistBox = styled.div`
@@ -56,7 +67,7 @@ class Artists extends React.Component {
 	render() {
 		return (
 			<Wrapper>
-				<Header>🧞 Artists:</Header>
+				<InnerHeader>🧞 Artists:</InnerHeader>
 				{this.state.artists.map((artist) => {
 					return (
 						<ArtistBox key={artist.id}>

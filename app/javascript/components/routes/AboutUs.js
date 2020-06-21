@@ -1,5 +1,3 @@
-// https://blog.viktorbezic.com/post/154553724265/special-wrongness
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -10,6 +8,8 @@ const FlexContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	overflow: hidden;
 `;
 
 const Wrapper = styled.div`
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
 	flex-wrap: wrap;
 	margin-bottom: 200px;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	overflow: hidden;
 `;
 
 const InnerHeader = styled.div`
@@ -37,8 +38,8 @@ const SmallerHeader = styled.div`
 	margin-top: 30px;
 	line-height: 22px;
 	font-size: 16px;
-	width: 70%;
-	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	width: 90%;
+	max-width: 95vw;
 `;
 
 class TrackShow extends React.Component {

@@ -9,6 +9,8 @@ const FlexContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	overflow: hidden;
 `;
 
 const Wrapper = styled.div`
@@ -19,9 +21,15 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	margin-bottom: 0px;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	overflow: hidden;
 `;
 
-const SongBoxWrapper = styled.div`width: 60%;`;
+const SongBoxWrapper = styled.div`
+	width: 60%;
+	@media all and (max-width: 800px) {
+		width: 90%;
+	}
+`;
 
 const Rank = styled.div`
 	font-size: 16px;
@@ -29,6 +37,11 @@ const Rank = styled.div`
 	top: 52px;
 	right: 0px;
 	width: 50px;
+
+	@media all and (max-width: 800px) {
+		top: 18px;
+		left: -22px;
+	}
 `;
 
 const InnerHeader = styled.div`
@@ -46,8 +59,8 @@ const SmallerHeader = styled.div`
 	margin-top: 30px;
 	line-height: 22px;
 	font-size: 16px;
-	width: 70%;
-	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	width: 90%;
+	max-width: 95vw;
 `;
 
 const AddATrackLink = styled.a`
