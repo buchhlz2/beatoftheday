@@ -31,7 +31,6 @@ gem 'sendgrid-ruby'
 gem 'autoprefixer-rails'
 gem 'activeadmin'
 gem 'activeadmin_addons'
-gem 'newrelic_rpm'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -53,6 +52,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  gem 'newrelic_rpm'
 end
 
 group :test do
