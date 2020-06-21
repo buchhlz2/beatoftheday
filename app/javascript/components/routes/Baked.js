@@ -123,7 +123,8 @@ class Baked extends React.Component {
 				<InnerHeader>🧁 Baked tracks:</InnerHeader>
 				<SmallerHeader>
 					Tracks are ranked based on a combination of how new they are, and how many 'bakes' they have. The
-					forumla is (100 hours - how old the track is in hours) * number of bakes.
+					forumla is (100 hours - how old the track is in hours) * number of bakes.{' '}
+					<Link to="/about-us">click here</Link> to for more info.
 				</SmallerHeader>
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
