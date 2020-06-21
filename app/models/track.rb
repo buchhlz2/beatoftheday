@@ -43,6 +43,8 @@ class Track < ApplicationRecord
       artist_name: user.artist_name, 
       num_likes: likes.length,
       num_bakes: bakes.length,
+      num_comments: comments.length,
+      num_rebounds: all_rebounds.length - 1,
       baked: baked_for_user?(current_user),
       liked: liked_for_user?(current_user),
       og_track: og_track.try(:attributes),

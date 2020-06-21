@@ -45,6 +45,27 @@ const NumBakes = styled.p`
 	opacity: 0.5;
 `;
 
+const TopRight = styled(Link)`
+	position: absolute;
+	top: 0;
+	right: 5px;
+	display: flex;
+	flex-direction: column;
+	background: none !important;
+`;
+
+const SmallIconContainer = styled.div`
+	background: rgba(0, 0, 0, 0.4);
+	padding: 5px;
+	font-size: 16px;
+	margin-top: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	curosr: pointer;
+`;
+
 const DankButton = styled.div`
 	cursor: pointer;
 	font-size: 24px;
@@ -87,6 +108,12 @@ const PlayButton = styled(DankButton)`
 `;
 
 const IconContainer = styled.div`opacity: ${(props) => (props.solid ? 1 : 0.5)};`;
+
+const IconNumber = styled.div`
+	color: white;
+	opacity: 0.5;
+	font-size: 13px;
+`;
 
 const NameText = styled(Link)`
   display: block;
@@ -201,10 +228,43 @@ class SongBox extends React.Component {
 						</BakedButton>
 					</Tippy>
 				</BottomLeft>
+				<TopRight to={`/tracks/${this.props.trackInfo.id}`}>
+					{this.props.trackInfo.num_comments > 0 && (
+						<Tippy
+							theme="translucent"
+							content={`${this.props.trackInfo.num_comments} ${this.props.trackInfo.num_comments == 1
+								? 'comment'
+								: 'comments'}`}
+							placement="right"
+						>
+							<SmallIconContainer>
+								<IconContainer solid={this.props.trackInfo.num_comments}>📃</IconContainer>
+								<IconNumber>{this.props.trackInfo.num_comments}</IconNumber>
+							</SmallIconContainer>
+						</Tippy>
+					)}
+					{this.props.trackInfo.num_rebounds > 0 && (
+						<Tippy
+							theme="translucent"
+							content={`${this.props.trackInfo.num_rebounds} ${this.props.trackInfo.num_rebounds == 1
+								? 'rebound'
+								: 'rebounds'}`}
+							placement="right"
+						>
+							<SmallIconContainer>
+								<IconContainer solid={this.props.trackInfo.num_rebounds}>♺</IconContainer>
+								<IconNumber>{this.props.trackInfo.num_rebounds}</IconNumber>
+							</SmallIconContainer>
+						</Tippy>
+					)}
+				</TopRight>
 				<PlayButton onClick={this.props.enableTrack}>
 					<IconContainer>▶</IconContainer>
 				</PlayButton>
 				<SongImg
+					onClick={() => {
+						window.location = `/tracks/${this.props.trackInfo.id}`;
+					}}
 					onLoad={this.props.onLoadImage}
 					className={`name-${this.state.elName} songbox`}
 					src={this.props.trackInfo.photo}
