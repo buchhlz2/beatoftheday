@@ -60,6 +60,10 @@ class TrackShow extends React.Component {
 					expirament with it also.
 				</SmallerHeader>
 				<SmallerHeader>
+					Anything you upload to this site will be made available publicly and for other users on the site to
+					modify. Please be responsible in not uploading copyrighted media.
+				</SmallerHeader>
+				<SmallerHeader>
 					The "Fresh" tab shows music that has been uploaded most recently. The "Baked" tab is inteded to
 					express completeness, as in, it's not "half-baked". Users of the site can click the baked button on
 					any track to vote on wheather or not they believe the track to be "baked", or "done". The "Artists"
@@ -85,8 +89,17 @@ class TrackShow extends React.Component {
 					working on a better version of this paragraph.
 				</SmallerHeader>
 				<SmallerHeader>
-					Anything you upload to this site will be made available publicly and for other users on the site to
-					modify. Please be responsible in not uploading copyrighted media.
+					There is a fun element of surprise here, someone may think they have uploaded a boring lame track,
+					but it could easily get picked up by someone else who does something very interesting with it. Feel
+					free to upload tracks such as "2 minutes of frying bacon", or "the sound of the wind at sunset". Who
+					knows where it could take us.
+				</SmallerHeader>
+				<SmallerHeader>
+					Each track has a comments section. Please be nice to each other, or don't. But you are responsible
+					for what you say, whatever that means. I personally don't care what you say. This is nonesense...
+					Use the comments sections to request other people to add certain instruments you'd like to see in
+					your track. Use it to express the vibe of your track. Use it to give the BPM and key signiture of
+					your track so its easier for other people to play along with. Laugh at things.
 				</SmallerHeader>
 				<Wrapper />
 			</FlexContainer>
