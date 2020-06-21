@@ -54,10 +54,10 @@ class TrackShow extends React.Component {
 				<InnerHeader>🎵 About us:</InnerHeader>
 
 				<SmallerHeader>
-					I built beat of the day because of coronavirus. I used to go over to my friends houses to play
+					I built Beat of the Day because of coronavirus. I used to go over to my friends houses to play
 					music... alas, no more. The intention of the site is to be a place of free-form creativity. Where
-					anyone who is just starting out, or expiramenting can post their music and allow others to play and
-					expirament with it also.
+					anyone who is just starting out, or experimenting can post their music and allow others to play and
+					experiment with it also.
 				</SmallerHeader>
 				<SmallerHeader>
 					Anything you upload to this site will be made available publicly and for other users on the site to
@@ -65,18 +65,18 @@ class TrackShow extends React.Component {
 				</SmallerHeader>
 				<SmallerHeader>
 					The "Fresh" tab shows music that has been uploaded most recently. The "Baked" tab is inteded to
-					express completeness, as in, it's not "half-baked". Users of the site can click the baked button on
-					any track to vote on wheather or not they believe the track to be "baked", or "done". The "Artists"
+					express completeness, as in, it's not half-baked. Users of the site can click the "baked" button on
+					any track to vote on wheather or not they believe the track to be "baked", or done. The "Artists"
 					tab simply lists all the artists (users who have uploaded tracks) on the site. Each artist page
 					contains all of the tracks they have uploaded to the site.
 				</SmallerHeader>
 				<SmallerHeader>
-					A "Rebound" is an artistic reaction to a track, in the form of another track. Any track on beat of
-					the day can be rebounded. There are no rules to rebounds, but the intendid goal was to have
+					A "Rebound" is an artistic reaction to a track, in the form of another track. Any track on Beat of
+					the Day can be rebounded. There are no rules to rebounds, but the intendid goal was to have
 					different people from around the world be able to layer different instruments on top of each other.
 					So for example, I can upload a drum track, Lisa in France can rebound and add some bass, then Zach
-					can add guitar, Adam can sing on top of it, and then we can all vote on which version is baked.
-					Another way to think about it is a "re-mix".
+					can add guitar, Adam can sing on top of it, and then we can all vote on which version is "baked".
+					Another way to think about it is a re-mix.
 				</SmallerHeader>
 				<SmallerHeader>
 					In the unlikely event that someone actually makes money from music that was created on this site, I
@@ -95,11 +95,9 @@ class TrackShow extends React.Component {
 					knows where it could take us.
 				</SmallerHeader>
 				<SmallerHeader>
-					Each track has a comments section. Please be nice to each other, or don't. But you are responsible
-					for what you say, whatever that means. I personally don't care what you say. This is nonesense...
-					Use the comments sections to request other people to add certain instruments you'd like to see in
-					your track. Use it to express the vibe of your track. Use it to give the BPM and key signiture of
-					your track so its easier for other people to play along with. Laugh at things.
+					Each track has a comments section. You can use it to request other people to add certain instruments
+					you'd like to see in your track. Use it to express the vibe of your track. Use it to give the BPM
+					and key signiture of your track so its easier for other people to play along with. Laugh at things.
 				</SmallerHeader>
 				<Wrapper />
 			</FlexContainer>
