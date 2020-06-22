@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   
   def show_artist
     artist = User.find_by(artist_name: params[:id])
+    return head(404) unless artist.present?
+
     render json: {
       artist: artist.attributes,
       tracks: artist.tracks.order("created_at DESC").map do |track|
