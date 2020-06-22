@@ -15,12 +15,17 @@ const saveUploads = (attributes, callback) => {
 const upload = (file, image, attributes, callback) => {
 	const requestObj = {
 		method: 'GET',
-		url: '/s3_direct_post',
-		data: attributes
+		url: '/s3_direct_post'
 	};
 
 	// file upload
-	$.ajax(requestObj).then((data) => {
+	$.ajax(
+		Object.assign({}, requestObj, {
+			data: Object.assign({}, attributes, {
+				newPhotoName: undefined
+			})
+		})
+	).then((data) => {
 		let fd = new FormData();
 		_.each(data.fields, (value, key) => {
 			fd.append(key, value);
@@ -45,7 +50,13 @@ const upload = (file, image, attributes, callback) => {
 	});
 
 	// image upload
-	$.ajax(requestObj).then((data) => {
+	$.ajax(
+		Object.assign({}, requestObj, {
+			data: Object.assign({}, attributes, {
+				newTrackName: undefined
+			})
+		})
+	).then((data) => {
 		console.log(data);
 		let fd = new FormData();
 		_.each(data.fields, (value, key) => {

@@ -48,7 +48,7 @@ class TracksController < ApplicationController
       acl: 'public-read',
       content_length_range: 0..20000000, # 20 MB
       content_type: "application/octet-stream",
-      content_disposition: "attachment; filename=#{params[:newTrackName]}"
+      content_disposition: "attachment; filename=#{params[:newPhotoName].present? ? params[:newPhotoName] : params[:newTrackName]}"
     )
 
     url = s3_direct_post.url

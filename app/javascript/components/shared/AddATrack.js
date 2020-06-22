@@ -93,6 +93,7 @@ class AddATrack extends React.Component {
 			{
 				name: this.state.trackName,
 				newTrackName: this.state.selectedFile.name,
+				newPhotoName: this.state.selectedImage.name,
 				reboundTrackId: this.props.reboundTrack ? this.props.reboundTrack.id : undefined
 			},
 			(res) => {
