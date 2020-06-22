@@ -11,6 +11,13 @@ class TracksController < ApplicationController
   end
 
   def show
+    @track = Track.find(params[:id])
+    return head(404) unless @track.present?
+
+    @options.merge!({
+      page_photo: @track.photo,
+      page_title: "#{@track.name} - #{@track.user.artist_name}"
+    })
     render 'pages/home'
   end
 
@@ -28,6 +35,7 @@ class TracksController < ApplicationController
 
   def show_track
     @track = Track.find(params[:id])
+    return head(404) unless @track.present?
 
     render json: @track.all_rebounds_attributes(current_user)
   end

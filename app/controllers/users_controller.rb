@@ -8,6 +8,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    artist = User.find_by(artist_name: params[:id])
+    return head(404) unless artist.present?
+    @options.merge!({
+      page_title: artist.artist_name,
+    })
     render 'pages/home'
   end
   

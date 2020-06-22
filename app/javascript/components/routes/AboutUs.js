@@ -55,7 +55,7 @@ class TrackShow extends React.Component {
 				<InnerHeader>🎵 About us:</InnerHeader>
 
 				<SmallerHeader>
-					I built Beat of the Day because of coronavirus. I used to go over to my friends houses to play
+					I built Beat of the Day because of quarantine. I used to go over to my friends houses to play
 					music... alas, no more. The intention of the site is to be a place of free-form creativity. Where
 					anyone who is just starting out, or experimenting can post their music and allow others to play and
 					experiment with it also.
