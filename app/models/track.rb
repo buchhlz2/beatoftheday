@@ -1,4 +1,8 @@
+require 'sendgrid-ruby'
+
 class Track < ApplicationRecord
+  include SendGrid
+
   validates :name, presence: true
   validates :photo, presence: true
   validates :user, presence: true
@@ -10,6 +14,10 @@ class Track < ApplicationRecord
   belongs_to :rebound_from, class_name: 'Track', foreign_key: 'rebound_track_id', optional: true
 
   scope :baked, -> { joins(:likes).where("likes.baked = true") }
+
+  def artist
+    user
+  end
 
   def bakes
     likes.where(baked: true)
@@ -79,5 +87,19 @@ class Track < ApplicationRecord
 
   def hours_old
     ((Time.now - created_at) / 3600).round
+  end
+
+  def send_rebound_email
+    from = Email.new(email: 'yall@beatoftheday.org')
+    to = Email.new(email: rebound_from.artist.email)
+    subject = "#{artist.artist_name} made a rebound from #{rebound_from.name}"
+    content = Content.new(type: 'text/plain', value: "<a href='https://www.beatoftheday.org/tracks/#{track.id}'>Check it out here.</a>")
+    mail = Mail.new(from, subject, to, content)
+
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    response = sg.client.mail._('send').post(request_body: mail.to_json)
+    puts response.status_code
+    puts response.body
+    puts response.headers
   end
 end
