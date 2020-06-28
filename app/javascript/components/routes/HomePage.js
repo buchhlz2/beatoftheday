@@ -148,7 +148,8 @@ class HomePage extends React.Component {
 					can download your track and create a 'rebound' of it: a new track based on the original with
 					additional layers, say a new drum part, or singing on top. Full creative freedom is encouraged.
 					Anything you upload to this site is available for others to modify. Worried about copyrights and
-					ownership? So are we, <Link to="/about-us">click here</Link> to learn more.
+					ownership? So are we, <Link to="/about-us">click here</Link> to learn more. 
+					Want to learn music? Check out <a target="_blank" href="https://www.tunelark.com/">Tunelark</a>.
 				</SmallerHeader>
 				<InnerHeader>🎵 Newest tracks:</InnerHeader>
 
