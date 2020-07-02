@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import $ from 'jquery';
 import Tippy from '@tippyjs/react';
+import artistUrl from '../util/artistUrl';
 
 const SongBoxWrapper = styled.div`
 	display: flex;
@@ -216,7 +217,7 @@ class SongBox extends React.Component {
 					</NameText>
 					<NameText
 						style={{ fontSize: this.props.fontSize || 14 }}
-						to={`/artist/${this.props.trackInfo.artist_name}`}
+						to={artistUrl(this.props.trackInfo.artist_name)}
 					>
 						{this.props.trackInfo.artist_name}
 					</NameText>

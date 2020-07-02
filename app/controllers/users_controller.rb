@@ -8,7 +8,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    artist = User.find_by(artist_name: params[:id])
+    good_name = User.url_to_artist_name(params[:id])
+
+    artist = User.find_by(artist_name: good_name)
     return head(404) unless artist.present?
     @options.merge!({
       page_title: artist.artist_name,
@@ -17,7 +19,9 @@ class UsersController < ApplicationController
   end
   
   def show_artist
-    artist = User.find_by(artist_name: params[:id])
+    good_name = User.url_to_artist_name(params[:id])
+
+    artist = User.find_by(artist_name: good_name)
     return head(404) unless artist.present?
 
     render json: {

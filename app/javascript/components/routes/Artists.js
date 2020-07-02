@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
+import artistUrl from '../util/artistUrl'
 
 const InnerHeader = styled.div`
 	width: 100%;
@@ -71,7 +72,7 @@ class Artists extends React.Component {
 				{this.state.artists.map((artist) => {
 					return (
 						<ArtistBox key={artist.id}>
-							<ArtistName to={`/artist/${artist.artist_name}`}>{artist.artist_name}</ArtistName>
+							<ArtistName to={artistUrl(artist.artist_name)}>{artist.artist_name}</ArtistName>
 						</ArtistBox>
 					);
 				})}
