@@ -43,7 +43,7 @@ const SongBoxWrapper = styled.div`
 	}
 `;
 
-const Rank = styled.div`
+export const Rank = styled.div`
 	font-size: 16px;
 	position: absolute;
 	top: 0px;
@@ -51,6 +51,10 @@ const Rank = styled.div`
 	color: #bdbdbd;
 	text-align: right;
 	width: 20px;
+
+	@media all and (max-width: 800px) {
+		left: 5px;
+	}
 `;
 
 const InnerHeader = styled.div`
@@ -62,6 +66,10 @@ const InnerHeader = styled.div`
 	justify-content: space-between;
 	font-size: 23px;
 	color: #8b8c90;
+
+	@media all and (max-width: ${window.B_R_E_A_K_P_O_I_N_T}px) {
+		justify-content: center;
+	}
 `;
 
 const SmallerHeader = styled.div`

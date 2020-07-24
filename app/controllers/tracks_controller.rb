@@ -27,7 +27,7 @@ class TracksController < ApplicationController
   def baked
     baked_tracks = Track.baked.uniq.sort_by do |track|
       track.check_the_oven
-    end.reverse.first(20)
+    end.reverse.first(12)
 
     render json: {
       baked_tracks: baked_tracks.map do |track|

@@ -1,18 +1,22 @@
-<div class="outer-wrapper" style="display: flex; flex-direction: column; align-items: center;">
+<div class="outer-wrapper">
   <div class="header">
-    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <a href="/" style="display: flex; align-items: center; padding-right: 10px;">🎵 Beat of the Day</a>
+    <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
       <div style="">
-        <span style="margin-right: 20px;">
-          <%= link_to('Info', '/about-us') %>
-        </span>
         <% if user_signed_in? %>
-          <span><%= current_user.artist_name %></span>
+          <span><a href="/artist/<%= current_user.artist_name %>"><%= current_user.artist_name %></a></span>
+          |
+          <span>
+          <span>
+            <%= link_to('Info', '/about-us') %>
+          </span></span>
           |
           <span>
           <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
           </span>
         <% else %>
+          <span style="margin-right: 20px;">
+            <%= link_to('Info', '/about-us') %>
+          </span>
           <span>
             <%= link_to('Login', new_user_session_path) %>
           </span>
@@ -28,3 +32,4 @@
   </a>
   <%= yield %>
 </div>
+

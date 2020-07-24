@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
+import { Rank } from './HomePage';
 
 const FlexContainer = styled.div`
 	display: flex;
@@ -10,7 +11,6 @@ const FlexContainer = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
-	overflow: hidden;
 	@media all and (max-width: 800px) {
 		align-items: flex-start;
 		padding-left: 5px;
@@ -25,7 +25,6 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	margin-bottom: 0px;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
-	overflow: hidden;
 
 	@media all and (max-width: 800px) {
 		max-width: 90%;
@@ -34,24 +33,11 @@ const Wrapper = styled.div`
 `;
 
 const SongBoxWrapper = styled.div`
-	width: 60%;
 	position: relative;
 	margin-bottom: 30px;
 	margin-top: 20px;
 	@media all and (max-width: 800px) {
 		width: 100%;
-	}
-`;
-
-const Rank = styled.div`
-	font-size: 16px;
-	position: absolute;
-	top: 0px;
-	left: 8px;
-	color: #666;
-
-	@media all and (max-width: 800px) {
-		left: 8px;
 	}
 `;
 
@@ -70,7 +56,7 @@ const SmallerHeader = styled.div`
 	margin-top: 30px;
 	line-height: 22px;
 	font-size: 16px;
-	width: 60%;
+	width: ${window.__good_height__};
 	max-width: 95vw;
 	margin-bottom: 15px;
 	@media all and (max-width: 800px) {
@@ -137,19 +123,14 @@ class Baked extends React.Component {
 		return (
 			<FlexContainer>
 				<InnerHeader>🧁 Baked tracks:</InnerHeader>
-				<SmallerHeader>
-					Tracks are ranked based on a combination of how new they are, and how many 'bakes' they have. The
-					forumla is (100 hours - how old the track is in hours) * number of bakes.{' '}
-					<Link to="/about-us">Click here</Link> to for more info. Want to learn music? Check out <a target="_blank" href="https://www.tunelark.com/">Tunelark</a>.
-				</SmallerHeader>
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
 							<SongBoxWrapper key={obj.id}>
-								<Rank>{i + 1}.</Rank>
+								<Rank>{i + 1}</Rank>
 								<SongBox
-									width={'100%'}
-									height={'auto'}
+									width={window.__good_height__}
+									height={window.__good_height__}
 									trackInfo={obj}
 									enableTrack={() => {
 										this.enableTrack(i);

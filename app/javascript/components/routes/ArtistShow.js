@@ -5,7 +5,7 @@ import $ from 'jquery';
 import SongBox from '../shared/SongBox';
 
 const Wrapper = styled.div`
-	padding: 20px;
+	padding-top: 20px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 `;
 
 const SongBoxWrapper = styled.div`
-	height: 200px;
+	// height: 200px;
 	margin-bottom: 50px;
 	margin-right: 20px;
 `;
@@ -66,8 +66,8 @@ class ArtistShow extends React.Component {
 						return (
 							<SongBoxWrapper key={obj.id}>
 								<SongBox
-									width={'auto'}
-									height={'200px'}
+									width={'271px'}
+									height={'271px'}
 									trackInfo={obj}
 									enableTrack={() => {
 										window.masterShowTrack(this.state.tracks[i], true);

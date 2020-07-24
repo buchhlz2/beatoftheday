@@ -9,8 +9,6 @@ import AddATrack from '../shared/AddATrack';
 
 var track = {};
 
-var goodHeight = window.innerWidth > window.B_R_E_A_K_P_O_I_N_T ? '400px' : '271px';
-
 const Wrapper = styled.div`
 	margin-top: 20px;
 	padding: 0;
@@ -186,7 +184,7 @@ class TrackShow extends React.Component {
 					<SongBox
 						fontSize={40}
 						width={'100%'}
-						height={goodHeight}
+						height={window.__good_height__}
 						trackInfo={track}
 						enableTrack={() => {
 							window.masterShowTrack(track, true);
@@ -196,7 +194,7 @@ class TrackShow extends React.Component {
 						}}
 					/>
 				</SongBoxWrapper>
-				<CommentBoxWrapper style={{ height: goodHeight }}>
+				<CommentBoxWrapper style={{ height: window.__good_height__ }}>
 					<CommentBox trackId={track.id} />
 				</CommentBoxWrapper>
 				<ReboundHeader>{track.rebounds.length > 0 ? 'Remixes:' : ''}</ReboundHeader>
@@ -208,7 +206,7 @@ class TrackShow extends React.Component {
 									<SongBox
 										fontSize={40}
 										width={'100%'}
-										height={goodHeight}
+										height={window.__good_height__}
 										trackInfo={rebound}
 										enableTrack={() => {
 											window.masterShowTrack(rebound, true);
@@ -221,7 +219,7 @@ class TrackShow extends React.Component {
 									/>
 								</SongBoxWrapper>
 
-								<CommentBoxWrapper style={{ height: goodHeight }}>
+								<CommentBoxWrapper style={{ height: window.__good_height__ }}>
 									<CommentBox trackId={rebound.id} />
 								</CommentBoxWrapper>
 							</ReboundRow>

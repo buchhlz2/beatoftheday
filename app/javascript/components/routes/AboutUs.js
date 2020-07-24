@@ -10,6 +10,7 @@ const FlexContainer = styled.div`
 	flex-direction: column;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 	overflow: hidden;
+	padding-top: 20px;
 `;
 
 const Wrapper = styled.div`
@@ -52,8 +53,6 @@ class TrackShow extends React.Component {
 	render() {
 		return (
 			<FlexContainer>
-				<InnerHeader>🎵 About us:</InnerHeader>
-
 				<SmallerHeader>
 					Beat of the Day is a community for musicians. Have you ever wanted to jam with people all around the
 					world in different places? Simply upload any track you're working on, and anyone else on the site
@@ -78,6 +77,10 @@ class TrackShow extends React.Component {
 					an upvote button for a track to make it to the "Baked" tab. The "Artists" tab simply lists all the
 					artists (users who have uploaded tracks) on the site. Each artist page contains all of the tracks
 					they have uploaded to the site.
+				</SmallerHeader>
+				<SmallerHeader>
+					"Baked" tracks are ranked based on a combination of how new they are, and how many 'bakes' they
+					have. The forumla is (100 hours - how old the track is in hours) * number of 'bakes'.{' '}
 				</SmallerHeader>
 				<SmallerHeader>
 					A remix can be any artistic reaction to a track, in the form of another track. Any track on Beat of
