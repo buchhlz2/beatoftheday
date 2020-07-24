@@ -133,7 +133,8 @@ class HomePage extends React.Component {
 			$.get('/tracks').done((res) => {
 				this.setState(
 					{
-						tracks: res.tracks
+						tracks: res.tracks,
+						tracksLength: res.length
 					},
 					() => {
 						if (masterAudioTag.paused) this.enableTrack(0, false);
@@ -193,9 +194,13 @@ class HomePage extends React.Component {
 						);
 					})}
 				</Wrapper>
-				<ShowMoreButton
-					onClick={this.showMoreTracks}
-				>Show more</ShowMoreButton>
+				{
+					this.state.page * 10 < this.state.tracksLength && 
+						<ShowMoreButton
+							onClick={this.showMoreTracks}
+						>Show more
+						</ShowMoreButton>
+				}
 				<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
 			</FlexContainer>
 		);
