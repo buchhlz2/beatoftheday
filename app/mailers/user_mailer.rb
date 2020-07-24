@@ -1,6 +1,10 @@
 class UserMailer < ApplicationMailer
   default :from => 'Beat of the Day <no-reply@beatoftheday.org>'
 
+  def self.app_host
+    Rails.env.production? ? "https://www.beatoftheday.org" : "localhost:3001"
+  end
+
   def send_rebound_email(track)
     @track = track
     @old_track = @track.rebound_from
