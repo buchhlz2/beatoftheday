@@ -4,9 +4,10 @@ class TracksController < ApplicationController
 
   def index
     render json: {
-      tracks: Track.all.order("created_at DESC LIMIT 10").preload(:user, :likes).map do |track|
+      tracks: Track.paginate(page: params[:page], per_page: 10).preload(:user, :likes).order("created_at desc").map do |track|
         track.show_attributes(current_user)
-      end
+      end,
+      length: Track.count
     }
   end
 
