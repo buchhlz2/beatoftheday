@@ -82,7 +82,7 @@ const AddATrackLink = styled.a`
 	cursor: pointer;
 	font-size: 24px;
 	padding: 5px;
-	width: 100%;
+	width: 300px;
 	height: 100px;
 	display: flex;
 	align-items: center;
@@ -94,20 +94,28 @@ const AddATrackLink = styled.a`
 	bottom: 0;
 	border-radius: 3px;
 	opacity: 0.8;
+	background: #aa32a1;
+	align-self: center;
+	color: white !important;
 
 	&:hover {
 		box-shadow: 0 0px 15px 6px #aa32a1;
 		bottom: 5px;
-		background: #aa32a1;
+		background-color: #aa32a1;
 	}
 `;
 
 const ShowMoreButton = styled.div`
-	margin: 100px;
-	border: 2px solid orangered;
-    font-size: 20px;
+	margin: -50px 100px 100px 100px;
     align-self: center;
-    cursor: pointer;
+	cursor: pointer;
+	text-decoration: underline;
+    color: #666;
+	font-size: 20px;
+	
+	&:hover {
+		text-decoration: none;
+	}
 `
 
 class HomePage extends React.Component {
@@ -198,10 +206,10 @@ class HomePage extends React.Component {
 					this.state.page * 10 < this.state.tracksLength && 
 						<ShowMoreButton
 							onClick={this.showMoreTracks}
-						>Show more
+					>Show more ↓
 						</ShowMoreButton>
 				}
-				<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
+				<AddATrackLink href="/add-a-track">Add a new track!</AddATrackLink>
 			</FlexContainer>
 		);
 	}
