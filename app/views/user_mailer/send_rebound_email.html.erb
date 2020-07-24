@@ -7,7 +7,7 @@
     Dear <%= @old_track.artist.artist_name %>,
     <br>
     <br>
-    <%= @track.artist.artist_name %> rebounded your track "<%= @old_track.name %>".
+    <%= @track.artist.artist_name %> remixed your track "<%= @old_track.name %>".
     <br>
     <a href="<%= "#{UserMailer.app_host}/tracks/#{@track.id}" %>">Click here to check it out!</a> 
     <br>

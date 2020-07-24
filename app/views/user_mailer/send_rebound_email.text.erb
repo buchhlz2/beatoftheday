@@ -1,6 +1,6 @@
 Dear <%= @old_track.artist.artist_name %>,
 
-<%= @track.artist.artist_name %> rebounded your track "<%= @old_track.name %>".
+<%= @track.artist.artist_name %> remixed your track "<%= @old_track.name %>".
 
 Go here to check it out:
 <%= "#{UserMailer.app_host}/tracks/#{@track.id}" %> 

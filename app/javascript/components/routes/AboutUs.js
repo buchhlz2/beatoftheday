@@ -73,10 +73,10 @@ class TrackShow extends React.Component {
 					they have uploaded to the site.
 				</SmallerHeader>
 				<SmallerHeader>
-					A "Rebound" is an artistic reaction to a track, in the form of another track. Any track on Beat of
-					the Day can be rebounded. There are no rules to rebounds, but the intendid goal was to have
+					A remix can be any artistic reaction to a track, in the form of another track. Any track on Beat of
+					the Day can be remixed. There are no rules to remixes, but the intendid goal was to have
 					different people from around the world be able to layer different instruments on top of each other.
-					So for example, I can upload a drum track, Lisa in France can rebound and add some bass, then Zach
+					So for example, I can upload a drum track, Lisa in France can remix and add some bass, then Zach
 					can add guitar, Adam can sing on top of it, and then we can all vote on which version is "baked".
 					Another way to think about it is a re-mix.
 				</SmallerHeader>
@@ -94,11 +94,11 @@ class TrackShow extends React.Component {
 				<SmallerHeader>
 					In the unlikely event that someone actually makes money from music that was created on this site, I
 					will do my damndest to make sure the people involved get paid fairly for their creations. For now
-					the system is as follows: I have a record of all the different chains of rebounds on the site. For
+					the system is as follows: I have a record of all the different chains of remixes on the site. For
 					any track that makes money, the proceeds will be split equally among everyone upstream of the
-					published track. Since there are no rules to rebounds, this means the published track may sound
+					published track. Since there are no rules to remixes, this means the published track may sound
 					nothing like the original, but the original artist will get paid in this unlikely event. This means
-					it is up to you as the artist to choose wheather your work is original or a rebound. Anyone may also
+					it is up to you as the artist to choose wheather your work is original or a remix. Anyone may also
 					record a more polished, releasable version of any track at any time and give credit to the original
 					artists. My lawyer is working on a better version of this paragraph.
 				</SmallerHeader>
@@ -106,6 +106,10 @@ class TrackShow extends React.Component {
 				<SmallerHeader />
 				<SmallerHeader />
 				<SmallerHeader />
+				<SmallerHeader />
+				<SmallerHeader />
+				<SmallerHeader />
+				<SmallerHeader>I've found this article inspiring:</SmallerHeader>
 				<SmallerHeader>
 					<a href="https://blog.viktorbezic.com/post/154553724265/special-wrongness">
 						https://blog.viktorbezic.com/post/154553724265/special-wrongness

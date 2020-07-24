@@ -172,13 +172,13 @@ class TrackShow extends React.Component {
 					(track.rebound_from.id !== track.og_track.id ? (
 						<React.Fragment>
 							<ReboundInfo to={`/tracks/${track.rebound_from.id}`}>
-								Rebounded from: {track.rebound_from.name}
+								Remixed from: {track.rebound_from.name}
 							</ReboundInfo>
 							<OGInfo to={`/tracks/${track.og_track.id}`}>Original track: {track.og_track.name}</OGInfo>
 						</React.Fragment>
 					) : (
 						<ReboundInfo to={`/tracks/${track.og_track.id}`}>
-							Rebounded from original track: {track.og_track.name}
+							Remixed from original track: {track.og_track.name}
 						</ReboundInfo>
 					))}
 				<SongBoxWrapper>
@@ -198,7 +198,7 @@ class TrackShow extends React.Component {
 				<CommentBoxWrapper style={{ height: this.state.imgHeight }}>
 					<CommentBox trackId={track.id} />
 				</CommentBoxWrapper>
-				<ReboundHeader>{track.rebounds.length > 0 ? 'Rebounds:' : ''}</ReboundHeader>
+				<ReboundHeader>{track.rebounds.length > 0 ? 'Remixes:' : ''}</ReboundHeader>
 				<ReboundsBox>
 					{track.rebounds.map((rebound) => {
 						return (
@@ -230,9 +230,9 @@ class TrackShow extends React.Component {
 
 				{!!window.OPTIONS.current_user ? (
 					<CreateARebound>
-						<ReboundHeader>Create a rebound of {track.name}:</ReboundHeader>
+						<ReboundHeader>Create a remix of {track.name}:</ReboundHeader>
 						<SmallerHeader>
-							(you can click into any of the previous rebounds if you want to rebound off any of those).
+							(you can click into any of the previous tracks if you want to remix off any of those).
 						</SmallerHeader>
 						<AddATrackBox>
 							<AddATrack reboundTrack={track} />

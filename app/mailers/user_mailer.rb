@@ -12,14 +12,14 @@ class UserMailer < ApplicationMailer
 
     mail(
       to: @old_track.artist.email,
-      subject: "Somebody rebounded your track \"#{@old_track.name}\" on Beat of the Day!",
+      subject: "Somebody remixed your track \"#{@old_track.name}\" on Beat of the Day!",
     )
   end
 
-  def send_at_mention_email
-    mail(
-      to: "team@tunelark.com",
-      subject: "Alert: No future lessons scheduled between #{@customer.full_name} and #{@instructor.full_name}",
-    )
-  end
+  # def send_at_mention_email
+  #   mail(
+  #     to: "team@tunelark.com",
+  #     subject: "Alert: No future lessons scheduled between #{@customer.full_name} and #{@instructor.full_name}",
+  #   )
+  # end
 end

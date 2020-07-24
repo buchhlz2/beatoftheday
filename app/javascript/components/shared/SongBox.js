@@ -255,8 +255,8 @@ class SongBox extends React.Component {
 						<Tippy
 							theme="translucent"
 							content={`${this.props.trackInfo.num_rebounds} ${this.props.trackInfo.num_rebounds == 1
-								? 'rebound'
-								: 'rebounds'}`}
+								? 'remix'
+								: 'remixes'}`}
 							placement="right"
 						>
 							<SmallIconContainer>
