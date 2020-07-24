@@ -9,6 +9,8 @@ import AddATrack from '../shared/AddATrack';
 
 var track = {};
 
+var goodHeight = window.innerWidth > window.B_R_E_A_K_P_O_I_N_T ? '400px' : '271px';
+
 const Wrapper = styled.div`
 	margin-top: 20px;
 	padding: 0;
@@ -41,11 +43,12 @@ const ReboundsBox = styled.div`
 const ReboundRow = styled.div`
 	width: 100%;
 	display: flex;
+	margin-top: 15px;
 `;
 
 const ReboundHeader = styled.h3`
 	font-size: 40px;
-	margin-bottom: 10px !important;
+	margin-bottom: 0;
 `;
 
 const CreateARebound = styled.div`
@@ -107,13 +110,11 @@ const CreatedAt = styled.p`
 
 const SongBoxWrapper = styled.div`
 	width: 66.666%;
-	margin-left: -30px;
-	margin-right: 20px;
 	margin-top: 30px;
 `;
 
 const CommentBoxWrapper = styled.div`
-	width: calc(33.333% + 10px);
+	width: calc(33.333%);
 	margin-top: 30px;
 `;
 
@@ -185,7 +186,7 @@ class TrackShow extends React.Component {
 					<SongBox
 						fontSize={40}
 						width={'100%'}
-						height={'100%'}
+						height={goodHeight}
 						trackInfo={track}
 						enableTrack={() => {
 							window.masterShowTrack(track, true);
@@ -195,7 +196,7 @@ class TrackShow extends React.Component {
 						}}
 					/>
 				</SongBoxWrapper>
-				<CommentBoxWrapper style={{ height: this.state.imgHeight }}>
+				<CommentBoxWrapper style={{ height: goodHeight }}>
 					<CommentBox trackId={track.id} />
 				</CommentBoxWrapper>
 				<ReboundHeader>{track.rebounds.length > 0 ? 'Remixes:' : ''}</ReboundHeader>
@@ -207,20 +208,20 @@ class TrackShow extends React.Component {
 									<SongBox
 										fontSize={40}
 										width={'100%'}
-										height={'100%'}
+										height={goodHeight}
 										trackInfo={rebound}
 										enableTrack={() => {
 											window.masterShowTrack(rebound, true);
 										}}
 										onLoadImage={(e) => {
-											let newState = {};
-											newState[`imgHeight-${rebound.id}`] = e.target.height;
-											this.setState(newState);
+											// let newState = {};
+											// newState[`imgHeight-${rebound.id}`] = e.target.height;
+											// this.setState(newState);
 										}}
 									/>
 								</SongBoxWrapper>
 
-								<CommentBoxWrapper style={{ height: this.state[`imgHeight-${rebound.id}`] }}>
+								<CommentBoxWrapper style={{ height: goodHeight }}>
 									<CommentBox trackId={rebound.id} />
 								</CommentBoxWrapper>
 							</ReboundRow>

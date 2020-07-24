@@ -49,15 +49,16 @@ body,
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	background: url(https://beatoftheday.s3.us-west-1.amazonaws.com/audio%2F78f890d8-4e5c-4c37-b95e-d878fd30ff0a%2Fdlanham-Game-Hunter-Empty.jpg), #00b3de;
-    background-position: left 0 bottom 442px;
-    background-size: 1180px 780px;
+	background: url(https://beatoftheday.s3.us-west-1.amazonaws.com/audio%2F78f890d8-4e5c-4c37-b95e-d878fd30ff0a%2Fdlanham-Game-Hunter-Empty.jpg),
+		#00b3de;
+	background-position: left 0 bottom 442px;
+	background-size: 1180px 780px;
 	box-shadow: 0 8px 6px -6px #b9b9b9;
 }
 
 .logo-cool {
 	width: 100%;
-	max-width: 1080px;
+	max-width: 994px;
 	height: intrinsic;
 }
 

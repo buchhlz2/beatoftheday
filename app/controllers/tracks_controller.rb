@@ -4,7 +4,7 @@ class TracksController < ApplicationController
 
   def index
     page = params[:page] || 1
-    tracks = Track.paginate(page: page, per_page: 10).preload(:user).order("created_at desc").to_a
+    tracks = Track.paginate(page: page, per_page: 12).preload(:user).order("created_at desc").to_a
     page_of_tracks = paginated_tracks(tracks)
 
     render json: {

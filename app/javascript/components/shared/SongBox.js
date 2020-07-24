@@ -11,7 +11,8 @@ const SongBoxWrapper = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	margin: 0px;
-	margin-left: 30px;
+	margin-left: 0px;
+	margin-right: 30px;
 	position: relative;
 	border-radius: 3px;
 	overflow: hidden;
@@ -28,10 +29,12 @@ const SongBoxWrapper = styled.div`
 	}
 `;
 
-const SongImg = styled.img`
+const SongImg = styled.div`
 	height: 100px;
 	width: 180px;
 	transition: width 1.2s ease;
+	background-image: ${(props) => `url(${props.src})`};
+	background-size: cover;
 `;
 
 const BottomLeft = styled.div`

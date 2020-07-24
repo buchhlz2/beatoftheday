@@ -55,6 +55,13 @@ class TrackShow extends React.Component {
 				<InnerHeader>🎵 About us:</InnerHeader>
 
 				<SmallerHeader>
+					Beat of the Day is a community for musicians. Have you ever wanted to jam with people all around the
+					world in different places? Simply upload any track you're working on, and anyone else on the site
+					can download your track and create a remix of it: a new track based on the original with additional
+					layers, say a new drum part, or singing on top. Full creative freedom is encouraged. Anything you
+					upload to this site is available for others to modify.
+				</SmallerHeader>
+				<SmallerHeader>
 					I built Beat of the Day because of quarantine. I used to go over to my friends houses to play
 					music... alas, no more. The intention of the site is to be a place of free-form creativity. Where
 					anyone who is just starting out, or experimenting can post their music and allow others to play and
@@ -74,11 +81,11 @@ class TrackShow extends React.Component {
 				</SmallerHeader>
 				<SmallerHeader>
 					A remix can be any artistic reaction to a track, in the form of another track. Any track on Beat of
-					the Day can be remixed. There are no rules to remixes, but the intendid goal was to have
-					different people from around the world be able to layer different instruments on top of each other.
-					So for example, I can upload a drum track, Lisa in France can remix and add some bass, then Zach
-					can add guitar, Adam can sing on top of it, and then we can all vote on which version is "baked".
-					Another way to think about it is a re-mix.
+					the Day can be remixed. There are no rules to remixes, but the intendid goal was to have different
+					people from around the world be able to layer different instruments on top of each other. So for
+					example, I can upload a drum track, Lisa in France can remix and add some bass, then Zach can add
+					guitar, Adam can sing on top of it, and then we can all vote on which version is "baked". Another
+					way to think about it is a re-mix.
 				</SmallerHeader>
 				<SmallerHeader>
 					There is a fun element of surprise here, someone may think they have uploaded a boring, lame track,

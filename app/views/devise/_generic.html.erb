@@ -3,6 +3,9 @@
     <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
       <a href="/" style="display: flex; align-items: center; padding-right: 10px;">🎵 Beat of the Day</a>
       <div style="">
+        <span style="margin-right: 20px;">
+          <%= link_to('Info', '/about-us') %>
+        </span>
         <% if user_signed_in? %>
           <span><%= current_user.artist_name %></span>
           |

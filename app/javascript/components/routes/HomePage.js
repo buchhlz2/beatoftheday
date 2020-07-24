@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 	padding: 20px 0 20px 0;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	flex-wrap: wrap;
 	margin-bottom: 50px;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
@@ -34,8 +34,8 @@ const Wrapper = styled.div`
 const SongBoxWrapper = styled.div`
 	height: 200px;
 	margin-bottom: 50px;
-	margin-right: 10px;
-	margin-left: 10px;
+	margin-right: 0px;
+	margin-left: 30px;
 	position: relative;
 
 	@media all and (max-width: 800px) {
@@ -47,24 +47,21 @@ const Rank = styled.div`
 	font-size: 16px;
 	position: absolute;
 	top: 0px;
-	left: 8px;
-	color: #666;
-
-	@media all and (max-width: 800px) {
-		left: 8px;
-	}
+	left: -33px;
+	color: #bdbdbd;
+	text-align: right;
+	width: 20px;
 `;
 
 const InnerHeader = styled.div`
 	width: 100%;
-	margin-top: 30px;
-	margin-bottom: 10px;
-	height: 50px;
+	margin-top: 35px;
+	margin-bottom: 15px;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 24px;
-	color: #61646d;
+	align-items: start;
+	justify-content: space-between;
+	font-size: 23px;
+	color: #8b8c90;
 `;
 
 const SmallerHeader = styled.div`
@@ -107,16 +104,16 @@ const AddATrackLink = styled.a`
 
 const ShowMoreButton = styled.div`
 	margin: -50px 100px 100px 100px;
-    align-self: center;
+	align-self: center;
 	cursor: pointer;
 	text-decoration: underline;
-    color: #666;
+	color: #666;
 	font-size: 20px;
-	
+
 	&:hover {
 		text-decoration: none;
 	}
-`
+`;
 
 class HomePage extends React.Component {
 	constructor(props) {
@@ -158,39 +155,28 @@ class HomePage extends React.Component {
 	};
 
 	showMoreTracks = () => {
-		const newPage = this.state.page + 1
-		this.setState({page: newPage})
+		const newPage = this.state.page + 1;
+		this.setState({ page: newPage });
 		$.get(`/tracks?page=${newPage}`).done((res) => {
-			console.log(res)
-			this.setState(
-				{
-					tracks: this.state.tracks.concat(res.tracks)
-				}
-			)
+			console.log(res);
+			this.setState({
+				tracks: this.state.tracks.concat(res.tracks)
+			});
 		});
-	}
+	};
 
 	render() {
 		return (
 			<FlexContainer>
-				<SmallerHeader>
-					Beat of the Day is a community for musicians. Have you ever wanted to jam with people all around the
-					world in different places? Simply upload any track you're working on, and anyone else on the site
-					can download your track and create a remix of it: a new track based on the original with
-					additional layers, say a new drum part, or singing on top. Full creative freedom is encouraged.
-					Anything you upload to this site is available for others to modify. Worried about copyrights and
-					ownership? So are we, <Link to="/about-us">click here</Link> to learn more. 
-					Want to learn music? Check out <a target="_blank" href="https://www.tunelark.com/">Tunelark</a>.
-				</SmallerHeader>
 				<InnerHeader>🎵 Newest tracks:</InnerHeader>
 
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
 							<SongBoxWrapper key={obj.id}>
-								<Rank>{i + 1}.</Rank>
+								<Rank>{i + 1}</Rank>
 								<SongBox
-									width={'auto'}
+									width={'271px'}
 									height={'200px'}
 									key={obj.link}
 									trackInfo={obj}
@@ -202,13 +188,9 @@ class HomePage extends React.Component {
 						);
 					})}
 				</Wrapper>
-				{
-					this.state.page * 10 < this.state.tracksLength && 
-						<ShowMoreButton
-							onClick={this.showMoreTracks}
-					>Show more ↓
-						</ShowMoreButton>
-				}
+				{this.state.page * window.__page_unit__ < this.state.tracksLength && (
+					<ShowMoreButton onClick={this.showMoreTracks}>Show more ↓</ShowMoreButton>
+				)}
 				<AddATrackLink href="/add-a-track">Add a new track!</AddATrackLink>
 			</FlexContainer>
 		);
