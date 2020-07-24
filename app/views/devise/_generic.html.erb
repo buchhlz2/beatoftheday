@@ -4,7 +4,7 @@
       <a href="/" style="display: flex; align-items: center; padding-right: 10px;">🎵 Beat of the Day</a>
       <div style="">
         <% if user_signed_in? %>
-          <span><%= current_user.email.split('@').first %></span>
+          <span><%= current_user.artist_name %></span>
           |
           <span>
           <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
