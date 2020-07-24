@@ -62,11 +62,11 @@ class TracksController < ApplicationController
     aws_url = params[:location]
     aws_photo_url = params[:image_location]
 
-    newTrack =  if (params[:reboundTrackId].present?)
+    newTrack = if (params[:reboundTrackId].present?)
       rebound_from_track = Track.find_by(id: params[:reboundTrackId])
       return head(404) unless rebound_from_track.present?
 
-      Track.create!(
+      track = Track.create!(
         user: current_user,
         link: aws_url,
         photo: aws_photo_url,
@@ -74,8 +74,10 @@ class TracksController < ApplicationController
         audio_type: aws_url.split('.').last,
         rebound_track_id: rebound_from_track.id
       )
-      # track.send_rebound_email
-      # track
+
+      UserMailer.send_rebound_email(track).deliver_now
+
+      track
     else
       Track.create!(
         user: current_user,
