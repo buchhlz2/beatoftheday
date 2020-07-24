@@ -3,7 +3,7 @@
     <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
       <div style="">
         <% if user_signed_in? %>
-          <span><a href="/artist/<%= current_user.artist_name %>"><%= current_user.email.split('@').first %></a></span>
+          <span><a href="/artist/<%= current_user.artist_name %>"><%= current_user.artist_name %></a></span>
           |
           <span>
           <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
