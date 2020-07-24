@@ -102,12 +102,21 @@ const AddATrackLink = styled.a`
 	}
 `;
 
+const ShowMoreButton = styled.div`
+	margin: 100px;
+	border: 2px solid orangered;
+    font-size: 20px;
+    align-self: center;
+    cursor: pointer;
+`
+
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			tracks: []
+			tracks: [],
+			page: 1
 		};
 	}
 
@@ -138,6 +147,19 @@ class HomePage extends React.Component {
 		const newTrack = this.state.tracks[i];
 		window.masterShowTrack(newTrack, play);
 	};
+
+	showMoreTracks = () => {
+		const newPage = this.state.page + 1
+		this.setState({page: newPage})
+		$.get(`/tracks?page=${newPage}`).done((res) => {
+			console.log(res)
+			this.setState(
+				{
+					tracks: this.state.tracks.concat(res.tracks)
+				}
+			)
+		});
+	}
 
 	render() {
 		return (
@@ -171,6 +193,9 @@ class HomePage extends React.Component {
 						);
 					})}
 				</Wrapper>
+				<ShowMoreButton
+					onClick={this.showMoreTracks}
+				>Show more</ShowMoreButton>
 				<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
 			</FlexContainer>
 		);
