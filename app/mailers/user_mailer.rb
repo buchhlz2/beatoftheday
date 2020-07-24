@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
 
     mail(
       to: @old_track.artist.email,
-      subject: "Somebody remixed your track \"#{@old_track.name}\" on Beat of the Day!",
+      subject: "#{@track.artist.artist_name} remixed your track \"#{@old_track.name}\" on Beat of the Day!",
     )
   end
 
