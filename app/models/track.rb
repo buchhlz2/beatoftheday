@@ -64,20 +64,18 @@ class Track < ApplicationRecord
     likes.find_by(baked: true).present?
   end
 
-  def liked_for_user?(current_user)
-    return liked? unless user.present?
-    @user_likes ||= user.likes
-    @user_likes.find_by(track_id: id).present?
-  end
-
   def baked?
     likes.find_by(baked: true).present?
   end
 
+  def liked_for_user?(user)
+    return liked? unless user.present?
+    likes.find_by(user_id: user.id).present?
+  end
+
   def baked_for_user?(user)
     return baked? unless user.present?
-    @user_likes ||= user.likes
-    @user_likes.find_by(baked: true, track_id: id).present?
+    likes.find_by(user_id: user.id, baked: true).present?
   end
 
   def check_the_oven
