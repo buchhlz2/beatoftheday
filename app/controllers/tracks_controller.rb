@@ -4,10 +4,11 @@ class TracksController < ApplicationController
 
   def index
     page = params[:page] || 1
-    tracks = paginated_tracks(page)
+    tracks = Track.paginate(page: page, per_page: 10).preload(:user).order("created_at desc").to_a
+    page_of_tracks = paginated_tracks(tracks)
 
     render json: {
-      tracks: tracks,
+      tracks: page_of_tracks,
       length: Track.count
     }
   end
@@ -102,12 +103,10 @@ class TracksController < ApplicationController
     end
   end
 
-  def paginated_tracks(page)
-    tracks = Track.paginate(page: page, per_page: 10).preload(:user).order("created_at desc").to_a
+  def paginated_tracks(tracks)
     users = tracks.map { |t| t.user }
     likes = Like.where(track_id: tracks.pluck(:id))
     comments = Comment.where(track_id: tracks.pluck(:id))
-    # rebounds = Track.where(rebound_track_id: tracks.pluck(:id))
 
     tracks.map do |track|
       track.attributes.merge({
