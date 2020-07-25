@@ -25,7 +25,7 @@ const SongBoxWrapper = styled.div`
 	// }
 
 	@media all and (max-width: 800px) {
-		margin: 0 0 20px 30px;
+		margin: ${(props) => (props.showRank ? '0 0 20px 30px' : '0')};
 	}
 `;
 
@@ -210,7 +210,7 @@ class SongBox extends React.Component {
 
 	render() {
 		return (
-			<SongBoxWrapper>
+			<SongBoxWrapper showRank={this.props.showRank}>
 				<SongName>
 					<NameText
 						style={{ fontSize: this.props.fontSize || 14 }}
@@ -282,7 +282,7 @@ class SongBox extends React.Component {
 					src={this.props.trackInfo.photo}
 					style={
 						this.props.width && this.props.height ? (
-							{ height: this.props.height, width: this.props.width, maxWidth: '80vw' }
+							{ height: this.props.height, width: this.props.width }
 						) : (
 							{}
 						)

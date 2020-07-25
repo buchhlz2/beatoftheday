@@ -72,6 +72,7 @@ class ArtistShow extends React.Component {
 									enableTrack={() => {
 										window.masterShowTrack(this.state.tracks[i], true);
 									}}
+									showRank={false}
 								/>
 							</SongBoxWrapper>
 						);

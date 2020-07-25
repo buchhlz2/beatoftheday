@@ -109,11 +109,19 @@ const CreatedAt = styled.p`
 const SongBoxWrapper = styled.div`
 	width: 66.666%;
 	margin-top: 30px;
+
+	@media all and (max-width: 800px) {
+		width: 100%;
+	}
 `;
 
 const CommentBoxWrapper = styled.div`
 	width: calc(33.333%);
 	margin-top: 30px;
+
+	@media all and (max-width: 800px) {
+		width: 100%;
+	}
 `;
 
 const ReboundInfo = styled(Link)`
@@ -189,8 +197,9 @@ class TrackShow extends React.Component {
 						enableTrack={() => {
 							window.masterShowTrack(track, true);
 						}}
+						showRank={false}
 						onLoadImage={(e) => {
-							this.setState({ imgHeight: e.target.height });
+							// this.setState({ imgHeight: e.target.height });
 						}}
 					/>
 				</SongBoxWrapper>
@@ -211,6 +220,7 @@ class TrackShow extends React.Component {
 										enableTrack={() => {
 											window.masterShowTrack(rebound, true);
 										}}
+										showRank={false}
 										onLoadImage={(e) => {
 											// let newState = {};
 											// newState[`imgHeight-${rebound.id}`] = e.target.height;

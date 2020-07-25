@@ -191,6 +191,7 @@ class HomePage extends React.Component {
 									enableTrack={() => {
 										this.enableTrack(i);
 									}}
+									showRank={true}
 								/>
 							</SongBoxWrapper>
 						);

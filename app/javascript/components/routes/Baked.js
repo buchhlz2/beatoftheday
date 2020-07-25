@@ -133,6 +133,7 @@ class Baked extends React.Component {
 									width={window.__good_height__}
 									height={window.__good_height__}
 									trackInfo={obj}
+									showRank={true}
 									enableTrack={() => {
 										this.enableTrack(i);
 									}}
