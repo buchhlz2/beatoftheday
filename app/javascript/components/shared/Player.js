@@ -71,6 +71,7 @@ class Player extends React.Component {
       artistName: "",
       link: false,
       queue: [],
+      prevQueue: [],
     };
 
     window.addTracksToQueue = this.addTracksToQueue;

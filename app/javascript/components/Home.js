@@ -9,6 +9,7 @@ import Artists from "./routes/Artists";
 import HomePage from "./routes/HomePage";
 import AboutUs from "./routes/AboutUs";
 import $ from "jquery";
+import { Redirect } from "react-router-dom";
 
 import {
   BrowserRouter as Router,
@@ -62,11 +63,16 @@ class Home extends React.Component {
     window.OPTIONS = this.props || {};
     this.state = {
       menuVisible: window.innerWidth <= 600 ? false : true,
+      redirectToAboutUs: false,
     };
+
+    $(".about-us-link").on("click", (e) => {
+      $("#about-us-route-link").get(0).click();
+      return false;
+    });
   }
 
   render() {
-    console.log(location.pathname);
     return (
       <div className="inner-wrapper">
         <Router>
@@ -83,6 +89,11 @@ class Home extends React.Component {
             <NavLink to="/">🎵 Fresh</NavLink>
             <NavLink to="/baked">🧁 Baked</NavLink>
             <NavLink to="/artists">🧞 Artists</NavLink>
+            <NavLink
+              to="/about-us"
+              id="about-us-route-link"
+              style={{ position: "relative", left: "999999px" }}
+            />
           </HomeLinks>
           <Switch>
             <Route exact path="/" component={HomePage} />
