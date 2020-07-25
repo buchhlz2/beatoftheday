@@ -111,7 +111,7 @@ const AddATrackLink = styled.a`
 `;
 
 const ShowMoreButton = styled.div`
-	margin: -50px 100px 100px 100px;
+	margin: -50px 0 100px 0;
 	align-self: center;
 	cursor: pointer;
 	text-decoration: underline;

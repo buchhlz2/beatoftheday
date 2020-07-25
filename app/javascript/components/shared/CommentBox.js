@@ -73,6 +73,7 @@ const InputWrapper = styled.div`
 		margin: 0 5px 5px 5px;
 		border-radius: 3px;
 		border: 0;
+		min-width: 0;
 	}
 
 	div {
