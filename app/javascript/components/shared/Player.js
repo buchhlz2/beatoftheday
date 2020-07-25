@@ -151,7 +151,7 @@ class Player extends React.Component {
           key={this.state.link}
           onEnded={this.playNextSongInQueue}
           onPlay={() => {
-            setHeadAttrs(`${this.state.name} - ${this.state.artist_name}`);
+            setHeadAttrs(`${this.state.name} - ${this.state.artistName}`);
             window.forceUpdateSongBoxes();
           }}
           onPause={window.forceUpdateSongBoxes}
