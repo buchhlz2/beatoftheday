@@ -32,6 +32,8 @@ body,
 }
 
 .header {
+	position: fixed;
+	top: 0;
 	height: 50px;
 	background: white;
 	top: 0;
@@ -46,6 +48,7 @@ body,
 }
 
 .banner-wrapper {
+	margin-top: 50px;
 	width: 100%;
 	display: flex;
 	justify-content: center;

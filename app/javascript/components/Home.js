@@ -17,6 +17,7 @@ const HomeLinks = styled.div`
 	top: 16px;
 	left: 22px;
 	display: block;
+	z-index: 100;
 
 	@media all and (max-width: 600px) {
 		display: none;
@@ -39,9 +40,10 @@ const NavLink = styled(Link)`
 const MenuX = styled.div`
 	cursor: pointer;
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 18px;
 	left: 22px;
+	z-index: 100;
 
 	@media all and (max-width: 600px) {
 		display: block;
