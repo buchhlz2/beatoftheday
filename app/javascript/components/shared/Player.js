@@ -49,6 +49,18 @@ const Audio = styled.audio`
   outline: none;
 `;
 
+document.body.onkeydown = function (e) {
+  if (e.keyCode == 32) {
+    if (window.masterAudioTag.paused) {
+      window.masterAudioTag.play();
+    } else {
+      window.masterAudioTag.pause();
+    }
+  }
+
+  return false;
+};
+
 class Player extends React.Component {
   constructor(props) {
     super(props);
@@ -65,19 +77,6 @@ class Player extends React.Component {
     window.clearQueue = this.clearQueue;
     window.masterShowTrack = this.masterShowTrack;
     window.getPlayerState = this.getPlayerState;
-
-    document.body.onkeydown = function (e) {
-      if (e.keyCode == 32) {
-        if (window.masterAudioTag.paused) {
-          window.masterAudioTag.play();
-        } else {
-          window.masterAudioTag.pause();
-        }
-        window.forceUpdateSongBoxes();
-      }
-
-      return false;
-    };
   }
 
   getPlayerState = () => {
@@ -120,8 +119,6 @@ class Player extends React.Component {
           window.masterAudioTag.play();
           setHeadAttrs(`${obj.name} - ${obj.artist_name}`);
         }
-
-        window.forceUpdateSongBoxes();
       }
     );
   };
@@ -153,6 +150,8 @@ class Player extends React.Component {
           controls
           key={this.state.link}
           onEnded={this.playNextSongInQueue}
+          onPlay={window.forceUpdateSongBoxes}
+          onPause={window.forceUpdateSongBoxes}
         >
           {this.state.link && <source src={this.state.link} />}
         </Audio>

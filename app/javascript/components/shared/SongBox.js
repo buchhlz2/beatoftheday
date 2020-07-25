@@ -199,7 +199,9 @@ class SongBox extends React.Component {
   }
 
   componentWillUnmount() {
-    songBoxesCurrentlyRendered = _.omit(songBoxesCurrentlyRendered, this);
+    songBoxesCurrentlyRendered = songBoxesCurrentlyRendered.filter((box) => {
+      return box !== this;
+    });
   }
 
   likeTrack = () => {
