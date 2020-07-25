@@ -50,15 +50,17 @@ const Audio = styled.audio`
 `;
 
 document.body.onkeydown = function (e) {
+  if (e.target.tagName == "INPUT") return true;
+
   if (e.keyCode == 32) {
     if (window.masterAudioTag.paused) {
       window.masterAudioTag.play();
     } else {
       window.masterAudioTag.pause();
     }
-  }
 
-  return false;
+    return false;
+  }
 };
 
 class Player extends React.Component {

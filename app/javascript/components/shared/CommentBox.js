@@ -1,244 +1,250 @@
-import React from 'react';
-import styled from 'styled-components';
-import $ from 'jquery';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-import artistUrl from '../util/artistUrl';
+import React from "react";
+import styled from "styled-components";
+import $ from "jquery";
+import moment from "moment";
+import { Link } from "react-router-dom";
+import artistUrl from "../util/artistUrl";
 
 const Wrapper = styled.div`
-	display: flex;
-	height: 100%;
-	flex-direction: column;
-	border-radius: 3px;
-	position: relative;
-	box-shadow: 0px 13px 13px -8px #dadada;
-	border: 1px solid #cccccc;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 0px 13px 13px -8px #dadada;
+  border: 1px solid #cccccc;
 `;
 
 const Heading = styled.div`
-	font-size: 10px;
-	width: 100%;
-	border-bottom: 1px solid #cccccc;
-	padding: 5px;
-	display: flex;
-	justify-content: space-between;
-	color: #6b6b6b;
+  font-size: 10px;
+  width: 100%;
+  border-bottom: 1px solid #cccccc;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: #6b6b6b;
 `;
 
 const ThreadBox = styled.div`
-	width: 100%;
-	height: 100%;
-	padding: 5px;
-	overflow-y: scroll;
-	margin-bottom: 50px;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  overflow-y: scroll;
+  margin-bottom: 50px;
 `;
 
 const Comment = styled.div`
-	font-size: 14px;
-	width: 100%;
-	margin-bottom: 10px;
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: 10px;
 `;
 
 const CommentInfoWrapper = styled.div`
-	display: flex;
-	width: 100%;
-	justify-content: flex-start;
-	align-items: flex-end;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-end;
 `;
 
 const CommentAuthor = styled(Link)`
-	font-size: 10px;
-	color: #6b6b6b !important;
-	margin-right: 5px;
-	text-decoration: none !important;
-	padding: 0 !important;
+  font-size: 10px;
+  color: #6b6b6b !important;
+  margin-right: 5px;
+  text-decoration: none !important;
+  padding: 0 !important;
 
-	&:hover {
-		color: #6b6b6b !important;
-		background: none;
-	}
+  &:hover {
+    color: #6b6b6b !important;
+    background: none;
+  }
 `;
 
 const CommentTime = styled.div`
-	font-size: 8px;
-	color: #cccccc;
+  font-size: 8px;
+  color: #cccccc;
 `;
 
 const CommentText = styled.div`
-	font-size: 13px;
-	color: #6b6b6b;
-	width: 100%;
+  font-size: 13px;
+  color: #6b6b6b;
+  width: 100%;
 `;
 
 const InputWrapper = styled.div`
-	width: 100%;
-	display: flex;
-	position: absolute;
-	bottom: 0;
-	left: 0;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 
-	input {
-		margin: 0 5px 5px 5px;
-		border-radius: 3px;
-		border: 0;
-		min-width: 0;
-		border: 1px solid #cccccc;
-	}
+  input {
+    margin: 0 5px 5px 5px;
+    border-radius: 3px;
+    border: 0;
+    min-width: 0;
+    border: 1px solid #cccccc;
+  }
 
-	div {
-		margin-bottom: 5px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+  div {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
-const StyledInput = styled.input`flex-grow: 4;`;
+const StyledInput = styled.input`
+  flex-grow: 4;
+`;
 
 const SubmitButton = styled.div`
-	cursor: pointer;
-	padding: 10px;
-	border-radius: 3px;
-	flex-grow: 1;
-	background: white;
-	color: #7d7d7d;
-	margin-right: 5px;
-	border: 0px;
-	border-radius: 3px;
-	user-select: none;
-	transition: all 0.2s ease;
-	transform: scale(1, 1);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+  flex-grow: 1;
+  background: white;
+  color: #7d7d7d;
+  margin-right: 5px;
+  border: 0px;
+  border-radius: 3px;
+  user-select: none;
+  transition: all 0.2s ease;
+  transform: scale(1, 1);
 
-	&:hover {
-		background: #79e84b;
-		color: white;
-		transform: scale(1.03, 1.03);
-	}
+  &:hover {
+    background: #79e84b;
+    color: white;
+    transform: scale(1.03, 1.03);
+  }
 
-	&:active {
-		background: #40da00;
-		color: white;
-		transform: scale(0.95, 0.95);
-	}
+  &:active {
+    background: #40da00;
+    color: white;
+    transform: scale(0.95, 0.95);
+  }
 `;
 
 class CommentBox extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			thread: [],
-			newCommentText: '',
-			loading: false,
-			trackId: this.props.trackId,
-			trackInfo: this.props.trackInfo
-		};
-	}
+    this.state = {
+      thread: [],
+      newCommentText: "",
+      loading: false,
+      trackId: this.props.trackId,
+      trackInfo: this.props.trackInfo,
+    };
+  }
 
-	componentDidUpdate() {
-		if (this.state.trackId != this.props.trackId) {
-			this.setState({ trackId: this.props.trackId, thread: [] }, this.loadData);
-		}
-	}
+  componentDidUpdate() {
+    if (this.state.trackId != this.props.trackId) {
+      this.setState({ trackId: this.props.trackId, thread: [] }, this.loadData);
+    }
+  }
 
-	componentDidMount() {
-		this.loadData();
-	}
+  componentDidMount() {
+    this.loadData();
+  }
 
-	loadData = () => {
-		$.get(`/track_comments/${this.state.trackId}`).done((res) => {
-			if (res.thread) {
-				this.setState({
-					thread: res.thread
-				});
-			}
-		});
-	};
+  loadData = () => {
+    $.get(`/track_comments/${this.state.trackId}`).done((res) => {
+      if (res.thread) {
+        this.setState({
+          thread: res.thread,
+        });
+      }
+    });
+  };
 
-	createComment = () => {
-		if (this.state.newCommentText.length === 0) return;
-		this.setState({ loading: true });
-		$.post(`/create_track_comment/${this.props.trackId}`, {
-			text_content: this.state.newCommentText
-		}).done((res) => {
-			const newThread = this.state.thread;
-			newThread.push(res.comment);
-			this.setState({
-				thread: newThread,
-				newCommentText: '',
-				loading: false
-			});
-		});
-	};
+  createComment = () => {
+    if (this.state.newCommentText.length === 0) return;
+    this.setState({ loading: true });
+    $.post(`/create_track_comment/${this.props.trackId}`, {
+      text_content: this.state.newCommentText,
+    }).done((res) => {
+      const newThread = this.state.thread;
+      newThread.push(res.comment);
+      this.setState({
+        thread: newThread,
+        newCommentText: "",
+        loading: false,
+      });
+    });
+  };
 
-	_handleKeyDown = (e) => {
-		if (!this.state.loading && e.key === 'Enter') {
-			this.createComment();
-		}
-	};
+  _handleKeyDown = (e) => {
+    if (!this.state.loading && e.key === "Enter") {
+      this.createComment();
+    }
+  };
 
-	render() {
-		const thread =
-			this.state.thread.length > 0
-				? this.state.thread
-				: [
-						{
-							artist_name: 'Hey',
-							created_at: new Date(),
-							text: 'Say something here...'
-						}
-					];
+  render() {
+    const thread =
+      this.state.thread.length > 0
+        ? this.state.thread
+        : [
+            {
+              artist_name: "Hey",
+              created_at: new Date(),
+              text: "Say something here...",
+            },
+          ];
 
-		return (
-			<Wrapper>
-				<Heading>
-					<span>
-						{this.state.thread.length} {this.state.thread.length == 1 ? 'Comment' : 'Comments'}
-					</span>
-					{/* <span>Created {moment(this.state.trackInfo.created_at).format('MMMM Do YY')}</span> */}
-				</Heading>
-				<ThreadBox>
-					{thread.map((comment, i) => {
-						return (
-							<Comment key={i}>
-								<CommentInfoWrapper>
-									<CommentAuthor to={artistUrl(comment.artist_name)}>
-										{comment.artist_name}
-									</CommentAuthor>
-									<CommentTime> {moment(comment.created_at).from(new Date())}</CommentTime>
-								</CommentInfoWrapper>
-								<CommentText>{comment.text}</CommentText>
-							</Comment>
-						);
-					})}
-				</ThreadBox>
-				{window.OPTIONS.current_user && (
-					<React.Fragment>
-						<InputWrapper>
-							<StyledInput
-								type="text"
-								maxLength="766"
-								onKeyDown={this._handleKeyDown}
-								value={this.state.newCommentText}
-								onChange={(event) => {
-									this.setState({
-										newCommentText: event.target.value
-									});
-								}}
-							/>
-							<SubmitButton
-								onClick={() => {
-									if (!this.state.loading) this.createComment();
-								}}
-							>
-								Send
-							</SubmitButton>
-						</InputWrapper>
-					</React.Fragment>
-				)}
-			</Wrapper>
-		);
-	}
+    return (
+      <Wrapper>
+        <Heading>
+          <span>
+            {this.state.thread.length}{" "}
+            {this.state.thread.length == 1 ? "Comment" : "Comments"}
+          </span>
+          {/* <span>Created {moment(this.state.trackInfo.created_at).format('MMMM Do YY')}</span> */}
+        </Heading>
+        <ThreadBox>
+          {thread.map((comment, i) => {
+            return (
+              <Comment key={i}>
+                <CommentInfoWrapper>
+                  <CommentAuthor to={artistUrl(comment.artist_name)}>
+                    {comment.artist_name}
+                  </CommentAuthor>
+                  <CommentTime>
+                    {" "}
+                    {moment(comment.created_at).from(new Date())}
+                  </CommentTime>
+                </CommentInfoWrapper>
+                <CommentText>{comment.text}</CommentText>
+              </Comment>
+            );
+          })}
+        </ThreadBox>
+        {window.OPTIONS.current_user && (
+          <React.Fragment>
+            <InputWrapper>
+              <StyledInput
+                type="text"
+                maxLength="766"
+                onKeyDown={this._handleKeyDown}
+                value={this.state.newCommentText}
+                onChange={(event) => {
+                  this.setState({
+                    newCommentText: event.target.value,
+                  });
+                }}
+              />
+              <SubmitButton
+                onClick={() => {
+                  if (!this.state.loading) this.createComment();
+                }}
+              >
+                Send
+              </SubmitButton>
+            </InputWrapper>
+          </React.Fragment>
+        )}
+      </Wrapper>
+    );
+  }
 }
 
 export default CommentBox;
