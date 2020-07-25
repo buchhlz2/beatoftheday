@@ -13,7 +13,7 @@ import $ from 'jquery';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from 'react-router-dom';
 
 const HomeLinks = styled.div`
-	position: absolute;
+	position: fixed;
 	top: 16px;
 	left: 22px;
 	display: block;
