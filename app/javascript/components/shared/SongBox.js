@@ -6,7 +6,13 @@ import _ from "lodash";
 import Tippy from "@tippyjs/react";
 import artistUrl from "../util/artistUrl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPause,
+  faPlay,
+  faHeart,
+  faRecycle,
+  faComments,
+} from "@fortawesome/free-solid-svg-icons";
 
 const SongBoxWrapper = styled.div`
   display: flex;
@@ -51,12 +57,14 @@ const NumLikes = styled.p`
   margin-left: 5px;
   margin-bottom: 0;
   opacity: 0.5;
+  text-shadow: 1px 1px 2px #3a3939;
 `;
 
 const NumBakes = styled.p`
   margin-left: 5px;
   margin-bottom: 0;
   opacity: 0.5;
+  text-shadow: 1px 1px 2px #3a3939;
 `;
 
 const TopRight = styled(Link)`
@@ -66,10 +74,42 @@ const TopRight = styled(Link)`
   display: flex;
   flex-direction: column;
   background: none !important;
+  text-decoration: none !important;
 `;
 
-const SmallIconContainer = styled.div`
-  background: rgba(0, 0, 0, 0.4);
+const DankButton = styled.div`
+  cursor: pointer;
+  font-size: 22px;
+  padding: 10px;
+  color: white;
+  margin-bottom: 5px;
+  transform: scale(1, 1);
+  transition: all 0.3s;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  opacity: ${(props) => (props.solid ? 0.8 : 0.68)};
+  text-shadow: 1px 1px 2px #3a3939;
+
+  svg {
+    filter: drop-shadow(1px 1px 2px #3a3939);
+  }
+
+  &:hover {
+    opacity: 0.9;
+    color: #e0e0e0;
+    background: rgba(102, 102, 102, 0.7);
+    transform: scale(1, 1);
+  }
+
+  &:active {
+    opacity: 1;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.6);
+    transform: scale(0.98, 0.98);
+  }
+`;
+
+const LittleButton = styled(DankButton)`
   padding: 5px;
   font-size: 16px;
   margin-top: 5px;
@@ -78,32 +118,7 @@ const SmallIconContainer = styled.div`
   align-items: center;
   flex-direction: column;
   curosr: pointer;
-`;
-
-const DankButton = styled.div`
-  cursor: pointer;
-  font-size: 24px;
-  padding: 10px;
   color: white;
-  margin-bottom: 5px;
-  transform: scale(1, 1);
-  transition: transform 0.2s linear;
-  transition: background-color 0.2s linear;
-  transition: color 0.2s linear;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-
-  &:hover {
-    color: #e0e0e0;
-    background: rgba(102, 102, 102, 0.5);
-    transform: scale(1.03, 1.03);
-  }
-
-  &:active {
-    color: #ffffff;
-    background: rgba(158, 158, 158, 0.5);
-    transform: scale(0.95, 0.95);
-  }
 `;
 
 const LikeButton = styled(DankButton)`
@@ -121,14 +136,14 @@ const PlayButton = styled(DankButton)`
   right: 0;
 `;
 
-const IconContainer = styled.div`
-  opacity: ${(props) => (props.solid ? 1 : 0.5)};
-`;
+const IconContainer = styled.div``;
 
 const IconNumber = styled.div`
   color: white;
-  opacity: 0.5;
+  opacity: 0.68;
   font-size: 13px;
+  text-shadow: 1px 1px 2px #777777;
+  text-shadow: 1px 1px 2px #3a3939;
 `;
 
 const NameText = styled(Link)`
@@ -141,6 +156,7 @@ const NameText = styled(Link)`
   margin-right: 32px;
   text-decoration: none !important;
   line-height: initial;
+  text-shadow: 1px 1px 2px #3a3939;
 
   &:visited {
     color: white !important;
@@ -157,6 +173,7 @@ const SongName = styled.div`
   left: 0;
   text-decoration: none !important;
   color: white !important;
+  text-shadow: 1px 1px 2px #3a3939;
 
   &:visited {
     color: white !important;
@@ -257,9 +274,12 @@ class SongBox extends React.Component {
             content="Like this track"
             placement="bottom"
           >
-            <LikeButton onClick={this.likeTrack}>
-              <IconContainer solid={this.props.trackInfo.liked}>
-                ♡
+            <LikeButton
+              onClick={this.likeTrack}
+              solid={this.props.trackInfo.liked}
+            >
+              <IconContainer>
+                <FontAwesomeIcon icon={faHeart} />
               </IconContainer>
               <NumLikes>{this.state.numLikes}</NumLikes>
             </LikeButton>
@@ -269,10 +289,11 @@ class SongBox extends React.Component {
             content="Mark this track as baked"
             placement="bottom"
           >
-            <BakedButton onClick={this.bakeTrack}>
-              <IconContainer solid={this.props.trackInfo.baked}>
-                🧁
-              </IconContainer>
+            <BakedButton
+              onClick={this.bakeTrack}
+              solid={this.props.trackInfo.baked}
+            >
+              <IconContainer>🧁</IconContainer>
               <NumBakes>{this.state.numBakes}</NumBakes>
             </BakedButton>
           </Tippy>
@@ -286,12 +307,12 @@ class SongBox extends React.Component {
               }`}
               placement="right"
             >
-              <SmallIconContainer>
-                <IconContainer solid={this.props.trackInfo.num_comments}>
-                  📃
+              <LittleButton solid={false}>
+                <IconContainer>
+                  <FontAwesomeIcon icon={faComments} />
                 </IconContainer>
                 <IconNumber>{this.props.trackInfo.num_comments}</IconNumber>
-              </SmallIconContainer>
+              </LittleButton>
             </Tippy>
           )}
           {this.props.trackInfo.num_rebounds > 0 && (
@@ -302,12 +323,12 @@ class SongBox extends React.Component {
               }`}
               placement="right"
             >
-              <SmallIconContainer>
-                <IconContainer solid={this.props.trackInfo.num_rebounds}>
-                  ♺
+              <LittleButton solid={false}>
+                <IconContainer>
+                  <FontAwesomeIcon icon={faRecycle} />
                 </IconContainer>
                 <IconNumber>{this.props.trackInfo.num_rebounds}</IconNumber>
-              </SmallIconContainer>
+              </LittleButton>
             </Tippy>
           )}
         </TopRight>
