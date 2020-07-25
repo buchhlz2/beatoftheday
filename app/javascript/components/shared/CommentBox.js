@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import $ from 'jquery';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import artistUrl from '../util/artistUrl';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -20,6 +22,7 @@ const Heading = styled.div`
 	padding: 5px;
 	display: flex;
 	justify-content: space-between;
+	color: #6b6b6b;
 `;
 
 const ThreadBox = styled.div`
@@ -43,10 +46,17 @@ const CommentInfoWrapper = styled.div`
 	align-items: flex-end;
 `;
 
-const CommentAuthor = styled.div`
+const CommentAuthor = styled(Link)`
 	font-size: 10px;
-	color: #6b6b6b;
+	color: #6b6b6b !important;
 	margin-right: 5px;
+	text-decoration: none !important;
+	padding: 0 !important;
+
+	&:hover {
+		color: #6b6b6b !important;
+		background: none;
+	}
 `;
 
 const CommentTime = styled.div`
@@ -168,6 +178,17 @@ class CommentBox extends React.Component {
 	};
 
 	render() {
+		const thread =
+			this.state.thread.length > 0
+				? this.state.thread
+				: [
+						{
+							artist_name: 'Hey',
+							created_at: new Date(),
+							text: 'Say something here...'
+						}
+					];
+
 		return (
 			<Wrapper>
 				<Heading>
@@ -177,11 +198,13 @@ class CommentBox extends React.Component {
 					{/* <span>Created {moment(this.state.trackInfo.created_at).format('MMMM Do YY')}</span> */}
 				</Heading>
 				<ThreadBox>
-					{this.state.thread.map((comment, i) => {
+					{thread.map((comment, i) => {
 						return (
 							<Comment key={i}>
 								<CommentInfoWrapper>
-									<CommentAuthor>{comment.artist_name}</CommentAuthor>
+									<CommentAuthor to={artistUrl(comment.artist_name)}>
+										{comment.artist_name}
+									</CommentAuthor>
 									<CommentTime> {moment(comment.created_at).from(new Date())}</CommentTime>
 								</CommentInfoWrapper>
 								<CommentText>{comment.text}</CommentText>
