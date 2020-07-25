@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 import _ from 'lodash';
+import setHeadAttrs from '../util/setHeadAttrs';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -97,7 +98,7 @@ class Player extends React.Component {
 				link: obj.link
 			},
 			() => {
-				// trips out if you add this to the set state above dunno why
+				// trips out if you add queue to the set state above dunno why
 				this.setState({
 					queue: this.state.queue.filter((track) => {
 						return track.id !== obj.id;
@@ -105,7 +106,11 @@ class Player extends React.Component {
 				});
 
 				this.forceUpdate();
-				if (play) window.masterAudioTag.play();
+
+				if (play) {
+					window.masterAudioTag.play();
+					setHeadAttrs(`${obj.name} - ${obj.artist_name}`);
+				}
 			}
 		);
 	};
