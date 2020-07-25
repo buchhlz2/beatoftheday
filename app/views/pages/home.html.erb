@@ -7,9 +7,9 @@
       window.ENV = "<%= Rails.env %>"
       var hourOfTheDay = (new Date()).getHours();
       if (window.ENV === "production") {
-        if (hourOfTheDay < 6 || hourOfTheDay > 20 && window.location.host !== "https://www.beatofthenight.com") {
+        if (hourOfTheDay < 6 || hourOfTheDay > 20 && window.location.host !== "www.beatofthenight.com") {
           window.location = "https://www.beatofthenight.com" + window.location.pathname;
-        } else if (window.location.host !== "https://www.beatoftheday.org") {
+        } else if (window.location.host !== "www.beatoftheday.org") {
           window.location = "https://www.beatoftheday.org" + window.location.pathname;
         }
       };
