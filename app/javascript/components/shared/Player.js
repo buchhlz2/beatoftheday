@@ -61,6 +61,18 @@ class Player extends React.Component {
 
 		window.addTracksToQueue = this.addTracksToQueue;
 		window.masterShowTrack = this.masterShowTrack;
+
+		document.body.onkeydown = function(e) {
+			if (e.keyCode == 32) {
+				if (window.masterAudioTag.paused) {
+					window.masterAudioTag.play();
+				} else {
+					window.masterAudioTag.pause();
+				}
+			}
+
+			return false;
+		};
 	}
 
 	addTracksToQueue = (tracksArr) => {
