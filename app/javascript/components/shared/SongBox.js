@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import $ from "jquery";
 import _ from "lodash";
 import Tippy from "@tippyjs/react";
@@ -13,6 +13,10 @@ import {
   faRecycle,
   faComments,
 } from "@fortawesome/free-solid-svg-icons";
+
+const niceShadow = css`
+  text-shadow: 1px 1px 2px #000000;
+`;
 
 const SongBoxWrapper = styled.div`
   display: flex;
@@ -53,20 +57,6 @@ const BottomLeft = styled.div`
   display: flex;
 `;
 
-const NumLikes = styled.p`
-  margin-left: 5px;
-  margin-bottom: 0;
-  opacity: 0.5;
-  text-shadow: 1px 1px 2px #3a3939;
-`;
-
-const NumBakes = styled.p`
-  margin-left: 5px;
-  margin-bottom: 0;
-  opacity: 0.5;
-  text-shadow: 1px 1px 2px #3a3939;
-`;
-
 const TopRight = styled(Link)`
   position: absolute;
   top: 0;
@@ -88,7 +78,7 @@ const DankButton = styled.div`
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   opacity: ${(props) => (props.solid ? 0.8 : 0.68)};
-  text-shadow: 1px 1px 2px #3a3939;
+  ${niceShadow}
 
   svg {
     filter: drop-shadow(1px 1px 2px #3a3939);
@@ -140,23 +130,33 @@ const IconContainer = styled.div``;
 
 const IconNumber = styled.div`
   color: white;
-  opacity: 0.68;
+  opacity: 0.8;
   font-size: 13px;
   text-shadow: 1px 1px 2px #777777;
-  text-shadow: 1px 1px 2px #3a3939;
+  ${niceShadow}
 `;
+
+const NumLikes = styled.p`
+  font-size: 13px;
+  margin-left: 5px;
+  margin-bottom: 0;
+  opacity: 0.8;
+  ${niceShadow}
+`;
+
+const NumBakes = styled(NumLikes)``;
 
 const NameText = styled(Link)`
   display: block;
   background: black;
-  opacity: 0.5;
+  opacity: 0.6;
   color: white !important;
   margin-bottom: 5px;
   width: fit-content;
   margin-right: 32px;
   text-decoration: none !important;
   line-height: initial;
-  text-shadow: 1px 1px 2px #3a3939;
+  ${niceShadow}
 
   &:visited {
     color: white !important;
@@ -165,7 +165,6 @@ const NameText = styled(Link)`
 
 const SongName = styled.div`
   cursor: pointer;
-  font-size: 14px;
   padding: 5px;
   margin-right: 5px;
   position: absolute;
@@ -173,7 +172,7 @@ const SongName = styled.div`
   left: 0;
   text-decoration: none !important;
   color: white !important;
-  text-shadow: 1px 1px 2px #3a3939;
+  ${niceShadow}
 
   &:visited {
     color: white !important;
@@ -255,14 +254,14 @@ class SongBox extends React.Component {
       <SongBoxWrapper showRank={this.props.showRank}>
         <SongName>
           <NameText
-            style={{ fontSize: this.props.fontSize || 14 }}
+            style={{ fontSize: this.props.fontSize || 17 }}
             id={`name-${this.state.elName}`}
             to={`/tracks/${this.props.trackInfo.id}`}
           >
             {this.props.trackInfo.name}
           </NameText>
           <NameText
-            style={{ fontSize: this.props.fontSize || 14 }}
+            style={{ fontSize: this.props.fontSize || 13 }}
             to={artistUrl(this.props.trackInfo.artist_name)}
           >
             {this.props.trackInfo.artist_name}
