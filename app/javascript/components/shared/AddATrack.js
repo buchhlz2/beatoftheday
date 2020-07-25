@@ -60,7 +60,8 @@ class AddATrack extends React.Component {
 			selectedFile: false,
 			selectedImage: false,
 			doneUploading: false,
-			trackName: ''
+			trackName: '',
+			uploading: false
 		};
 	}
 
@@ -87,6 +88,8 @@ class AddATrack extends React.Component {
 	};
 
 	onClickUpload = () => {
+		this.setState({ uploading: true });
+
 		upload(
 			this.state.selectedFile,
 			this.state.selectedImage,
