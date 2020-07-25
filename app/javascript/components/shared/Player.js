@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
+import _ from 'lodash';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -54,24 +55,43 @@ class Player extends React.Component {
 		this.state = {
 			name: '',
 			artistName: '',
-			link: false
+			link: false,
+			queue: []
 		};
 
-		window.masterShowTrack = (obj, play = false) => {
-			this.setState(
-				{
-					id: obj.id,
-					name: obj.name,
-					artistName: obj.artist_name,
-					link: obj.link
-				},
-				() => {
-					this.forceUpdate();
-					if (play) window.masterAudioTag.play();
-				}
-			);
-		};
+		window.addTracksToQueue = this.addTracksToQueue;
+		window.masterShowTrack = this.masterShowTrack;
 	}
+
+	addTracksToQueue = (tracksArr) => {
+		this.setState({ queue: _.uniq(this.state.queue.concat(tracksArr)) });
+	};
+
+	masterShowTrack = (obj, play = false) => {
+		if (!obj) return;
+
+		console.log(this.state);
+
+		this.setState(
+			{
+				id: obj.id,
+				name: obj.name,
+				artistName: obj.artist_name,
+				link: obj.link
+			},
+			() => {
+				// trips out if you add this to the set state above dunno why
+				this.setState({
+					queue: this.state.queue.filter((track) => {
+						return track.id !== obj.id;
+					})
+				});
+
+				this.forceUpdate();
+				if (play) window.masterAudioTag.play();
+			}
+		);
+	};
 
 	componentDidMount() {
 		window.masterAudioTag = $('#master-audio-tag').get(0);
@@ -81,6 +101,10 @@ class Player extends React.Component {
 		window.masterAudioTag = $('#master-audio-tag').get(0);
 	}
 
+	playNextSongInQueue = () => {
+		window.masterShowTrack(this.state.queue[0], true);
+	};
+
 	render() {
 		return (
 			<Wrapper>
@@ -89,7 +113,7 @@ class Player extends React.Component {
 					<Name to={`/tracks/${this.state.id}`}>{this.state.name}</Name>
 					<ArtistName to={`/artist/${this.state.artistName}`}>{this.state.artistName}</ArtistName>
 				</ArtistWrap>
-				<Audio id="master-audio-tag" controls key={this.state.link}>
+				<Audio id="master-audio-tag" controls key={this.state.link} onEnded={this.playNextSongInQueue}>
 					{this.state.link && <source src={this.state.link} />}
 				</Audio>
 			</Wrapper>
