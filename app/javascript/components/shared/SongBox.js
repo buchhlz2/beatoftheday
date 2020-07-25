@@ -16,13 +16,13 @@ const SongBoxWrapper = styled.div`
 	position: relative;
 	border-radius: 3px;
 	overflow: hidden;
-	box-shadow: 0 8px 6px -6px black;
-	transform: scale(1, 1);
-	transition: transform 0.5s ease;
+	box-shadow: 0px 13px 13px -8px #dadada;
+	// transform: scale(1, 1);
+	// transition: transform 0.5s ease;
 
-	&:hover {
-		transform: scale(1.03, 1.03);
-	}
+	// &:hover {
+	// 	transform: scale(1.03, 1.03);
+	// }
 
 	@media all and (max-width: 800px) {
 		margin: 0 0 20px 30px;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
-import artistUrl from '../util/artistUrl'
+import artistUrl from '../util/artistUrl';
 
 const InnerHeader = styled.div`
 	width: 100%;
@@ -39,7 +39,7 @@ const ArtistBox = styled.div`
 	margin: 50px;
 	background: #b1f0ff;
 	font-size: 20px;
-	box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0px 13px 13px -8px #dadada;
 	transform: scale(1, 1);
 	transition: transform 0.5s ease;
 

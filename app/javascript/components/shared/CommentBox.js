@@ -5,29 +5,27 @@ import moment from 'moment';
 
 const Wrapper = styled.div`
 	display: flex;
-	background: purple;
 	height: 100%;
 	flex-direction: column;
 	border-radius: 3px;
-	padding: 5px;
 	position: relative;
-	box-shadow: 0 8px 6px -6px black;
-	transform: scale(1, 1);
-	transition: transform 0.5s ease;
-
-	&:hover {
-		transform: scale(1.03, 1.03);
-	}
+	box-shadow: 0px 13px 13px -8px #dadada;
+	border: 1px solid #cccccc;
 `;
 
 const Heading = styled.div`
-	font-size: 40px;
+	font-size: 10px;
 	width: 100%;
+	border-bottom: 1px solid #cccccc;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
 `;
 
 const ThreadBox = styled.div`
 	width: 100%;
 	height: 100%;
+	padding: 5px;
 	overflow-y: scroll;
 	margin-bottom: 50px;
 `;
@@ -47,18 +45,18 @@ const CommentInfoWrapper = styled.div`
 
 const CommentAuthor = styled.div`
 	font-size: 10px;
-	color: white;
+	color: #6b6b6b;
 	margin-right: 5px;
 `;
 
 const CommentTime = styled.div`
 	font-size: 8px;
-	color: darkgrey;
+	color: #cccccc;
 `;
 
 const CommentText = styled.div`
-	font-size: 14px;
-	color: white;
+	font-size: 13px;
+	color: #6b6b6b;
 	width: 100%;
 `;
 
@@ -74,6 +72,7 @@ const InputWrapper = styled.div`
 		border-radius: 3px;
 		border: 0;
 		min-width: 0;
+		border: 1px solid #cccccc;
 	}
 
 	div {
@@ -84,7 +83,7 @@ const InputWrapper = styled.div`
 	}
 `;
 
-const StyledInput = styled.input`flex-grow: 3;`;
+const StyledInput = styled.input`flex-grow: 4;`;
 
 const SubmitButton = styled.div`
 	cursor: pointer;
@@ -121,7 +120,8 @@ class CommentBox extends React.Component {
 			thread: [],
 			newCommentText: '',
 			loading: false,
-			trackId: this.props.trackId
+			trackId: this.props.trackId,
+			trackInfo: this.props.trackInfo
 		};
 	}
 
@@ -170,7 +170,12 @@ class CommentBox extends React.Component {
 	render() {
 		return (
 			<Wrapper>
-				<Heading />
+				<Heading>
+					<span>
+						{this.state.thread.length} {this.state.thread.length == 1 ? 'Comment' : 'Comments'}
+					</span>
+					{/* <span>Created {moment(this.state.trackInfo.created_at).format('MMMM Do YY')}</span> */}
+				</Heading>
 				<ThreadBox>
 					{this.state.thread.map((comment, i) => {
 						return (

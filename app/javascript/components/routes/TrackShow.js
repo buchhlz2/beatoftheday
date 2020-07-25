@@ -195,7 +195,7 @@ class TrackShow extends React.Component {
 					/>
 				</SongBoxWrapper>
 				<CommentBoxWrapper style={{ height: window.__good_height__ }}>
-					<CommentBox trackId={track.id} />
+					<CommentBox trackId={track.id} trackInfo={track} />
 				</CommentBoxWrapper>
 				<ReboundHeader>{track.rebounds.length > 0 ? 'Remixes:' : ''}</ReboundHeader>
 				<ReboundsBox>
@@ -220,7 +220,7 @@ class TrackShow extends React.Component {
 								</SongBoxWrapper>
 
 								<CommentBoxWrapper style={{ height: window.__good_height__ }}>
-									<CommentBox trackId={rebound.id} />
+									<CommentBox trackId={rebound.id} trackInfo={rebound} />
 								</CommentBoxWrapper>
 							</ReboundRow>
 						);
