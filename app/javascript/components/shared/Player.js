@@ -60,6 +60,7 @@ class Player extends React.Component {
 		};
 
 		window.addTracksToQueue = this.addTracksToQueue;
+		window.clearQueue = this.clearQueue;
 		window.masterShowTrack = this.masterShowTrack;
 
 		document.body.onkeydown = function(e) {
@@ -77,6 +78,10 @@ class Player extends React.Component {
 
 	addTracksToQueue = (tracksArr) => {
 		this.setState({ queue: _.uniq(this.state.queue.concat(tracksArr)) });
+	};
+
+	clearQueue = () => {
+		this.setState({ queue: [] });
 	};
 
 	masterShowTrack = (obj, play = false) => {

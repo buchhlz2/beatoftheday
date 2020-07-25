@@ -108,6 +108,7 @@ class Baked extends React.Component {
 					tracks: res.baked_tracks
 				},
 				() => {
+					window.clearQueue();
 					window.addTracksToQueue(res.baked_tracks);
 					if (window.masterAudioTag.paused) this.enableTrack(0, false);
 				}

@@ -150,6 +150,7 @@ class HomePage extends React.Component {
 						tracksLength: res.length
 					},
 					() => {
+						window.clearQueue();
 						window.addTracksToQueue(res.tracks);
 						if (window.masterAudioTag.paused) this.enableTrack(0, false);
 					}

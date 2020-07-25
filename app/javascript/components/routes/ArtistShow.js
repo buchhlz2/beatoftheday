@@ -51,8 +51,9 @@ class ArtistShow extends React.Component {
 					tracks: res.tracks
 				},
 				() => {
-					if (window.masterAudioTag.paused && res.tracks[0]) window.masterShowTrack(res.tracks[0], false);
+					window.clearQueue();
 					window.addTracksToQueue(res.tracks);
+					if (window.masterAudioTag.paused && res.tracks[0]) window.masterShowTrack(res.tracks[0], false);
 				}
 			);
 		});
