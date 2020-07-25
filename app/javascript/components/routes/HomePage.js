@@ -150,7 +150,8 @@ class HomePage extends React.Component {
 						tracksLength: res.length
 					},
 					() => {
-						if (masterAudioTag.paused) this.enableTrack(0, false);
+						window.addTracksToQueue(res.tracks);
+						if (window.masterAudioTag.paused) this.enableTrack(0, false);
 					}
 				);
 			});
