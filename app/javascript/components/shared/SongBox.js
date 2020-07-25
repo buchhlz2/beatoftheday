@@ -132,7 +132,7 @@ const NameText = styled(Link)`
   opacity: 0.5;
   color: white !important;
   margin-bottom: 5px;
-  width: fit-content;
+  width: calc(100% - 32px);
   text-decoration: none !important;
   line-height: initial;
 
