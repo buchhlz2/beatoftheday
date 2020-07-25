@@ -156,6 +156,7 @@ const NameText = styled(Link)`
   margin-right: 32px;
   text-decoration: none !important;
   line-height: initial;
+  padding: 10px;
   ${niceShadow}
 
   &:visited {
