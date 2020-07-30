@@ -46,6 +46,11 @@ body,
 	z-index: 10;
 	border-bottom: 1px solid #e0e0e0;
 }
+@media all and (max-width: 600px) {
+	.header {
+		padding-right: 19px;
+	}
+}
 
 .banner-wrapper {
 	margin-top: 50px;
