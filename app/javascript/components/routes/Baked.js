@@ -4,40 +4,19 @@ import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 import { Rank } from './HomePage';
+import { SongBoxWrapper, CommentBoxWrapper, Wrapper } from './TrackShow';
+import CommentBox from '../shared/CommentBox';
 
 const FlexContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	width: 100%;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 	@media all and (max-width: 800px) {
 		align-items: flex-start;
 		padding-left: 5px;
-	}
-`;
-
-const Wrapper = styled.div`
-	padding: 20px 0 20px 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	margin-bottom: 0px;
-	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
-
-	@media all and (max-width: 800px) {
-		max-width: 90%;
-		align-items: flex-start;
-	}
-`;
-
-const SongBoxWrapper = styled.div`
-	position: relative;
-	margin-bottom: 30px;
-	margin-top: 20px;
-	@media all and (max-width: 800px) {
-		width: 100%;
 	}
 `;
 
@@ -50,6 +29,15 @@ const InnerHeader = styled.div`
 	justify-content: center;
 	font-size: 24px;
 	color: #61646d;
+`;
+
+const TrackRow = styled.div`
+	width: 100%;
+	display: flex;
+	margin-top: 15px;
+
+	@media all and (max-width: 800px) {
+		flex-direction: column;
 `;
 
 const SmallerHeader = styled.div`
@@ -128,18 +116,24 @@ class Baked extends React.Component {
 				<Wrapper>
 					{this.state.tracks.map((obj, i) => {
 						return (
-							<SongBoxWrapper key={obj.id}>
-								<Rank>{i + 1}</Rank>
-								<SongBox
-									width={window.__good_height__}
-									height={window.__good_height__}
-									trackInfo={obj}
-									showRank={true}
-									enableTrack={() => {
-										this.enableTrack(i);
-									}}
-								/>
-							</SongBoxWrapper>
+							<TrackRow key={obj.id}>
+								<SongBoxWrapper>
+									<Rank>{i + 1}</Rank>
+									<SongBox
+										width={'100%'}
+										fontSize={40}
+										height={window.__good_height__}
+										trackInfo={obj}
+										showRank={true}
+										enableTrack={() => {
+											this.enableTrack(i);
+										}}
+									/>
+								</SongBoxWrapper>
+								<CommentBoxWrapper style={{ height: window.__good_height__ }}>
+									<CommentBox trackId={obj.id} trackInfo={obj} />
+								</CommentBoxWrapper>
+							</TrackRow>
 						);
 					})}
 				</Wrapper>

@@ -9,7 +9,7 @@ import AddATrack from '../shared/AddATrack';
 
 var track = {};
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 	margin-top: 20px;
 	padding: 0;
 	display: flex;
@@ -106,7 +106,7 @@ const CreatedAt = styled.p`
 	margin-bottom: 0;
 `;
 
-const SongBoxWrapper = styled.div`
+export const SongBoxWrapper = styled.div`
 	width: 66.666%;
 	margin-top: 30px;
 
@@ -115,7 +115,7 @@ const SongBoxWrapper = styled.div`
 	}
 `;
 
-const CommentBoxWrapper = styled.div`
+export const CommentBoxWrapper = styled.div`
 	width: calc(33.333%);
 	margin-top: 30px;
 
