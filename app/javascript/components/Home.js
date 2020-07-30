@@ -10,6 +10,7 @@ import HomePage from "./routes/HomePage";
 import AboutUs from "./routes/AboutUs";
 import $ from "jquery";
 import { Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
   BrowserRouter as Router,
@@ -18,6 +19,10 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
+
+import {
+  faBars
+} from "@fortawesome/free-solid-svg-icons";
 
 const HomeLinks = styled.div`
   position: fixed;
@@ -45,15 +50,19 @@ const NavLink = styled(Link)`
 `;
 
 const MenuX = styled.div`
+  font-size: 20px;
+  color: #656565;
   cursor: pointer;
   display: none;
   position: fixed;
-  top: 18px;
-  left: 22px;
+  top: 0px;
+  height: 50px;
+  align-items: center;
+  left: 19px;
   z-index: 100;
 
   @media all and (max-width: 600px) {
-    display: block;
+    display: flex;
   }
 `;
 
@@ -81,7 +90,7 @@ class Home extends React.Component {
               this.setState({ menuVisible: !this.state.menuVisible });
             }}
           >
-            {this.state.menuVisible ? "✖️" : "🍔"}
+            {this.state.menuVisible ? "✖️" : <FontAwesomeIcon icon={faBars} /> }
           </MenuX>
           <HomeLinks
             style={{ display: this.state.menuVisible ? "flex" : "none" }}
