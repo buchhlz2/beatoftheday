@@ -49,6 +49,7 @@ body,
 @media all and (max-width: 600px) {
 	.header {
 		padding-right: 19px;
+		padding-left: 19px;
 	}
 }
 
