@@ -10,7 +10,7 @@ import {
   faPause,
   faPlay,
   faHeart,
-  faRecycle,
+  faRetweet,
   faComments,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -325,7 +325,7 @@ class SongBox extends React.Component {
             >
               <LittleButton solid={false}>
                 <IconContainer>
-                  <FontAwesomeIcon icon={faRecycle} />
+                  <FontAwesomeIcon icon={faRetweet} />
                 </IconContainer>
                 <IconNumber>{this.props.trackInfo.num_rebounds}</IconNumber>
               </LittleButton>
