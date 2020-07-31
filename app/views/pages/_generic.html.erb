@@ -1,6 +1,6 @@
 <div class="outer-wrapper">
   <div class="header">
-    <div style="display: flex; justify-content: flex-end; align-items: center; width: 100%;">
+    <div class="directional-buttons">
       <div style="">
         <% if user_signed_in? %>
           <span><a href="/artist/<%= current_user.artist_name %>"><%= current_user.artist_name %></a></span>

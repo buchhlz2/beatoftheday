@@ -114,12 +114,13 @@ const ShowMoreButton = styled.div`
   margin: -50px 0 100px 0;
   align-self: center;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
   color: #666;
   font-size: 20px;
 
   &:hover {
-    text-decoration: none;
+    text-decoration: underline;
+    color: #aa32a1;
   }
 `;
 
