@@ -175,3 +175,28 @@ input[type="file"] {
 		width: 80%;
 	}
 }
+
+[type="file"] {
+	display: none;
+}
+
+[type="file"] + label {
+	background: #f15d22;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	/* font-family: 'Rubik', sans-serif; */
+	font-size: inherit;
+	font-weight: 500;
+	outline: none;
+	position: relative;
+	transition: all 0.3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&:hover {
+		background-color: darken(#f15d22, 10%);
+	}
+}

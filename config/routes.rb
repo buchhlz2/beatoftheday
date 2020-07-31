@@ -19,8 +19,13 @@ Rails.application.routes.draw do
   resources :tracks, only: [:index, :show]
   get '/tracks/show_track/:id' => 'tracks#show_track'
   get '/baked_tracks' => 'tracks#baked'
+  
   get 's3_direct_post' => 'tracks#s3_direct_post'
   post 's3_blob_location' => 'tracks#s3_blob_location'
+  
+  resources :attachments, only: [:index]
+  get 'attachment_s3_direct_post' => 'attachments#s3_direct_post'
+  post 'attachment_s3_blob_location' => 'attachments#s3_blob_location'
 
   post 'create_track_comment/:track_id' => 'comments#create_track_comment'
   get 'track_comments/:track_id' => 'comments#track_comments'
