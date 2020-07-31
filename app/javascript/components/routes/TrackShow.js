@@ -47,6 +47,7 @@ const ReboundRow = styled.div`
 const ReboundHeader = styled.h3`
 	font-size: 40px;
 	margin-bottom: 0;
+	margin-top: 0;
 `;
 
 const CreateARebound = styled.div`
