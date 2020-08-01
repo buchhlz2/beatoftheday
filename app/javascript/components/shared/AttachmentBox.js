@@ -15,7 +15,14 @@ export const Wrapper = styled.div`
 	flex-direction: column;
 `;
 
-export const StyledLabel = styled.label`flex-grow: 3;`;
+const StyledLabel = styled.label`flex-grow: 3;`;
+const Loader = styled.img`
+	width: 50px;
+	height: auto;
+	position: absolute;
+	bottom: 0;
+	left: calc(50% - 25px);
+`;
 
 const InputWrapper = styled.div`
 	width: 100%;
@@ -93,7 +100,7 @@ class AttachmentBox extends React.Component {
 			trackId: this.props.trackId,
 			attachments: [],
 			selectedFile: false,
-			loading: false
+			loading: true
 		};
 	}
 
@@ -109,7 +116,7 @@ class AttachmentBox extends React.Component {
 
 	loadData = () => {
 		$.get(`/attachments?track_id=${this.state.trackId}`).done((res) => {
-			if (res.attachments) {
+			if (res.attachments.length > 0) {
 				this.setState({
 					attachments: res.attachments
 				});
@@ -134,12 +141,15 @@ class AttachmentBox extends React.Component {
 				attachmentName: this.state.selectedFile.name,
 				trackId: this.state.trackId
 			},
-			((res) => {
-				attachments = this.state.attachments.concat(res);
-				this.setState({ attachments: attachments });
-				this.props.setCommentBoxState({ attachments: attachments });
-			}).bind(this)
+			this.refreshData
 		);
+	};
+
+	refreshData = (res) => {
+		const attachments = this.state.attachments.concat(res);
+		this.setState({ attachments: attachments });
+		this.props.setCommentBoxState({ attachments: attachments });
+		this.setState({ loading: false });
 	};
 
 	render() {
@@ -159,17 +169,23 @@ class AttachmentBox extends React.Component {
 						);
 					})}
 					<InputWrapper>
-						<input type="file" id="file" accept="*" onChange={this.attachmentChangeHandler} />
-						<StyledLabel htmlFor="file">
-							{this.state.selectedFile ? this.state.selectedFile.name : 'Choose a file'}
-						</StyledLabel>
-						<SubmitButton
-							onClick={() => {
-								if (!this.state.loading) this.onClickUpload();
-							}}
-						>
-							Upload
-						</SubmitButton>
+						{this.state.loading ? (
+							<Loader src="/assets/loader.gif" />
+						) : (
+							<React.Fragment>
+								<input type="file" id="file" accept="*" onChange={this.attachmentChangeHandler} />
+								<StyledLabel htmlFor="file">
+									{this.state.selectedFile ? this.state.selectedFile.name : 'Choose a file'}
+								</StyledLabel>
+								<SubmitButton
+									onClick={() => {
+										if (!this.state.loading) this.onClickUpload();
+									}}
+								>
+									Upload
+								</SubmitButton>
+							</React.Fragment>
+						)}
 					</InputWrapper>
 				</Wrapper>
 			)

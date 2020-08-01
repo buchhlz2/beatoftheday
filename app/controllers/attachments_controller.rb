@@ -43,7 +43,9 @@ class AttachmentsController < ApplicationController
       name: params[:attachmentName]
     )
 
-    render json: attachment.attributes
+    render json: attachment.attributes.merge({
+      artist_name: attachment.user.artist_name
+    })
   end
 
   private
