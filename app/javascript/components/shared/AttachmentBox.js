@@ -132,9 +132,18 @@ class AttachmentBox extends React.Component {
 	};
 
 	attachmentChangeHandler = (event) => {
-		this.setState({
-			selectedFile: event.target.files[0]
-		});
+		const file = event.target.files[0];
+		var fileSize = (file.size / 1024 / 1024).toFixed(4); // MB
+
+		if (fileSize > 200) {
+			this.setState({
+				error: 'Sorry, 200MB max'
+			});
+		} else {
+			this.setState({
+				selectedFile: file
+			});
+		}
 	};
 
 	onClickUpload = () => {
@@ -187,7 +196,13 @@ class AttachmentBox extends React.Component {
 											onChange={this.attachmentChangeHandler}
 										/>
 										<StyledLabel htmlFor="file">
-											{this.state.selectedFile ? this.state.selectedFile.name : 'Choose a file'}
+											{this.state.error ? (
+												this.state.error
+											) : this.state.selectedFile ? (
+												this.state.selectedFile.name
+											) : (
+												'Choose a file'
+											)}
 										</StyledLabel>
 										<SubmitButton
 											onClick={() => {
