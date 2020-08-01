@@ -29,19 +29,34 @@ class Track < ApplicationRecord
   end
 
   def all_rebounds
+    standard_rebounds + upward_rebounds
+  end
+
+  def standard_rebounds
     all = []
     all << self
-    if rebounds.length > 0
-      rebounds.map do |rebound|
-        all << rebound.all_rebounds
+
+    @rebounds_arr = rebounds
+    if @rebounds_arr.length > 0
+      @rebounds_arr.map do |rebound|
+        all << rebound.standard_rebounds
       end
     end
 
     all.flatten.uniq
   end
 
-  def all_rebounds_attributes(current_user)
-    all_rebounds.map do |rebound|
+  def upward_rebounds(arr = [])
+    @rebound_from_ = rebound_from
+    if @rebound_from_.present?
+      return @rebound_from_.upward_rebounds(arr + [@rebound_from_])
+    end
+
+    arr
+  end
+
+  def standard_rebounds_attributes(current_user)
+    standard_rebounds.map do |rebound|
       rebound.show_attributes(current_user)
     end
   end
@@ -52,7 +67,7 @@ class Track < ApplicationRecord
       num_likes: likes.length,
       num_bakes: bakes.length,
       num_comments: comments.length,
-      num_rebounds: all_rebounds.length - 1,
+      num_rebounds: all_rebounds.length,
       baked: baked_for_user?(current_user),
       liked: liked_for_user?(current_user),
       og_track: og_track.try(:attributes),

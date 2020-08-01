@@ -40,7 +40,7 @@ class TracksController < ApplicationController
     @track = Track.find(params[:id])
     return head(404) unless @track.present?
 
-    render json: @track.all_rebounds_attributes(current_user)
+    render json: @track.standard_rebounds_attributes(current_user)
   end
 
   def s3_direct_post
@@ -72,7 +72,7 @@ class TracksController < ApplicationController
         user: current_user,
         link: aws_url,
         photo: aws_photo_url,
-        name: "#{rebound_from_track.og_track.name} #{rebound_from_track.og_track.all_rebounds.count + 1}",
+        name: "#{rebound_from_track.og_track.name} #{rebound_from_track.og_track.standard_rebounds.count + 1}",
         audio_type: aws_url.split('.').last,
         rebound_track_id: rebound_from_track.id
       )
@@ -114,7 +114,7 @@ class TracksController < ApplicationController
         num_likes: likes.select { |l| l.track_id == track.id }.length,
         num_bakes: likes.select { |l| l.track_id == track.id && l.baked }.length,
         num_comments: comments.select { |c| c.track_id == track.id }.length,
-        num_rebounds: track.all_rebounds.length - 1,
+        num_rebounds: track.standard_rebounds.length - 1,
         baked: baked_for_user?(likes, track, current_user),
         liked: liked_for_user?(likes, track, current_user),
         og_track: track.og_track.try(:attributes),

@@ -52,6 +52,8 @@ const PleaseComplete = styled.p`
 	margin-top: 20px;
 `;
 
+const StyledLabel = styled.label``;
+
 class AddATrack extends React.Component {
 	constructor(props) {
 		super(props);
@@ -133,22 +135,34 @@ class AddATrack extends React.Component {
 							2. Import the track into your favorite music app and add a new layer to the track.
 						</Heading>
 						<Heading>3. Choose your new mp3 or m4a file to upload:</Heading>
-						<input type="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
+						<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
+						<StyledLabel htmlFor="file">
+							{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
+						</StyledLabel>
 						<Heading>
 							4. Choose an image to go with your {!!this.props.reboundTrack ? 'rebound' : 'track'}:
 						</Heading>
-						<input type="file" onChange={this.imageFileChangeHandler} accept="image/*" />
+						<input type="file" id="img-file" onChange={this.imageFileChangeHandler} accept="image/*" />
+						<StyledLabel htmlFor="img-file">
+							{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
+						</StyledLabel>
 					</React.Fragment>
 				) : (
 					<React.Fragment>
 						<Heading>1. Name your track:</Heading>
 						<input id="name" type="text" onChange={this.nameChangeHandler} />
 						<Heading>2. Choose an mp3 or m4a file to upload:</Heading>
-						<input type="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
+						<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
+						<StyledLabel htmlFor="file">
+							{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
+						</StyledLabel>
 						<Heading>
 							3. Choose an image to go with your {!!this.props.reboundTrack ? 'rebound' : 'track'}:
 						</Heading>
 						<input type="file" onChange={this.imageFileChangeHandler} accept="image/*" />
+						<StyledLabel htmlFor="img-file">
+							{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
+						</StyledLabel>
 					</React.Fragment>
 				)}
 
