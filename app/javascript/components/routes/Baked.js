@@ -131,7 +131,7 @@ class Baked extends React.Component {
 				</Wrapper>
 				{this.state.loading ? (
 					<LoaderWrapper>
-						<Loader src="https://beatoftheday.s3.us-west-1.amazonaws.com/audio%2F7a17a42d-5cc8-4f96-bc7f-d7de1d8ac79a%2Floader.gif" />
+						<Loader src="/assets/loader.gif" />
 					</LoaderWrapper>
 				) : (
 					<AddATrackLink href="/add-a-track">Add a track</AddATrackLink>

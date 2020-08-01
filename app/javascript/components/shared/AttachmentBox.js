@@ -197,7 +197,7 @@ class AttachmentBox extends React.Component {
 						{window.OPTIONS.current_user ? (
 							<React.Fragment>
 								{this.state.loading ? (
-									<StyledLoader src="https://beatoftheday.s3.us-west-1.amazonaws.com/audio%2F7a17a42d-5cc8-4f96-bc7f-d7de1d8ac79a%2Floader.gif" />
+									<StyledLoader src="/assets/loader.gif" />
 								) : (
 									<React.Fragment>
 										<input
