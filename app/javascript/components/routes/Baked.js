@@ -110,7 +110,7 @@ class Baked extends React.Component {
 	render() {
 		return (
 			<FlexContainer>
-				<InnerHeader>🧁 Top tracks:</InnerHeader>
+				<InnerHeader>🧁 Top tracks</InnerHeader>
 				<Wrapper>
 					{tracks.map((obj, i) => {
 						return (

@@ -178,7 +178,7 @@ class HomePage extends React.Component {
 	render() {
 		return (
 			<FlexContainer>
-				<InnerHeader>🎵 New tracks:</InnerHeader>
+				<InnerHeader>🎵 New tracks</InnerHeader>
 
 				<Wrapper>
 					{tracks.map((obj, i) => {

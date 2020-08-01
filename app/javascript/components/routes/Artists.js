@@ -68,7 +68,7 @@ class Artists extends React.Component {
 	render() {
 		return (
 			<Wrapper>
-				<InnerHeader>🧞 Artists:</InnerHeader>
+				<InnerHeader>🧞 Artists</InnerHeader>
 				{this.state.artists.map((artist) => {
 					return (
 						<ArtistBox key={artist.id}>

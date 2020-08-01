@@ -42,7 +42,7 @@ class AddATrackRoute extends React.Component {
 	render() {
 		return (
 			<Wrapper>
-				<StyledReboundHeader>New Track:</StyledReboundHeader>
+				<StyledReboundHeader>New Track</StyledReboundHeader>
 				<AddATrack />
 			</Wrapper>
 		);
