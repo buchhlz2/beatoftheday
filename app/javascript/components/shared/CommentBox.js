@@ -217,15 +217,26 @@ class CommentBox extends React.Component {
 							this.setState({ showAttachments: false });
 						}}
 					>
-						{this.state.thread.length} {this.state.thread.length == 1 ? 'Comment' : 'Comments'}
+						{this.state.thread.length == 0 ? (
+							'Comments'
+						) : this.state.thread.length == 1 ? (
+							`${this.state.attachments.length} Comment`
+						) : (
+							`${this.state.attachments.length} Comments`
+						)}
 					</HeadingSpan>
 					<HeadingSpan
 						onClick={() => {
 							this.setState({ showAttachments: true });
 						}}
 					>
-						{this.state.attachments.length}{' '}
-						{this.state.attachments.length == 1 ? 'Attachment' : 'Attachments'}
+						{this.state.attachments.length == 0 ? (
+							'Add attachment'
+						) : this.state.attachments.length == 1 ? (
+							`${this.state.attachments.length} Attachment`
+						) : (
+							`${this.state.attachments.length} Attachment`
+						)}
 					</HeadingSpan>
 				</Heading>
 				<AttachmentBox

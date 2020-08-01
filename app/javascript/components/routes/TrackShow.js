@@ -21,6 +21,8 @@ const Wrapper = styled.div`
 	position: relative;
 `;
 
+const LoggedOutMessage = styled.span``;
+
 const SmallerHeader = styled.div`
 	margin-top: 30px;
 	line-height: 22px;
@@ -251,10 +253,10 @@ class TrackShow extends React.Component {
 					</CreateARebound>
 				) : (
 					<CreateARebound>
-						<ReboundHeader>
+						<LoggedOutMessage>
 							<a href="/users/sign_in">Login</a> or <a href="/users/sign_up">sign up</a> to create a
 							rebound.
-						</ReboundHeader>
+						</LoggedOutMessage>
 					</CreateARebound>
 				)}
 			</Wrapper>
