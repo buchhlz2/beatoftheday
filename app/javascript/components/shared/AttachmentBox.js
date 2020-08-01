@@ -166,9 +166,8 @@ class AttachmentBox extends React.Component {
 
 	refreshData = (res) => {
 		const attachments = this.state.attachments.concat(res);
-		this.setState({ attachments: attachments });
+		this.setState({ attachments: attachments, selectedFile: undefined, loading: false });
 		this.props.setCommentBoxState({ attachments: attachments });
-		this.setState({ loading: false });
 	};
 
 	render() {
