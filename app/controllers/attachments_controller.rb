@@ -40,7 +40,8 @@ class AttachmentsController < ApplicationController
       user: current_user,
       url: aws_url,
       track_id: params[:trackId],
-      name: params[:attachmentName]
+      name: params[:attachmentName],
+      size_mb: params[:fileSize].to_f
     )
 
     render json: attachment.attributes.merge({

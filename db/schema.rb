@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_31_220428) do
+ActiveRecord::Schema.define(version: 2020_08_01_011518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_07_31_220428) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
+    t.float "size_mb"
     t.index ["track_id"], name: "index_attachments_on_track_id"
     t.index ["user_id"], name: "index_attachments_on_user_id"
   end

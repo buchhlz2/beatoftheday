@@ -89,6 +89,7 @@ const AttachmentUser = styled.span`
 	a {
 		text-decoration: none !important;
 		color: #666;
+		padding: 0;
 
 		&:hover {
 			background: none;
@@ -133,15 +134,18 @@ class AttachmentBox extends React.Component {
 
 	attachmentChangeHandler = (event) => {
 		const file = event.target.files[0];
-		var fileSize = (file.size / 1024 / 1024).toFixed(4); // MB
+		const fileSize = (file.size / 1024 / 1024).toFixed(2); // MB
 
 		if (fileSize > 200) {
 			this.setState({
-				error: 'Sorry, 200MB max'
+				error: 'Sorry, 200MB max',
+				fileSize: fileSize
 			});
 		} else {
 			this.setState({
-				selectedFile: file
+				selectedFile: file,
+				fileSize: fileSize,
+				error: undefined
 			});
 		}
 	};
@@ -153,7 +157,8 @@ class AttachmentBox extends React.Component {
 			this.state.selectedFile,
 			{
 				attachmentName: this.state.selectedFile.name,
-				trackId: this.state.trackId
+				trackId: this.state.trackId,
+				fileSize: this.state.fileSize
 			},
 			this.refreshData
 		);
@@ -177,7 +182,8 @@ class AttachmentBox extends React.Component {
 									{attachment.name}
 								</AttachmentName>
 								<AttachmentUser>
-									from <Link to={artistUrl(attachment.artist_name)}>{attachment.artist_name}</Link>
+									{attachment.size_mb} MB from{' '}
+									<Link to={artistUrl(attachment.artist_name)}>{attachment.artist_name}</Link>
 								</AttachmentUser>
 							</Attachment>
 						);
