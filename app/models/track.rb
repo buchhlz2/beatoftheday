@@ -29,7 +29,8 @@ class Track < ApplicationRecord
   end
 
   def all_rebounds
-    standard_rebounds + upward_rebounds
+    all = standard_rebounds + upward_rebounds
+    all.length > 1 ? all : []
   end
 
   def standard_rebounds
