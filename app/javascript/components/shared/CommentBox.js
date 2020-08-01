@@ -193,13 +193,21 @@ class CommentBox extends React.Component {
 		const thread =
 			this.state.thread.length > 0
 				? this.state.thread
-				: [
-						{
-							artist_name: 'Hey',
-							created_at: new Date(),
-							text: 'Say something here...'
-						}
-					];
+				: window.OPTIONS.current_user
+					? [
+							{
+								artist_name: 'Hey',
+								created_at: new Date(),
+								text: 'Say something here...'
+							}
+						]
+					: [
+							{
+								artist_name: 'Hey',
+								created_at: new Date(),
+								text: 'Login or sign up to comment...'
+							}
+						];
 
 		return (
 			<Wrapper>

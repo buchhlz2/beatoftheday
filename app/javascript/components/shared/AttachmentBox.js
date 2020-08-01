@@ -34,6 +34,11 @@ const InputWrapper = styled.div`
 	height: 43px;
 `;
 
+const LoggedOut = styled.span`
+	margin-top: 10px;
+	color: #666;
+`;
+
 const SubmitButton = styled.div`
 	cursor: pointer;
 	border-radius: 3px;
@@ -169,22 +174,36 @@ class AttachmentBox extends React.Component {
 						);
 					})}
 					<InputWrapper>
-						{this.state.loading ? (
-							<Loader src="/assets/loader.gif" />
-						) : (
+						{window.OPTIONS.current_user ? (
 							<React.Fragment>
-								<input type="file" id="file" accept="*" onChange={this.attachmentChangeHandler} />
-								<StyledLabel htmlFor="file">
-									{this.state.selectedFile ? this.state.selectedFile.name : 'Choose a file'}
-								</StyledLabel>
-								<SubmitButton
-									onClick={() => {
-										if (!this.state.loading) this.onClickUpload();
-									}}
-								>
-									Upload
-								</SubmitButton>
+								{this.state.loading ? (
+									<Loader src="/assets/loader.gif" />
+								) : (
+									<React.Fragment>
+										<input
+											type="file"
+											id="file"
+											accept="*"
+											onChange={this.attachmentChangeHandler}
+										/>
+										<StyledLabel htmlFor="file">
+											{this.state.selectedFile ? this.state.selectedFile.name : 'Choose a file'}
+										</StyledLabel>
+										<SubmitButton
+											onClick={() => {
+												if (!this.state.loading) this.onClickUpload();
+											}}
+										>
+											Upload
+										</SubmitButton>
+									</React.Fragment>
+								)}
 							</React.Fragment>
+						) : (
+							<LoggedOut>
+								<a href="/users/sign_in">Login</a> or <a href="/users/sign_up">sign up</a> to add
+								attachments.
+							</LoggedOut>
 						)}
 					</InputWrapper>
 				</Wrapper>
