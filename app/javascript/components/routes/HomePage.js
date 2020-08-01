@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
+import { Loader } from '../shared/AttachmentBox';
 
 var tracks = [];
 var page = 1;
@@ -76,6 +77,8 @@ const InnerHeader = styled.div`
 	}
 `;
 
+const LoaderWrapper = styled.div`position: relative;`;
+
 const SmallerHeader = styled.div`
 	margin-top: 30px;
 	line-height: 22px;
@@ -87,53 +90,44 @@ const SmallerHeader = styled.div`
 	}
 `;
 
-const AddATrackLink = styled.a`
+export const AddATrackLink = styled.a`
 	cursor: pointer;
-	font-size: 24px;
-	padding: 5px;
-	width: 300px;
-	height: 100px;
+	width: 100%;
+	margin-top: 100px;
+	margin-bottom: 200px;
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	margin-bottom: 180px;
-	margin-top: -5px;
-	transition: all 1s ease;
-	position: relative;
-	bottom: 0;
+	align-items: center;
+	flex-direction: column;
+	padding: 20px;
 	border-radius: 3px;
-	opacity: 0.8;
-	background: #aa32a1;
-	align-self: center;
-	color: white !important;
+	box-shadow: 0px 13px 13px -8px #dadada;
+	border: 1px solid #cccccc;
+	color: #666 !important;
+	text-decoration: none !important;
+	font-size: 16px;
 
 	&:hover {
-		box-shadow: 0 0px 15px 6px #aa32a1;
-		bottom: 5px;
-		background-color: #aa32a1;
+		background: #f3f2f2;
+		color: #666 !important;
 	}
 `;
 
 const ShowMoreButton = styled.div`
-	margin: -50px 0 100px 0;
+	margin: -60px 0 0px 0;
 	align-self: center;
 	cursor: pointer;
-	text-decoration: underline;
 	color: #666;
-	font-size: 20px;
-
-	&:hover {
-		text-decoration: none;
-	}
+	font-size: 16px;
 `;
 
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
-	}
 
-	componentDidUpdate() {
-		this.getTracks();
+		this.state = {
+			loading: true
+		};
 	}
 
 	componentDidMount() {
@@ -141,7 +135,7 @@ class HomePage extends React.Component {
 	}
 
 	getTracks = () => {
-		if (tracks.length > 0) return;
+		if (tracks.length > 0) return this.setState({ loading: false });
 
 		$.get('/tracks').done((res) => {
 			tracks = res.tracks;
@@ -149,6 +143,7 @@ class HomePage extends React.Component {
 			window.clearQueue();
 			window.addTracksToQueue(res.tracks);
 			if (window.masterAudioTag.paused) this.enableTrack(0, false);
+			this.setState({ loading: false });
 			this.forceUpdate();
 		});
 	};
@@ -159,9 +154,11 @@ class HomePage extends React.Component {
 	};
 
 	showMoreTracks = () => {
+		this.setState({ loading: true });
 		page = page + 1;
 		$.get(`/tracks?page=${page}`).done((res) => {
 			tracks = tracks.concat(res.tracks);
+			this.setState({ loading: false });
 			this.forceUpdate();
 		});
 	};
@@ -190,8 +187,14 @@ class HomePage extends React.Component {
 						);
 					})}
 				</Wrapper>
-				{page * window.__page_unit__ < tracksLength && (
-					<ShowMoreButton onClick={this.showMoreTracks}>Show more ↓</ShowMoreButton>
+				{this.state.loading ? (
+					<LoaderWrapper>
+						<Loader src="/assets/loader.gif" />
+					</LoaderWrapper>
+				) : (
+					page * window.__page_unit__ < tracksLength && (
+						<ShowMoreButton onClick={this.showMoreTracks}>Show more ↓</ShowMoreButton>
+					)
 				)}
 				<AddATrackLink href="/add-a-track">Add a new track!</AddATrackLink>
 			</FlexContainer>

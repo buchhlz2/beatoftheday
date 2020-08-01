@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 import { Rank } from './HomePage';
+import { Loader } from '../shared/AttachmentBox';
+import { AddATrackLink } from './HomePage';
 
 var tracks = [];
 
@@ -43,6 +45,11 @@ const SongBoxWrapper = styled.div`
 	}
 `;
 
+const LoaderWrapper = styled.div`
+	position: relative;
+	margin-top: 50px;
+`;
+
 const InnerHeader = styled.div`
 	width: 100%;
 	margin-top: 50px;
@@ -67,32 +74,13 @@ const SmallerHeader = styled.div`
 	}
 `;
 
-const AddATrackLink = styled.a`
-	cursor: pointer;
-	font-size: 24px;
-	padding: 5px;
-	width: 100%;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 130px;
-	margin-top: -5px;
-	transition: all 1s ease;
-	position: relative;
-	bottom: 0;
-	border-radius: 3px;
-
-	&:hover {
-		box-shadow: 0 0px 15px 6px #aa32a1;
-		bottom: 5px;
-		background: #aa32a1;
-	}
-`;
-
 class Baked extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			loading: true
+		};
 	}
 
 	componentDidMount() {
@@ -100,9 +88,11 @@ class Baked extends React.Component {
 	}
 
 	getTracks = () => {
-		if (tracks.length > 0) return;
+		if (tracks.length > 0) return this.setState({ loading: false });
+
 		$.get('/baked_tracks').done((res) => {
 			tracks = res.baked_tracks;
+			this.setState({ loading: false });
 			this.forceUpdate();
 			window.clearQueue();
 			window.addTracksToQueue(res.baked_tracks);
@@ -137,7 +127,13 @@ class Baked extends React.Component {
 						);
 					})}
 				</Wrapper>
-				<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
+				{this.state.loading ? (
+					<LoaderWrapper>
+						<Loader src="/assets/loader.gif" />
+					</LoaderWrapper>
+				) : (
+					<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
+				)}
 			</FlexContainer>
 		);
 	}
