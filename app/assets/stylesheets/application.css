@@ -245,3 +245,25 @@ form {
 	margin-right: 15px;
 	margin-top: 3px;
 }
+
+.outer-space-name {
+	display: flex;
+	align-items: center;
+	padding-right: 10px;
+}
+
+@media all and (max-width: 600px) {
+	.outer-space-name {
+		display: none;
+	}
+}
+
+.outer-space-mini-name {
+	display: none;
+}
+
+@media all and (max-width: 600px) {
+	.outer-space-mini-name {
+		display: flex;
+	}
+}
