@@ -209,7 +209,7 @@ class HomePage extends React.Component {
 						{page * window.__page_unit__ < tracksLength && (
 							<ShowMoreButton onClick={this.showMoreTracks}>Show more ↓</ShowMoreButton>
 						)}
-						<AddATrackLink href="/add-a-track">Add a new track!</AddATrackLink>
+						<AddATrackLink href="/add-a-track">Add a track</AddATrackLink>
 					</React.Fragment>
 				)}
 			</FlexContainer>

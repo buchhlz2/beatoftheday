@@ -133,7 +133,7 @@ class Baked extends React.Component {
 						<Loader src="/assets/loader.gif" />
 					</LoaderWrapper>
 				) : (
-					<AddATrackLink href="/add-a-track">Add a track!</AddATrackLink>
+					<AddATrackLink href="/add-a-track">Add a track</AddATrackLink>
 				)}
 			</FlexContainer>
 		);
