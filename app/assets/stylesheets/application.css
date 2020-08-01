@@ -205,3 +205,43 @@ input[type="file"] {
 		background-color: darken(#f15d22, 10%);
 	}
 }
+
+.actions input[type='submit'] {
+	font-size: 14px;
+	cursor: pointer;
+	width: 100%;
+	color: white !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #f15d22;
+	border: none;
+	border-radius: 3px;
+	text-decoration: none !important;
+	line-height: 17px;
+	padding: 10px;
+	margin: 0 !important;
+	text-shadow: none !important;
+	box-sizing: border-box;
+	height: 38px;
+}
+
+.actions input[type='submit']:hover {
+	background: #f15d22 !important;
+}
+
+form {
+	width: 90%;
+	max-width: 500px;
+}
+
+.field input {
+	width: 100% !important;
+	min-width: auto !important;
+}
+
+.field input[type='checkbox'] {
+	width: auto !important;
+	margin-right: 15px;
+	margin-top: 3px;
+}
