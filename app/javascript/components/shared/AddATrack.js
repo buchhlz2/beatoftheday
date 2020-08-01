@@ -4,55 +4,126 @@ import $ from 'jquery';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import upload from '../util/upload';
+import { Loader } from './AttachmentBox';
+
+const LoaderWrapper = styled.div`
+	position: relative;
+	margin-top: 22px;
+	height: 50px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const StyledLoader = styled(Loader)`
+	top: 0;
+`;
+
+const NameInput = styled.input`
+	width: 100%;
+	margin-left: 10px !important;
+	margin-bottom: 0 !important;
+	border: 1px solid #adadad;
+	color: #5e6469;
+	border-radius: 3px;
+	font-size: 14px;
+
+	::placeholder {
+		color: #bdbdbd;
+		opacity: 1;
+	}
+`;
 
 const DownloadButton = styled.a`
-	height: 40px;
-	font-size: 16px;
-	font-weight: 700;
+	font-size: 14px;
 	cursor: pointer;
-	margin: 10px;
-	margin-bottom: 20px;
-	border-radius: 999px;
-	background: #666;
+	width: 100%;
+	margin-left: 10px;
 	color: white !important;
 	transform: scale(1, 1);
 	transition: transform 0.5s ease;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: #f15d22;
+	border: none;
+	border-radius: 3px;
+	text-decoration: none !important;
+	line-height: 17px;
+	height: 17px;
 	padding: 10px;
+	box-sizing: content-box;
 
 	&:hover {
-		transform: scale(1.03, 1.03);
+		background: #f15d22;
 	}
+`;
 
-	&:active {
-		transform: scale(0.99, 0.99);
-		background: #666 !important;
+const PleaseComplete = styled.p`
+	font-size: 14px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	background: #5e6469;
+	border: none;
+	border-radius: 3px;
+	text-decoration: none !important;
+	padding: 10px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	cursor: help;
+	margin-left: 26px;
+	width: 100%;
+	line-height: initial;
+
+	&:hover {
+		background: #5e6469;
 	}
 `;
 
 const Upload = styled.button`
 	width: 100%;
-	height: 40px;
-	margin-top: 20px;
-	font-size: 16px;
-	font-weight: 700;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	font-size: 14px;
 	cursor: pointer;
+	padding: 10px;
+	background: #79e84b;
+	border: none;
+	border-radius: 3px;
+	text-decoration: none !important;
+	outline: none;
+	margin-left: 26px;
+	text-shadow: none;
+	font-weight: normal;
+	line-height: 17px;
+
+	&:hover {
+		background: #79e84b !important;
+	}
+
+	&:active {
+		background: #40da00;
+	}
 `;
 
 const Heading = styled.h3`
-	margin-bottom: 20px;
+	font-size: 16px;
+	margin-bottom: 30px;
 	width: 100%;
 	line-height: 27px;
+	display: flex;
 `;
 
-const PleaseComplete = styled.p`
-	font-size: 16px;
-	margin-top: 20px;
+const StyledLabel = styled.label`
+	padding: 10px;
+	width: 100%;
+	font-size: 14px !important;
+	line-height: initial;
+	margin-left: 10px;
+	margin-right: 0px;
 `;
-
-const StyledLabel = styled.label``;
 
 class AddATrack extends React.Component {
 	constructor(props) {
@@ -132,49 +203,62 @@ class AddATrack extends React.Component {
 							</DownloadButton>
 						</Heading>
 						<Heading>
-							2. Import the track into your favorite music app and add a new layer to the track.
+							2.
+							<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
+							<StyledLabel htmlFor="file">
+								{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
+							</StyledLabel>
 						</Heading>
-						<Heading>3. Choose your new mp3 or m4a file to upload:</Heading>
-						<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
-						<StyledLabel htmlFor="file">
-							{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
-						</StyledLabel>
 						<Heading>
-							4. Choose an image to go with your {!!this.props.reboundTrack ? 'rebound' : 'track'}:
+							3.
+							<input type="file" id="img-file" onChange={this.imageFileChangeHandler} accept="image/*" />
+							<StyledLabel htmlFor="img-file">
+								{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
+							</StyledLabel>
 						</Heading>
-						<input type="file" id="img-file" onChange={this.imageFileChangeHandler} accept="image/*" />
-						<StyledLabel htmlFor="img-file">
-							{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
-						</StyledLabel>
 					</React.Fragment>
 				) : (
 					<React.Fragment>
-						<Heading>1. Name your track:</Heading>
-						<input id="name" type="text" onChange={this.nameChangeHandler} />
-						<Heading>2. Choose an mp3 or m4a file to upload:</Heading>
-						<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
-						<StyledLabel htmlFor="file">
-							{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
-						</StyledLabel>
 						<Heading>
-							3. Choose an image to go with your {!!this.props.reboundTrack ? 'rebound' : 'track'}:
+							1.
+							<NameInput
+								placeholder="Name"
+								style={{ width: '100%' }}
+								id="name"
+								type="text"
+								onChange={this.nameChangeHandler}
+							/>
 						</Heading>
-						<input type="file" onChange={this.imageFileChangeHandler} accept="image/*" />
-						<StyledLabel htmlFor="img-file">
-							{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
-						</StyledLabel>
+						<Heading>
+							2.
+							<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
+							<StyledLabel htmlFor="file">
+								{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
+							</StyledLabel>
+						</Heading>
+						<Heading>
+							3.
+							<input type="file" id="img-file" onChange={this.imageFileChangeHandler} accept="image/*" />
+							<StyledLabel htmlFor="img-file">
+								{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
+							</StyledLabel>
+						</Heading>
 					</React.Fragment>
 				)}
-
-				{this.formValidation() ? this.state.uploading ? (
-					<Upload>Uploading...</Upload>
-				) : (
-					<Upload onClick={this.onClickUpload}>Upload!</Upload>
-				) : (
-					<PleaseComplete>
-						Please complete all the fields to upload your {!!this.props.reboundTrack ? 'rebound' : 'track'}.
-					</PleaseComplete>
-				)}
+				<Heading>
+					{this.formValidation() ? this.state.uploading ? (
+						<LoaderWrapper>
+							<Loader src="/assets/loader.gif" />
+						</LoaderWrapper>
+					) : (
+						<Upload onClick={this.onClickUpload}>Upload</Upload>
+					) : (
+						<PleaseComplete>
+							Choose an audio file and an image to upload your{' '}
+							{!!this.props.reboundTrack ? 'rebound' : 'track'}
+						</PleaseComplete>
+					)}
+				</Heading>
 			</React.Fragment>
 		);
 	}

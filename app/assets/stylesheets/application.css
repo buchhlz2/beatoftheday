@@ -188,7 +188,7 @@ input[type="file"] {
 [type="file"] + label {
 	background: #f15d22;
 	border: none;
-	border-radius: 5px;
+	border-radius: 3px;
 	color: #fff;
 	cursor: pointer;
 	/* font-family: 'Rubik', sans-serif; */

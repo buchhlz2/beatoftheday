@@ -16,9 +16,10 @@ export const Wrapper = styled.div`
 `;
 
 const StyledLabel = styled.label`flex-grow: 3;`;
-const Loader = styled.img`
+
+export const Loader = styled.img`
 	width: 50px;
-	height: auto;
+	height: 50px;
 	position: absolute;
 	bottom: 0;
 	left: calc(50% - 25px);

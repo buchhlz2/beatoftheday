@@ -24,11 +24,12 @@ const Wrapper = styled.div`
 const SmallerHeader = styled.div`
 	margin-top: 30px;
 	line-height: 22px;
-	font-size: 16px;
-	width: 70%;
+	font-size: 14px;
+	width: 100%;
 	display: flex;
 	color: #5e6469 !important;
-	justify-content: center;
+	justify-content: flex-start;
+	margin-bottom: 30px;
 `;
 
 const ReboundsBox = styled.div`
@@ -44,13 +45,14 @@ const ReboundRow = styled.div`
 	margin-top: 15px;
 `;
 
-const ReboundHeader = styled.h3`
-	font-size: 40px;
+export const ReboundHeader = styled.h3`
+	margin-top: 30px;
+	font-size: 24px;
 	margin-bottom: 0;
+	color: #5e6469;
 `;
 
 const CreateARebound = styled.div`
-	background: #b1f0ff;
 	width: 100%;
 	margin-top: 50px;
 	margin-bottom: 150px;
@@ -60,11 +62,10 @@ const CreateARebound = styled.div`
 	flex-direction: column;
 	padding: 20px;
 	border-radius: 3px;
-	transform: scale(1, 1);
-	transition: transform 0.5s ease;
+	box-shadow: 0px 13px 13px -8px #dadada;
+	border: 1px solid #cccccc;
 
 	&:hover {
-		transform: scale(1.03, 1.03);
 	}
 `;
 
@@ -239,11 +240,12 @@ class TrackShow extends React.Component {
 
 				{!!window.OPTIONS.current_user ? (
 					<CreateARebound>
-						<ReboundHeader>Create a remix of {track.name}:</ReboundHeader>
-						<SmallerHeader>
-							(you can click into any of the previous tracks if you want to remix off any of those).
-						</SmallerHeader>
 						<AddATrackBox>
+							<ReboundHeader>Create a remix of {track.name}:</ReboundHeader>
+							<SmallerHeader>
+								Import the track into your favorite music app, mess around with it, and then upload your
+								remix.
+							</SmallerHeader>
 							<AddATrack reboundTrack={track} />
 						</AddATrackBox>
 					</CreateARebound>

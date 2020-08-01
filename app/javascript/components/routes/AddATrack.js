@@ -5,25 +5,31 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import AddATrack from '../shared/AddATrack';
 import upload from '../util/upload';
+import { ReboundHeader } from './TrackShow';
+
+const StyledReboundHeader = styled(ReboundHeader)`
+	margin-bottom: 30px;
+`;
 
 const Wrapper = styled.div`
-	margin-top: 100px;
+	margin-top: 30px;
 	margin-bottom: 200px;
 	padding: 20px;
 	display: flex;
 	align-items: start;
 	flex-direction: column;
 	flex-wrap: wrap;
-	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
+	max-width: 500px;
+	width: 100%;
 
 	input {
 		padding-left: 0;
 		margin-left: 0;
-		font-size: 16px;
+		font-size: 14px;
 
 		&[type="text"] {
 			padding: 10px;
-			font-size: 16px;
+			font-size: 14px;
 		}
 	}
 `;
@@ -36,6 +42,7 @@ class AddATrackRoute extends React.Component {
 	render() {
 		return (
 			<Wrapper>
+				<StyledReboundHeader>New Track:</StyledReboundHeader>
 				<AddATrack />
 			</Wrapper>
 		);
