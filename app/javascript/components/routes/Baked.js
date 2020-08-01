@@ -45,9 +45,10 @@ const SongBoxWrapper = styled.div`
 	}
 `;
 
-const LoaderWrapper = styled.div`
+export const LoaderWrapper = styled.div`
 	position: relative;
-	margin-top: 50px;
+	margin-top: 100px;
+	width: 100%;
 `;
 
 const InnerHeader = styled.div`

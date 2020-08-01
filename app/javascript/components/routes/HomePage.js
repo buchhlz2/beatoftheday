@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 import { Loader } from '../shared/AttachmentBox';
+import { LoaderWrapper } from './Baked';
 
 var tracks = [];
 var page = 1;
@@ -44,6 +45,10 @@ const SongBoxWrapper = styled.div`
 	position: relative;
 
 	@media all and (max-width: 800px) {
+		margin: 0 0 50px 20px;
+	}
+
+	@media all and (max-width: 400px) {
 		margin: 0 0 50px 0;
 	}
 `;
@@ -74,10 +79,10 @@ const InnerHeader = styled.div`
 
 	@media all and (max-width: ${window.B_R_E_A_K_P_O_I_N_T}px) {
 		justify-content: center;
+		margin-top: 50px;
+		margin-bottom: 30px;
 	}
 `;
-
-const LoaderWrapper = styled.div`position: relative;`;
 
 const SmallerHeader = styled.div`
 	margin-top: 30px;
@@ -106,6 +111,14 @@ export const AddATrackLink = styled.a`
 	color: #666 !important;
 	text-decoration: none !important;
 	font-size: 16px;
+
+	@media all and (max-width: ${window.B_R_E_A_K_P_O_I_N_T}px) {
+		width: 90%;
+	}
+
+	@media all and (max-width: 800px) {
+		margin-left: 5%;
+	}
 
 	&:hover {
 		background: #f3f2f2;
@@ -192,11 +205,13 @@ class HomePage extends React.Component {
 						<Loader src="/assets/loader.gif" />
 					</LoaderWrapper>
 				) : (
-					page * window.__page_unit__ < tracksLength && (
-						<ShowMoreButton onClick={this.showMoreTracks}>Show more ↓</ShowMoreButton>
-					)
+					<React.Fragment>
+						{page * window.__page_unit__ < tracksLength && (
+							<ShowMoreButton onClick={this.showMoreTracks}>Show more ↓</ShowMoreButton>
+						)}
+						<AddATrackLink href="/add-a-track">Add a new track!</AddATrackLink>
+					</React.Fragment>
 				)}
-				<AddATrackLink href="/add-a-track">Add a new track!</AddATrackLink>
 			</FlexContainer>
 		);
 	}
