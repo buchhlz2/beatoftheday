@@ -36,9 +36,8 @@ class Track < ApplicationRecord
     all = []
     all << self
 
-    @rebounds_arr = rebounds
-    if @rebounds_arr.length > 0
-      @rebounds_arr.map do |rebound|
+    if rebounds.length > 0
+      rebounds.map do |rebound|
         all << rebound.standard_rebounds
       end
     end
@@ -47,9 +46,8 @@ class Track < ApplicationRecord
   end
 
   def upward_rebounds(arr = [])
-    @rebound_from_ = rebound_from
-    if @rebound_from_.present?
-      return @rebound_from_.upward_rebounds(arr + [@rebound_from_])
+    if rebound_from.present?
+      return rebound_from.upward_rebounds(arr + [rebound_from])
     end
 
     arr

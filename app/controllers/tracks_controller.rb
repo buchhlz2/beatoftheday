@@ -114,7 +114,7 @@ class TracksController < ApplicationController
         num_likes: likes.select { |l| l.track_id == track.id }.length,
         num_bakes: likes.select { |l| l.track_id == track.id && l.baked }.length,
         num_comments: comments.select { |c| c.track_id == track.id }.length,
-        num_rebounds: track.standard_rebounds.length - 1,
+        num_rebounds: track.all_rebounds.length,
         baked: baked_for_user?(likes, track, current_user),
         liked: liked_for_user?(likes, track, current_user),
         og_track: track.og_track.try(:attributes),
