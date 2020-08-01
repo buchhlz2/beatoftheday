@@ -29,7 +29,6 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin-bottom: 50px;
 	max-width: ${window.B_R_E_A_K_P_O_I_N_T}px;
 
 	@media all and (max-width: ${window.B_R_E_A_K_P_O_I_N_T}px) {
@@ -127,7 +126,7 @@ export const AddATrackLink = styled.a`
 `;
 
 const ShowMoreButton = styled.div`
-	margin: -60px 0 0px 0;
+	margin: -10px 0 0px 0;
 	align-self: center;
 	cursor: pointer;
 	color: #666;
@@ -209,9 +208,11 @@ class HomePage extends React.Component {
 						{page * window.__page_unit__ < tracksLength && (
 							<ShowMoreButton onClick={this.showMoreTracks}>Show more ↓</ShowMoreButton>
 						)}
-						<AddATrackLink href="/add-a-track">Add a track</AddATrackLink>
 					</React.Fragment>
 				)}
+				<AddATrackLink href="/add-a-track" style={tracks.length == 0 ? { display: 'none' } : {}}>
+					Add a track
+				</AddATrackLink>
 			</FlexContainer>
 		);
 	}

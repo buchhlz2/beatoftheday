@@ -16,10 +16,6 @@ const LoaderWrapper = styled.div`
 	align-items: center;
 `;
 
-const StyledLoader = styled(Loader)`
-	top: 0;
-`;
-
 const NameInput = styled.input`
 	width: 100%;
 	margin-left: 10px !important;

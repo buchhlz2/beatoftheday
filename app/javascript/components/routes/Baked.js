@@ -47,7 +47,8 @@ const SongBoxWrapper = styled.div`
 
 export const LoaderWrapper = styled.div`
 	position: relative;
-	margin-top: 100px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	width: 100%;
 `;
 

@@ -21,8 +21,13 @@ export const Loader = styled.img`
 	width: 50px;
 	height: 50px;
 	position: absolute;
-	bottom: 0;
+	top: 0;
 	left: calc(50% - 25px);
+`;
+
+const StyledLoader = styled(Loader)`
+	top: auto;
+	bottom: 0;
 `;
 
 const InputWrapper = styled.div`
@@ -192,7 +197,7 @@ class AttachmentBox extends React.Component {
 						{window.OPTIONS.current_user ? (
 							<React.Fragment>
 								{this.state.loading ? (
-									<Loader src="/assets/loader.gif" />
+									<StyledLoader src="/assets/loader.gif" />
 								) : (
 									<React.Fragment>
 										<input
