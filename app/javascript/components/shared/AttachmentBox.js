@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import $ from 'jquery';
 import attachmentUpload from '../util/attachmentUpload';
+import artistUrl from '../util/artistUrl';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -9,6 +11,8 @@ export const Wrapper = styled.div`
 	padding: 5px;
 	overflow-y: scroll;
 	margin-bottom: 50px;
+	display: flex;
+	flex-direction: column;
 `;
 
 export const StyledLabel = styled.label`flex-grow: 3;`;
@@ -49,9 +53,37 @@ const SubmitButton = styled.div`
 	}
 `;
 
-const Attachment = styled.div``;
-const AttachmentName = styled.div``;
-const AttachmentUser = styled.div``;
+const Attachment = styled.div`
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	margin-bottom: 10px;
+`;
+const AttachmentName = styled.a`
+	text-decoration: none !important;
+	color: #666 !important;
+
+	&:hover {
+		color: #929292 !important;
+		background: none;
+	}
+`;
+
+const AttachmentUser = styled.span`
+	font-size: 11px;
+	color: #929292;
+
+	a {
+		text-decoration: none !important;
+		color: #666;
+
+		&:hover {
+			background: none;
+			color: #929292 !important;
+		}
+	}
+`;
 
 class AttachmentBox extends React.Component {
 	constructor(props) {
@@ -117,8 +149,12 @@ class AttachmentBox extends React.Component {
 					{this.state.attachments.map((attachment, i) => {
 						return (
 							<Attachment key={i}>
-								<AttachmentName>{attachment.name}</AttachmentName>
-								<AttachmentUser>{attachment.artist_name}</AttachmentUser>
+								<AttachmentName href={attachment.url} download={attachment.name}>
+									{attachment.name}
+								</AttachmentName>
+								<AttachmentUser>
+									from <Link to={artistUrl(attachment.artist_name)}>{attachment.artist_name}</Link>
+								</AttachmentUser>
 							</Attachment>
 						);
 					})}
