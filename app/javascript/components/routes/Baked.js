@@ -5,6 +5,8 @@ import SongBox from '../shared/SongBox';
 import $ from 'jquery';
 import { Rank } from './HomePage';
 
+var tracks = [];
+
 const FlexContainer = styled.div`
 	display: flex;
 	align-items: center;
@@ -91,10 +93,6 @@ const AddATrackLink = styled.a`
 class Baked extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			tracks: []
-		};
 	}
 
 	componentDidMount() {
@@ -102,22 +100,18 @@ class Baked extends React.Component {
 	}
 
 	getTracks = () => {
+		if (tracks.length > 0) return;
 		$.get('/baked_tracks').done((res) => {
-			this.setState(
-				{
-					tracks: res.baked_tracks
-				},
-				() => {
-					window.clearQueue();
-					window.addTracksToQueue(res.baked_tracks);
-					if (window.masterAudioTag.paused) this.enableTrack(0, false);
-				}
-			);
+			tracks = res.baked_tracks;
+			this.forceUpdate();
+			window.clearQueue();
+			window.addTracksToQueue(res.baked_tracks);
+			if (window.masterAudioTag.paused) this.enableTrack(0, false);
 		});
 	};
 
 	enableTrack = (i, play = true) => {
-		const newTrack = this.state.tracks[i];
+		const newTrack = tracks[i];
 		window.masterShowTrack(newTrack, play);
 	};
 
@@ -126,7 +120,7 @@ class Baked extends React.Component {
 			<FlexContainer>
 				<InnerHeader>🧁 Top tracks:</InnerHeader>
 				<Wrapper>
-					{this.state.tracks.map((obj, i) => {
+					{tracks.map((obj, i) => {
 						return (
 							<SongBoxWrapper key={obj.id}>
 								<Rank>{i + 1}</Rank>
