@@ -217,7 +217,7 @@ class CommentBox extends React.Component {
 							this.setState({ showAttachments: false });
 						}}
 					>
-						{thread.length == 0 ? (
+						{this.state.thread.length == 0 ? (
 							'Comments'
 						) : thread.length == 1 ? (
 							`${thread.length} Comment`
