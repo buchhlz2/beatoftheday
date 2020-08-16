@@ -111,7 +111,7 @@ class TracksController < ApplicationController
     tracks.map do |track|
       track.attributes.merge({
         artist_name: track.user.artist_name, 
-        num_likes: likes.select { |l| l.track_id == track.id }.length,
+        num_likes: likes.select { |l| l.track_id == track.id && !l.baked }.length,
         num_bakes: likes.select { |l| l.track_id == track.id && l.baked }.length,
         num_comments: comments.select { |c| c.track_id == track.id }.length,
         num_rebounds: track.all_rebounds.length,
