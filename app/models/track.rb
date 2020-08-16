@@ -63,7 +63,7 @@ class Track < ApplicationRecord
   def show_attributes(current_user)
     attributes.merge({
       artist_name: user.artist_name, 
-      num_likes: likes.only_likes.length,
+      num_likes: likes.only_liked.length,
       num_bakes: bakes.length,
       num_comments: comments.length,
       num_rebounds: all_rebounds.length,
