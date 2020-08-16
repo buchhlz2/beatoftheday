@@ -223,8 +223,9 @@ class SongBox extends React.Component {
 
   likeTrack = () => {
     if (!window._current_user) {
-      window.location = "/users/sign_up"
+      return window.location = "/users/sign_up"
     }
+
     if (this.state.liked) {
       this.setState({
         numLikes: this.state.numLikes - 1,
@@ -236,6 +237,7 @@ class SongBox extends React.Component {
         liked: true,
       });
     }
+
     $.ajax({
       type: "POST",
       url: "/likes",
@@ -245,8 +247,9 @@ class SongBox extends React.Component {
 
   bakeTrack = () => {
     if (!window._current_user) {
-      window.location = "/users/sign_up"
+      return window.location = "/users/sign_up"
     }
+
     if (this.state.baked) {
       this.setState({
         numBakes: this.state.numBakes - 1,
@@ -258,6 +261,7 @@ class SongBox extends React.Component {
         baked: true,
       });
     }
+    
     $.ajax({
       type: "POST",
       url: "/likes",
