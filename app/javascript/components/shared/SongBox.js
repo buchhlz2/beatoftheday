@@ -195,8 +195,8 @@ class SongBox extends React.Component {
       elName: Math.random().toString(36).substring(10),
       numLikes: props.trackInfo.num_likes,
       numBakes: props.trackInfo.num_bakes,
-      liked: false,
-      baked: false,
+      liked: this.props.trackInfo.liked,
+      baked: this.props.trackInfo.baked,
     };
 
     this.bakeTrack = this.bakeTrack.bind(this);
@@ -222,26 +222,46 @@ class SongBox extends React.Component {
   }
 
   likeTrack = () => {
-    this.setState({
-      numLikes: this.state.numLikes + 1,
-      liked: true,
-    });
+    if (!window._current_user) {
+      window.location = "/users/sign_up"
+    }
+    if (this.state.liked) {
+      this.setState({
+        numLikes: this.state.numLikes - 1,
+        liked: false,
+      });
+    } else {
+      this.setState({
+        numLikes: this.state.numLikes + 1,
+        liked: true,
+      });
+    }
     $.ajax({
       type: "POST",
       url: "/likes",
-      data: { track_id: this.props.trackInfo.id },
+      data: { track_id: this.props.trackInfo.id, liked: !this.state.liked },
     });
   };
 
   bakeTrack = () => {
-    this.setState({
-      numBakes: this.state.numBakes + 1,
-      baked: true,
-    });
+    if (!window._current_user) {
+      window.location = "/users/sign_up"
+    }
+    if (this.state.baked) {
+      this.setState({
+        numBakes: this.state.numBakes - 1,
+        baked: false,
+      });
+    } else {
+      this.setState({
+        numBakes: this.state.numBakes + 1,
+        baked: true,
+      });
+    }
     $.ajax({
       type: "POST",
       url: "/likes",
-      data: { track_id: this.props.trackInfo.id, baked: true },
+      data: { track_id: this.props.trackInfo.id, baked: !this.state.baked },
     });
   };
 
@@ -276,7 +296,7 @@ class SongBox extends React.Component {
           >
             <LikeButton
               onClick={this.likeTrack}
-              solid={this.props.trackInfo.liked}
+              solid={this.state.liked}
             >
               <IconContainer>
                 <FontAwesomeIcon icon={faHeart} />
@@ -291,7 +311,7 @@ class SongBox extends React.Component {
           >
             <BakedButton
               onClick={this.bakeTrack}
-              solid={this.props.trackInfo.baked}
+              solid={this.state.baked}
             >
               <IconContainer>🧁</IconContainer>
               <NumBakes>{this.state.numBakes}</NumBakes>
