@@ -251,7 +251,7 @@ class AddATrack extends React.Component {
 					) : (
 						<PleaseComplete>
 							Choose an audio file and an image to upload your{' '}
-							{!!this.props.reboundTrack ? 'rebound' : 'track'}
+							{!!this.props.reboundTrack ? 'remix' : 'track'}
 						</PleaseComplete>
 					)}
 				</Heading>
