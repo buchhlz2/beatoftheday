@@ -63,18 +63,20 @@ class TracksController < ApplicationController
   def s3_blob_location
     aws_url = params[:location]
     aws_photo_url = params[:image_location]
-
+    is_video = params[:video] == "true"
+    
     newTrack = if (params[:reboundTrackId].present?)
       rebound_from_track = Track.find_by(id: params[:reboundTrackId])
       return head(404) unless rebound_from_track.present?
-
+      
       track = Track.create!(
         user: current_user,
         link: aws_url,
         photo: aws_photo_url,
         name: "#{rebound_from_track.og_track.name} #{rebound_from_track.og_track.standard_rebounds.count + 1}",
         audio_type: aws_url.split('.').last,
-        rebound_track_id: rebound_from_track.id
+        rebound_track_id: rebound_from_track.id,
+        video: is_video
       )
 
       UserMailer.send_rebound_email(track).deliver_now
@@ -86,7 +88,8 @@ class TracksController < ApplicationController
         link: aws_url,
         photo: aws_photo_url,
         name: params[:name],
-        audio_type: aws_url.split('.').last
+        audio_type: aws_url.split('.').last,
+        video: is_video
       )
     end
 

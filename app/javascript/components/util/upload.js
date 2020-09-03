@@ -1,7 +1,11 @@
 import $ from 'jquery';
 
 const saveUploads = (attributes, callback) => {
-	if (attributes.location && attributes.image_location && (attributes.reboundTrackId ? true : attributes.name)) {
+	if (
+		attributes.location &&
+		(attributes.video || attributes.image_location) &&
+		(attributes.reboundTrackId ? true : attributes.name)
+	) {
 		const requestObj3 = {
 			method: 'POST',
 			url: '/s3_blob_location',
@@ -48,6 +52,8 @@ const upload = (file, image, attributes, callback) => {
 			saveUploads(attributes, callback);
 		});
 	});
+
+	if (!attributes.newPhotoName) return;
 
 	// image upload
 	$.ajax(

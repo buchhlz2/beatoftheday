@@ -9,6 +9,7 @@ import { ReboundHeader } from './TrackShow';
 
 const StyledReboundHeader = styled(ReboundHeader)`
 	margin-bottom: 30px;
+	margin-left: 10px;
 `;
 
 const Wrapper = styled.div`

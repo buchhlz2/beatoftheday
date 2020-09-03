@@ -4,8 +4,8 @@ class Track < ApplicationRecord
   include SendGrid
 
   validates :name, presence: true
-  validates :photo, presence: true
   validates :user, presence: true
+  validate :photo_or_video
 
   belongs_to :user
   has_many :likes, dependent: :destroy
@@ -99,5 +99,12 @@ class Track < ApplicationRecord
 
   def hours_old
     ((Time.now - created_at) / 3600).round
+  end
+
+  private
+
+  def photo_or_video
+    return if video? || photo.present?
+    errors[:base] << "This track needs a video or a photo yo, you gotta shine"
   end
 end

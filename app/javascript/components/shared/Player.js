@@ -134,6 +134,20 @@ class Player extends React.Component {
     window.masterAudioTag = $("#master-audio-tag").get(0);
   }
 
+  relatedVid = () => {
+    return $(`[src='${this.state.link}']`).parent('video').get(0);
+  }
+
+  pauseRelatedVid = () => {
+    const relatedVid = this.relatedVid();
+    if (relatedVid) relatedVid.pause();
+  }
+
+  playRelatedVid = () => {
+    const relatedVid = this.relatedVid();
+    if (relatedVid) relatedVid.play();
+  }
+
   playNextSongInQueue = () => {
     window.masterShowTrack(this.state.queue[0], true);
   };
@@ -152,12 +166,19 @@ class Player extends React.Component {
           id="master-audio-tag"
           controls
           key={this.state.link}
-          onEnded={this.playNextSongInQueue}
+          onEnded={() => {
+            this.playNextSongInQueue();
+            window.forceUpdateSongBoxes();
+          }}
           onPlay={() => {
             setHeadAttrs(`${this.state.name} - ${this.state.artistName}`);
             window.forceUpdateSongBoxes();
+            this.playRelatedVid();
           }}
-          onPause={window.forceUpdateSongBoxes}
+          onPause={() => {
+            window.forceUpdateSongBoxes;
+            this.pauseRelatedVid();
+          }}
         >
           {this.state.link && <source src={this.state.link} />}
         </Audio>

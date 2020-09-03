@@ -46,7 +46,7 @@ const SongImg = styled.div`
   height: 100px;
   width: 180px;
   transition: width 1.2s ease;
-  background-image: ${(props) => `url(${props.src})`};
+  ${(props) => props.src && `background-image: url(${props.src});`};
   background-size: cover;
 `;
 
@@ -55,6 +55,7 @@ const BottomLeft = styled.div`
   bottom: 0;
   left: 0;
   display: flex;
+  z-index: 100;
 `;
 
 const TopRight = styled(Link)`
@@ -65,6 +66,7 @@ const TopRight = styled(Link)`
   flex-direction: column;
   background: none !important;
   text-decoration: none !important;
+  z-index: 100;
 `;
 
 const DankButton = styled.div`
@@ -79,6 +81,7 @@ const DankButton = styled.div`
   display: flex;
   opacity: ${(props) => (props.solid ? 0.8 : 0.68)};
   ${niceShadow}
+  z-index: 100;
 
   svg {
     filter: drop-shadow(1px 1px 2px #3a3939);
@@ -174,11 +177,18 @@ const SongName = styled.div`
   text-decoration: none !important;
   color: white !important;
   ${niceShadow}
+  z-index: 100;
 
   &:visited {
     color: white !important;
   }
 `;
+
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+`
 
 var songBoxesCurrentlyRendered = [];
 window.forceUpdateSongBoxes = () => {
@@ -386,7 +396,13 @@ class SongBox extends React.Component {
               ? { height: this.props.height, width: this.props.width }
               : {}
           }
-        />
+        >
+          {this.props.trackInfo.video && (
+            <Video preload="metadata" muted>
+              <source src={this.props.trackInfo.link} />
+            </Video>
+          )}
+        </SongImg>
       </SongBoxWrapper>
     );
   }

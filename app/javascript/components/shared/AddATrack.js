@@ -69,7 +69,7 @@ const PleaseComplete = styled.p`
 	display: flex;
 	justify-content: center;
 	cursor: help;
-	margin-left: 26px;
+	margin-left: 10px;
 	width: 100%;
 	line-height: initial;
 
@@ -90,7 +90,7 @@ const Upload = styled.button`
 	border-radius: 3px;
 	text-decoration: none !important;
 	outline: none;
-	margin-left: 26px;
+	margin-left: 10px;
 	text-shadow: none;
 	font-weight: normal;
 	line-height: 17px;
@@ -121,12 +121,24 @@ const StyledLabel = styled.label`
 	margin-right: 0px;
 `;
 
+const Decision = styled.div`
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+`;
+
+const Or = styled.span`
+	margin-left: 10px;
+	margin-top: 4px;
+`;
+
 class AddATrack extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			selectedFile: false,
+			selectedVideo: false,
 			selectedImage: false,
 			doneUploading: false,
 			trackName: '',
@@ -141,6 +153,12 @@ class AddATrack extends React.Component {
 	audioFileChangeHandler = (event) => {
 		this.setState({
 			selectedFile: event.target.files[0]
+		});
+	};
+
+	videoFileChangeHandler = (event) => {
+		this.setState({
+			selectedVideo: event.target.files[0]
 		});
 	};
 
@@ -160,13 +178,14 @@ class AddATrack extends React.Component {
 		this.setState({ uploading: true });
 
 		upload(
-			this.state.selectedFile,
+			this.state.selectedFile || this.state.selectedVideo,
 			this.state.selectedImage,
 			{
 				name: this.state.trackName,
-				newTrackName: this.state.selectedFile.name,
+				newTrackName: this.state.selectedFile ? this.state.selectedFile.name : this.state.selectedVideo.name,
 				newPhotoName: this.state.selectedImage.name,
-				reboundTrackId: this.props.reboundTrack ? this.props.reboundTrack.id : undefined
+				reboundTrackId: this.props.reboundTrack ? this.props.reboundTrack.id : undefined,
+				video: !!this.state.selectedVideo
 			},
 			(res) => {
 				window.location = `/tracks/${res.id}`;
@@ -175,22 +194,58 @@ class AddATrack extends React.Component {
 	};
 
 	formValidation = () => {
-		return (
-			(!!this.props.reboundTrack ? true : this.state.trackName) &&
-			this.state.selectedFile &&
-			this.state.selectedImage
-		);
+		return (!!this.props.reboundTrack ? true : this.state.trackName) && this.state.selectedFile
+			? this.state.selectedImage
+			: this.state.selectedVideo;
 	};
 
-	// dowloadAuidio = () => {};
-
 	render() {
+		const mediaSelected = this.state.selectedVideo || this.state.selectedFile;
+
+		const sharedUploader = (
+			<React.Fragment>
+				<Heading>
+					<Decision>
+						{!this.state.selectedFile && (
+							<React.Fragment>
+								<input
+									type="file"
+									id="video-file"
+									onChange={this.videoFileChangeHandler}
+									accept="video/*"
+								/>
+								<StyledLabel htmlFor="video-file">
+									{this.state.selectedVideo ? this.state.selectedVideo.name : 'Video'}
+								</StyledLabel>
+							</React.Fragment>
+						)}
+						{!this.state.selectedVideo && !this.state.selectedFile && <Or>or</Or>}
+						{!this.state.selectedVideo && (
+							<React.Fragment>
+								<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
+								<StyledLabel htmlFor="file">
+									{this.state.selectedFile ? this.state.selectedFile.name : 'Audio'}
+								</StyledLabel>
+							</React.Fragment>
+						)}
+					</Decision>
+				</Heading>
+				{this.state.selectedFile && (
+					<Heading>
+						<input type="file" id="img-file" onChange={this.imageFileChangeHandler} accept="image/*" />
+						<StyledLabel htmlFor="img-file">
+							{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
+						</StyledLabel>
+					</Heading>
+				)}
+			</React.Fragment>
+		);
+
 		return (
 			<React.Fragment>
 				{!!this.props.reboundTrack ? (
 					<React.Fragment>
 						<Heading>
-							1.
 							<DownloadButton
 								href={this.props.reboundTrack.link}
 								download={`${this.props.reboundTrack.name}.${this.props.reboundTrack.audio_type}`}
@@ -198,25 +253,11 @@ class AddATrack extends React.Component {
 								Download the track
 							</DownloadButton>
 						</Heading>
-						<Heading>
-							2.
-							<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
-							<StyledLabel htmlFor="file">
-								{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
-							</StyledLabel>
-						</Heading>
-						<Heading>
-							3.
-							<input type="file" id="img-file" onChange={this.imageFileChangeHandler} accept="image/*" />
-							<StyledLabel htmlFor="img-file">
-								{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
-							</StyledLabel>
-						</Heading>
+						{sharedUploader}
 					</React.Fragment>
 				) : (
 					<React.Fragment>
 						<Heading>
-							1.
 							<NameInput
 								placeholder="Name"
 								style={{ width: '100%' }}
@@ -225,20 +266,7 @@ class AddATrack extends React.Component {
 								onChange={this.nameChangeHandler}
 							/>
 						</Heading>
-						<Heading>
-							2.
-							<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
-							<StyledLabel htmlFor="file">
-								{this.state.selectedFile ? this.state.selectedFile.name : 'Choose an audio file'}
-							</StyledLabel>
-						</Heading>
-						<Heading>
-							3.
-							<input type="file" id="img-file" onChange={this.imageFileChangeHandler} accept="image/*" />
-							<StyledLabel htmlFor="img-file">
-								{this.state.selectedImage ? this.state.selectedImage.name : 'Choose an image'}
-							</StyledLabel>
-						</Heading>
+						{sharedUploader}
 					</React.Fragment>
 				)}
 				<Heading>
@@ -249,11 +277,13 @@ class AddATrack extends React.Component {
 					) : (
 						<Upload onClick={this.onClickUpload}>Upload</Upload>
 					) : (
-						<PleaseComplete>
-							Choose an audio file and an image to upload your{' '}
-							{!!this.props.reboundTrack ? 'remix' : 'track'}
-						</PleaseComplete>
+						<div />
 					)}
+					{/* 
+							<PleaseComplete>
+								Click above to create your {!!this.props.reboundTrack ? 'remix' : 'track'}
+							</PleaseComplete>
+					*/}
 				</Heading>
 			</React.Fragment>
 		);
