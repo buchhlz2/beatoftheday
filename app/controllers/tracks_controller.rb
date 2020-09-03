@@ -61,7 +61,7 @@ class TracksController < ApplicationController
       key: "audio/#{SecureRandom.uuid}/${filename}",
       success_action_status: '201',
       acl: 'public-read',
-      content_length_range: 0..20000000, # 20 MB
+      content_length_range: 0..200000000, # 200 MB
       content_type: "application/octet-stream",
       content_disposition: "attachment; filename=\"#{params[:newPhotoName].present? ? params[:newPhotoName] : params[:newTrackName]}\""
     )
