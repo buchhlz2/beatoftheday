@@ -46,6 +46,7 @@ const SmallerHeader = styled.div`
 	color: #5e6469 !important;
 	justify-content: flex-start;
 	margin-bottom: 30px;
+	margin-left: 10px;
 `;
 
 const ReboundsBox = styled.div`
@@ -63,6 +64,7 @@ const ReboundRow = styled.div`
 
 export const ReboundHeader = styled.h3`
 	margin-top: 30px;
+	margin-left: 10px;
 	font-size: 24px;
 	margin-bottom: 0;
 	color: #5e6469;
@@ -241,7 +243,8 @@ class TrackShow extends React.Component {
 					</DeleteBox>
 				}
 				
-				<ReboundHeader>{track.rebounds.length > 0 ? 'Remixes:' : ''}</ReboundHeader>
+			{ track.rebounds.length > 0 && <React.Fragment>
+				<ReboundHeader>Remixes:</ReboundHeader> 
 				<ReboundsBox>
 					{track.rebounds.map((rebound) => {
 						return (
@@ -271,6 +274,9 @@ class TrackShow extends React.Component {
 						);
 					})}
 				</ReboundsBox>
+			</React.Fragment>
+			}
+				
 
 				{!!window.OPTIONS.current_user ? (
 					<CreateARebound>

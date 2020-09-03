@@ -147,7 +147,11 @@ class AddATrack extends React.Component {
 	}
 
 	fileSize = (file) => {
-		return +(file.size / 1024 / 1024).toFixed(2); // MB
+		if (file) {
+			return +(file.size / 1024 / 1024).toFixed(2); // MB
+		} else {
+			return false
+		}
 	}
 
 	audioFileChangeHandler = (event) => {
@@ -189,7 +193,7 @@ class AddATrack extends React.Component {
 			{
 				name: this.state.trackName,
 				newTrackName: this.state.selectedFile ? this.state.selectedFile.name : this.state.selectedVideo.name,
-				newPhotoName: this.state.selectedImage.name,
+				newPhotoName: this.state.selectedImage ? this.state.selectedImage.name : undefined,
 				reboundTrackId: this.props.reboundTrack ? this.props.reboundTrack.id : undefined,
 				video: !!this.state.selectedVideo
 			},
@@ -290,6 +294,10 @@ class AddATrack extends React.Component {
 							<PleaseComplete>
 								Please choose a file under 200 MB
 							</PleaseComplete> 
+					: ((this.state.selectedImage || this.state.selectedVideo) && this.state.trackName.length == 0) ?
+						<PleaseComplete>
+							Please add a name to your track
+						</PleaseComplete>
 					: <div />
 					}
 				</Heading>
