@@ -29,7 +29,7 @@ const HomeLinks = styled.div`
   top: 16px;
   left: 22px;
   display: block;
-  z-index: 100;
+  z-index: 10000;
 
   @media all and (max-width: 600px) {
     display: none;
