@@ -23,6 +23,20 @@ const Wrapper = styled.div`
 
 const LoggedOutMessage = styled.span``;
 
+const DeleteBox = styled.div`
+	display: flex;
+	background: #e44545;
+	font-size: 14px;
+	border-radius: 3px;
+	height: 37px;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	width: 100%;
+	margin-top: 50px;
+	cursor: pointer;
+`;
+
 const SmallerHeader = styled.div`
 	margin-top: 30px;
 	line-height: 22px;
@@ -175,6 +189,16 @@ class TrackShow extends React.Component {
 		}
 	};
 
+	deleteTrack = () => {
+		$.ajax({
+			url: `/tracks/${track.id}`,
+			type: 'DELETE',
+			success: function (result) {
+				window.location = "/";
+			}
+		});
+	}
+
 	render() {
 		return track.name ? (
 			<Wrapper>
@@ -209,6 +233,14 @@ class TrackShow extends React.Component {
 				<CommentBoxWrapper style={{ height: window.__good_height__ }}>
 					<CommentBox trackId={track.id} trackInfo={track} />
 				</CommentBoxWrapper>
+
+				{
+					window.OPTIONS.current_user && window.OPTIONS.current_user.id == track.user_id && track.rebounds.length == 0 &&
+					<DeleteBox onClick={this.deleteTrack}>
+						Delete this track
+					</DeleteBox>
+				}
+				
 				<ReboundHeader>{track.rebounds.length > 0 ? 'Remixes:' : ''}</ReboundHeader>
 				<ReboundsBox>
 					{track.rebounds.map((rebound) => {

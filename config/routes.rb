@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/artists', to: 'pages#home'
   get '/about-us', to: 'pages#home'
 
-  resources :tracks, only: [:index, :show]
+  resources :tracks, only: [:index, :show, :destroy]
   get '/tracks/show_track/:id' => 'tracks#show_track'
   get '/baked_tracks' => 'tracks#baked'
   

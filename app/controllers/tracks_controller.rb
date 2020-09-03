@@ -24,6 +24,18 @@ class TracksController < ApplicationController
     render 'pages/home'
   end
 
+  def destroy
+    @track = Track.find(params[:id])
+    destroyable = @track.user == current_user && @track.rebounds.length == 0
+
+    if destroyable
+      @track.destroy!
+      head(200)
+    else
+      head(404) 
+    end
+  end
+
   def baked
     baked_tracks = Track.baked.uniq.sort_by do |track|
       track.check_the_oven
