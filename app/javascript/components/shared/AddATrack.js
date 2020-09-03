@@ -140,15 +140,10 @@ class AddATrack extends React.Component {
 			selectedFile: false,
 			selectedVideo: false,
 			selectedImage: false,
-			doneUploading: false,
 			trackName: '',
 			uploading: false,
 			fileSize: false
 		};
-	}
-
-	componentWillUnmount() {
-		this.setState({ doneUploading: false });
 	}
 
 	fileSize = (file) => {
@@ -285,18 +280,17 @@ class AddATrack extends React.Component {
 					</React.Fragment>
 				)}
 				<Heading>
-					{this.formValidation() ? 
-						<Upload onClick={this.onClickUpload}>Upload</Upload> 
-					:
-						this.state.uploading ? (
+					{this.state.uploading ?
 						<LoaderWrapper>
 							<Loader src="https://beatoftheday.s3.us-west-1.amazonaws.com/audio%2F7a17a42d-5cc8-4f96-bc7f-d7de1d8ac79a%2Floader.gif" />
 						</LoaderWrapper>
-					) : (this.state.fileSize && this.state.fileSize > 200) ? 
+					: this.formValidation() ? 
+						<Upload onClick={this.onClickUpload}>Upload</Upload> 
+					: (this.state.fileSize && this.state.fileSize > 200) ? 
 							<PleaseComplete>
 								Please choose a file under 200 MB
 							</PleaseComplete> 
-						: <div />
+					: <div />
 					}
 				</Heading>
 			</React.Fragment>
