@@ -118,6 +118,9 @@ class Player extends React.Component {
 
         this.forceUpdate();
 
+        window.masterAudioTag.currentTime = 0;
+        this.stopAllVids();
+
         if (play) {
           window.masterAudioTag.play();
           setHeadAttrs(`${obj.name} - ${obj.artist_name}`);
@@ -132,6 +135,13 @@ class Player extends React.Component {
 
   componentDidUpdate() {
     window.masterAudioTag = $("#master-audio-tag").get(0);
+  }
+
+  stopAllVids = () => {
+    $('video').each((i, el) => {
+      el.currentTime = 0;
+      el.pause();
+    })
   }
 
   relatedVid = () => {
@@ -176,8 +186,8 @@ class Player extends React.Component {
             this.playRelatedVid();
           }}
           onPause={() => {
-            window.forceUpdateSongBoxes;
             this.pauseRelatedVid();
+            window.forceUpdateSongBoxes();
           }}
         >
           {this.state.link && <source src={this.state.link} />}

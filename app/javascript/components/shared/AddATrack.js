@@ -195,8 +195,8 @@ class AddATrack extends React.Component {
 
 	formValidation = () => {
 		return (!!this.props.reboundTrack ? true : this.state.trackName) && this.state.selectedFile
-			? this.state.selectedImage
-			: this.state.selectedVideo;
+			? !!this.state.selectedImage
+			: !!this.state.selectedVideo;
 	};
 
 	render() {
@@ -215,7 +215,7 @@ class AddATrack extends React.Component {
 									accept="video/*"
 								/>
 								<StyledLabel htmlFor="video-file">
-									{this.state.selectedVideo ? this.state.selectedVideo.name : 'Video'}
+									{this.state.selectedVideo ? this.state.selectedVideo.name : 'Upload Video'}
 								</StyledLabel>
 							</React.Fragment>
 						)}
@@ -224,7 +224,7 @@ class AddATrack extends React.Component {
 							<React.Fragment>
 								<input type="file" id="file" onChange={this.audioFileChangeHandler} accept="audio/*" />
 								<StyledLabel htmlFor="file">
-									{this.state.selectedFile ? this.state.selectedFile.name : 'Audio'}
+									{this.state.selectedFile ? this.state.selectedFile.name : 'audio'}
 								</StyledLabel>
 							</React.Fragment>
 						)}
