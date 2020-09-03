@@ -142,7 +142,8 @@ class AddATrack extends React.Component {
 			selectedImage: false,
 			doneUploading: false,
 			trackName: '',
-			uploading: false
+			uploading: false,
+			fileSize: false
 		};
 	}
 
@@ -150,15 +151,25 @@ class AddATrack extends React.Component {
 		this.setState({ doneUploading: false });
 	}
 
+	fileSize = (file) => {
+		return +(file.size / 1024 / 1024).toFixed(2); // MB
+	}
+
 	audioFileChangeHandler = (event) => {
+		const file = event.target.files[0]
+
 		this.setState({
-			selectedFile: event.target.files[0]
+			selectedFile: file,
+			fileSize: this.fileSize(file)
 		});
 	};
 
 	videoFileChangeHandler = (event) => {
+		const file = event.target.files[0]
+
 		this.setState({
-			selectedVideo: event.target.files[0]
+			selectedVideo: file,
+			fileSize: this.fileSize(file)
 		});
 	};
 
@@ -194,9 +205,13 @@ class AddATrack extends React.Component {
 	};
 
 	formValidation = () => {
-		return (!!this.props.reboundTrack ? true : this.state.trackName) && this.state.selectedFile
-			? !!this.state.selectedImage
-			: !!this.state.selectedVideo;
+		return (!!this.props.reboundTrack ? true : this.state.trackName.length > 0) && (
+			this.state.selectedFile
+				? !!this.state.selectedImage
+				: !!this.state.selectedVideo
+		) && (
+			this.state.fileSize && this.state.fileSize <= 200
+		);
 	};
 
 	render() {
@@ -270,20 +285,19 @@ class AddATrack extends React.Component {
 					</React.Fragment>
 				)}
 				<Heading>
-					{this.formValidation() ? this.state.uploading ? (
+					{this.formValidation() ? 
+						<Upload onClick={this.onClickUpload}>Upload</Upload> 
+					:
+						this.state.uploading ? (
 						<LoaderWrapper>
 							<Loader src="https://beatoftheday.s3.us-west-1.amazonaws.com/audio%2F7a17a42d-5cc8-4f96-bc7f-d7de1d8ac79a%2Floader.gif" />
 						</LoaderWrapper>
-					) : (
-						<Upload onClick={this.onClickUpload}>Upload</Upload>
-					) : (
-						<div />
-					)}
-					{/* 
+					) : (this.state.fileSize && this.state.fileSize > 200) ? 
 							<PleaseComplete>
-								Click above to create your {!!this.props.reboundTrack ? 'remix' : 'track'}
-							</PleaseComplete>
-					*/}
+								Please choose a file under 200 MB
+							</PleaseComplete> 
+						: <div />
+					}
 				</Heading>
 			</React.Fragment>
 		);
