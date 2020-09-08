@@ -229,7 +229,7 @@ class AddATrack extends React.Component {
 									accept="video/*"
 								/>
 								<StyledLabel htmlFor="video-file">
-									{this.state.selectedVideo ? this.state.selectedVideo.name : 'Upload Video'}
+									{this.state.selectedVideo ? this.state.selectedVideo.name : 'Upload video'}
 								</StyledLabel>
 							</React.Fragment>
 						)}
