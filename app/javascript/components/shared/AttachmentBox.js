@@ -78,6 +78,7 @@ const Attachment = styled.div`
 	justify-content: space-between;
 	margin-bottom: 10px;
 `;
+
 const AttachmentName = styled.a`
 	text-decoration: none !important;
 	color: #666 !important;
