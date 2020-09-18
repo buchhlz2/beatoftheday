@@ -59,7 +59,7 @@ const MenuX = styled.div`
   height: 50px;
   align-items: center;
   left: 19px;
-  z-index: 100;
+  z-index: 1000;
 
   @media all and (max-width: 600px) {
     display: flex;
