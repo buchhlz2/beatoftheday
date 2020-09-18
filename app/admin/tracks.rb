@@ -5,7 +5,7 @@ ActiveAdmin.register Track do
     f.semantic_errors
 
     f.inputs '' do
-      f.input :user_id, as: :search_select, fields: [:artist_name], display_name: 'artist_name'
+      f.input :user_id, as: :search_select, fields: [:artist_name, :email], display_name: 'email'
       f.input :name
       f.input :link
       f.input :photo
