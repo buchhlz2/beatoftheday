@@ -14,7 +14,7 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.find(params[:id])
+    @track = Track.find_by(id: params[:id])
     return head(404) unless @track.present?
 
     @options.merge!({
@@ -49,7 +49,7 @@ class TracksController < ApplicationController
   end
 
   def show_track
-    @track = Track.find(params[:id])
+    @track = Track.find_by(id: params[:id])
     return head(404) unless @track.present?
 
     render json: @track.standard_rebounds_attributes(current_user)
