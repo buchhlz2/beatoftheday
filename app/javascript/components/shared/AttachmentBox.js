@@ -189,8 +189,8 @@ class AttachmentBox extends React.Component {
 									{attachment.name}
 								</AttachmentName>
 								<AttachmentUser>
-									{attachment.size_mb} MB from
-									<Link to={artistUrl(attachment.artist_name)}> {attachment.artist_name}</Link>
+									{attachment.size_mb} MB from{' '}
+									<Link to={artistUrl(attachment.artist_name)}>{attachment.artist_name}</Link>
 								</AttachmentUser>
 							</Attachment>
 						);
