@@ -144,14 +144,22 @@ const CommentBoxWrapper = styled.div`
 `;
 
 const ReboundInfo = styled(Link)`
+	max-width: 50%;
 	position: absolute; 
 	top: -2px;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const OGInfo = styled(Link)`
 	position: absolute;     
 	right: 0;
 	top: -2px;
+	max-width: 50%;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 class TrackShow extends React.Component {
