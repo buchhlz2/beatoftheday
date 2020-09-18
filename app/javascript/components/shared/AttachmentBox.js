@@ -90,6 +90,7 @@ const AttachmentName = styled.a`
 `;
 
 const AttachmentUser = styled.span`
+	display: flex;
 	font-size: 11px;
 	color: #929292;
 
@@ -188,8 +189,8 @@ class AttachmentBox extends React.Component {
 									{attachment.name}
 								</AttachmentName>
 								<AttachmentUser>
-									{attachment.size_mb} MB from{' '}
-									<Link to={artistUrl(attachment.artist_name)}>{attachment.artist_name}</Link>
+									{attachment.size_mb} MB from
+									<Link to={artistUrl(attachment.artist_name)}> {attachment.artist_name}</Link>
 								</AttachmentUser>
 							</Attachment>
 						);
