@@ -10,6 +10,7 @@ class Track < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :attachments, dependent: :destroy
   has_many :rebounds, class_name: 'Track', foreign_key: 'rebound_track_id'
   belongs_to :rebound_from, class_name: 'Track', foreign_key: 'rebound_track_id', optional: true
 

@@ -3,13 +3,16 @@ class AttachmentsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    return head(404) unless params[:track_id].present?
+    track = Track.find_by(id: params[:track_id])
+    return head(404) unless track.present?
 
-    attachments = Attachment.where(track_id: params[:track_id]).preload(:user).order("created_at desc").map do |a|
-      a.attributes.merge({
-        artist_name: a.user.artist_name
-      })
-    end
+    attachments = track.all_rebounds.map do |track|
+      track.attachments.preload(:user).map do |a|
+        a.attributes.merge({
+          artist_name: a.user.artist_name
+        })
+      end
+    end.flatten.sort_by { |attachment| attachment["created_at"] }
 
     render json: {
       attachments: attachments

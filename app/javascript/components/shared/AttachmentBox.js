@@ -15,7 +15,13 @@ export const Wrapper = styled.div`
 	flex-direction: column;
 `;
 
-const StyledLabel = styled.label`flex-grow: 3;`;
+const StyledLabel = styled.label`
+	flex-grow: 3;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+`;
 
 export const Loader = styled.img`
 	width: 50px;
@@ -82,12 +88,20 @@ const Attachment = styled.div`
 const AttachmentName = styled.a`
 	text-decoration: none !important;
 	color: #666 !important;
+	max-width: 55%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 
 	&:hover {
 		color: #929292 !important;
 		background: none;
 	}
 `;
+
+const StyledArtistLink = styled(Link)`
+	margin-left: 3px;
+`
 
 const AttachmentUser = styled.span`
 	display: flex;
@@ -189,8 +203,8 @@ class AttachmentBox extends React.Component {
 									{attachment.name}
 								</AttachmentName>
 								<AttachmentUser>
-									{attachment.size_mb} MB from{' '}
-									<Link to={artistUrl(attachment.artist_name)}>{attachment.artist_name}</Link>
+									{attachment.size_mb} MB from
+									<StyledArtistLink to={artistUrl(attachment.artist_name)}>{attachment.artist_name}</StyledArtistLink>
 								</AttachmentUser>
 							</Attachment>
 						);
