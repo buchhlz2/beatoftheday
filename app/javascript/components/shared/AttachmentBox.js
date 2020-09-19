@@ -144,12 +144,12 @@ class AttachmentBox extends React.Component {
 
 	loadData = () => {
 		$.get(`/attachments?track_id=${this.state.trackId}`).done((res) => {
-			if (res.attachments.length > 0) {
-				this.setState({
-					attachments: res.attachments
-				});
-				this.props.setCommentBoxState({ attachments: res.attachments });
-			}
+			const attachments = res.attachments || [];
+			
+			this.setState({
+				attachments: attachments
+			});
+			this.props.setCommentBoxState({ attachments: attachments });
 			this.setState({ loading: false });
 		});
 	};
