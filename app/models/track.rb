@@ -29,8 +29,12 @@ class Track < ApplicationRecord
     last_track.present? ? last_track.og_track : self
   end
 
+  def self_and_rebounds
+    standard_rebounds + upward_rebounds
+  end
+
   def all_rebounds
-    all = standard_rebounds + upward_rebounds
+    all = self_and_rebounds
     all.length > 1 ? all : []
   end
 

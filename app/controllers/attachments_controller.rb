@@ -6,7 +6,7 @@ class AttachmentsController < ApplicationController
     track = Track.find_by(id: params[:track_id])
     return head(404) unless track.present?
 
-    attachments = track.all_rebounds.map do |track|
+    attachments = track.self_and_rebounds.map do |track|
       track.attachments.preload(:user).map do |a|
         a.attributes.merge({
           artist_name: a.user.artist_name
