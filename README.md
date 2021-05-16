@@ -1,24 +1,11 @@
-# README
+# Beatoftheday.org
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Open source music collaboration platform.
 
-Things you may want to cover:
+Fairly standard Rails / React app.
 
-* Ruby version
+🎻 Lets help people collaborate on music together! 🎵
 
-* System dependencies
+TODO:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Fork a crypto and create a better NFT structure with help from actual copyright lawyers for music collaboration within Beatoftheday.
