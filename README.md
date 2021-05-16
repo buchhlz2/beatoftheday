@@ -1,4 +1,4 @@
-# 🥁 [Beatoftheday.org](https://www.beatoftheday.org/) 🌞
+# 🥁 &nbsp; [Beatoftheday.org](https://www.beatoftheday.org/) &nbsp; 🌞
 
 Open source music collaboration platform.
 
