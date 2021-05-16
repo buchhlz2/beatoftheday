@@ -1,4 +1,4 @@
-# Beatoftheday.org
+# [Beatoftheday.org](https://www.beatoftheday.org/)
 
 Open source music collaboration platform.
 
