@@ -1,10 +1,10 @@
-# [Beatoftheday.org](https://www.beatoftheday.org/)
+# 🥁 [Beatoftheday.org](https://www.beatoftheday.org/) 🌞
 
 Open source music collaboration platform.
 
 Fairly standard Rails / React app.
 
-🎻 Lets help people collaborate on music together! 🎵
+🎻 Lets help people collaborate on music! 🎵
 
 TODO:
 
