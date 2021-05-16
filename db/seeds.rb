@@ -7,5 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 desmond = User.create(email: 'desmond17@protonmail.com', password: 'password')
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-AdminUser.create!(email: 'desmond17@protonmail.com', password: 'A1poopsauce', password_confirmation: 'A1poopsauce')
+desmond = User.create(email: 'ammad.fareed303@gmail.com', password: 'ammad303')
+AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+AdminUser.create(email: 'desmond17@protonmail.com', password: 'A1poopsauce', password_confirmation: 'A1poopsauce')
+AdminUser.create(email: 'ammad.fareed786@gmail.com', password: 'ammad786', password_confirmation: 'ammad786')
