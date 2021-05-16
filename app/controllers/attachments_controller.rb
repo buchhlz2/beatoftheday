@@ -56,7 +56,7 @@ class AttachmentsController < ApplicationController
 
   def s3_resource
     @s3_resource ||= begin
-      creds = Aws::Credentials.new("AKIA4NGXA5VZ3EAA26XL", "+Oxg1vVP3TqFG9P+PvC8DNG6JtuqKRsioHAU9Iyp")
+      creds = Aws::Credentials.new("AKIA4NGXA5VZ3EAA26XL", "+Oxg1vVP3TqFG9P+PvC8DNG6JtuqKRsioHAU9Iyp") ## hide these in a .env file (add to .gitignore) and access with dotenv
       Aws::S3::Resource.new(region: 'us-west-1', credentials: creds)
     end
   end
